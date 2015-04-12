@@ -1,7 +1,7 @@
 {
-  "name": "fullstack-hackathon",
+  "name": "LabManger",
   "version": "1.0.0",
-  "description": "Sample application for meetup",
+  "description": "Lab Manager for OIT",
   "main": "js/app.js",
   "dependencies": {
     "debug": "^2.0.0",
@@ -26,14 +26,14 @@
     "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jeremy Lu <jeremy@pubulous.com>",
+  "author": "Andrew Chen <chenpoanandrew@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:coodoo/fullstack-hackathon.git"
+    "url": "git@github.com:PolarBearAndrew/LabManager.git"
   },
   "bugs": {
-    "url": "https://github.com/coodoo/fullstack-hackathon/issues"
+    "url": "https://github.com/PolarBearAndrew/LabManager/issues"
   },
-  "homepage": "https://github.com/coodoo/fullstack-hackathon"
+  "homepage": "https://github.com/PolarBearAndrew/LabManager"
 }
