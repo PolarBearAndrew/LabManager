@@ -1,2 +1,17 @@
 body
-  background-color: #b4b4b4
+	background-color: #b4b4b4
+
+$footerHeight: 40px
+
+.footer
+	position: fixed
+	top: calc(100% - #{$footerHeight})
+	height: $footerHeight
+	width: 100%
+	background-color: #247e1d
+	text-align: center
+	padding-top: 10px
+	.author
+		font-weight: bolder
+		color: white
+	
