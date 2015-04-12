@@ -88,8 +88,6 @@ var MainApp = React.createClass({
 
         return (
 					 <div className="wrapper">
-                <Header />
-            		<ListContainer />
                 <Footer />
             </div>
         )

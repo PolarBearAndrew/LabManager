@@ -16,8 +16,9 @@ var Footer = React.createClass({
 
   	return (
       <footer className="footer">
-        <span className="licensing">
-            MIT licensing, use at will. 
+        <span className="author">
+            <h1>Andrew Chen for OIT / May,2015</h1>
+			
         </span>
       </footer>
     );
