@@ -4,6 +4,7 @@ var source = require('vinyl-source-stream');
 var minifyCSS = require('gulp-minify-css');
 var livereload = require('gulp-livereload');
 var notify = require('gulp-notify');
+var sass = require('gulp-sass');
 var fs = require('fs');
 
 // 環境變數
@@ -83,7 +84,7 @@ gulp.task('copy', function(){
 gulp.task('watch', function() {
     // console.log( 'watch 跑' );
 
-    gulp.watch( 'app/**/*', ['bundle-js', 'minify-css', 'copy', 'refresh'] );
+    gulp.watch( 'app/**/*', ['bundle-js', 'minify-css', 'copy', 'refresh', 'sass'] );
 });
 
 /**
@@ -95,6 +96,12 @@ gulp.task( 'refresh', function(){
     setTimeout(function(){
       live.changed('');
     }, 500)
+})
+
+gulp.task('sass', function () {
+    gulp.src('.app/assets/sass/*.sass')
+        .pipe(sass())
+        .pipe(gulp.dest('.app/assets/css'));
 })
 
 
@@ -113,4 +120,4 @@ gulp.task('default', ['dev']);
  * 廣播 livereload 事件
  * 啟動 8000 server 供本地跑
  */
-gulp.task('dev', ['bundle-js', 'minify-css', 'copy', 'watch'] );
+gulp.task('dev', ['bundle-js', 'minify-css', 'copy', 'watch', 'sass'] );

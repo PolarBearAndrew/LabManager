@@ -10,13 +10,15 @@ var comp = React.createClass({
 	
 	propTypes: {
 
-		todo: React.PropTypes.shape({
+		log: React.PropTypes.shape({
       id: React.PropTypes.string,
       name: React.PropTypes.string,
-      memo: React.PropTypes.number
+      room: React.PropTypes.string,
+			inTime: React.PropTypes.string,
+      outTime: React.PropTypes.string,
+      inCheck: React.PropTypes.string,
+      outCheck: React.PropTypes.string,
     }),
-		
-		selectedItem: React.PropTypes.object,
 		
 		// callbacks
     onClick: React.PropTypes.func,
@@ -28,32 +30,28 @@ var comp = React.createClass({
   render: function() {
 
     // 取出所有要繪製的資料
-    var arrTodos = this.props.truth.arrTodos;
-		var selectedItem = this.props.truth.selectedItem;
+    var arrlog = this.props.truth.arrLog;
 		
 		// 跑 loop 一筆筆建成 ListItem 元件
-		var arr = arrTodos.map(function (item) {
+		var arr = arrlog.map(function (row) {
 
-			var todo = item;
-			
-			console.log('this', this);
+			var log = row;
+		
 
 			// 注意每個 item 要有一個獨一無二的 key 值
 			return <ListItem
-				todoItem = {todo}
-				selected = {selectedItem == todo}
-				key = {todo.id}
-				onClick = {this.props.onClick.bind(this, item)}
-				onRemove = {this.props.onRemove.bind(this, item)}
+				logRow = {log}
+				key = {log.id}
+				onClick = {this.props.onClick.bind(this, log)}
+				onRemove = {this.props.onRemove.bind(this, log)}
 				/>
 
 		}, this);
 		
     return (
-
-      <div className="todo-list">
+      <table className="table table-hover">
           {arr}
-      </div>
+      </table>
     );
 
   },

@@ -16,7 +16,7 @@ var AppActionCreators = {
      */
     load: function(){
 
-        $.ajax('http://localhost:3000/api/todos/',
+        $.ajax('http://localhost:8080/api/all',
         {
 
             type:"GET",

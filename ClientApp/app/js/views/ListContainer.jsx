@@ -11,7 +11,7 @@
 var InputBox = React.createFactory( require('./InputBox.jsx') );
 var List = React.createFactory( require('./List.jsx') );
 
-var TodoStore = require('../stores/TodoStore');
+var LogStore = require('../stores/LogStore');
 var AppConstants = require('../constants/AppConstants');
 
 var actions = require('../actions/AppActionCreator');
@@ -58,7 +58,7 @@ var ListContainer = React.createClass({
      * 主程式進入點
      */
     componentWillMount: function() {
-        TodoStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
+        LogStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
     },
 
     // 重要：root view 建立後第一件事，就是偵聽 store 的 change 事件
@@ -111,11 +111,10 @@ var ListContainer = React.createClass({
 
     render: function() {
 
+				
         // console.log( '\tMainApp > render' );
-
         return (
-                <div className="main-box">
-                    <InputBox truth={this.state} />
+                <div className="main">
                     <List 
 											truth={this.state}
 											onClick={actions.selectTodo}
@@ -156,8 +155,8 @@ var ListContainer = React.createClass({
 
         // 是從 TodoStore 取資料(as the single source of truth)
         return {
-            arrTodos: TodoStore.getTodos(),
-            selectedItem: TodoStore.getSelectedItem()
+            arrLog: LogStore.getLog()
+//            ,selectedItem: TodoStore.getSelectedItem()
          };
     }
 
