@@ -1,5 +1,6 @@
 body {
-  background-color: #b4b4b4; }
+  background-color: #b4b4b4;
+  padding: 0px; }
 
 .footer {
   position: fixed;
@@ -12,5 +13,3 @@ body {
   .footer .author {
     font-weight: bolder;
     color: white; }
-
-/*# sourceMappingURL=main.css.map */

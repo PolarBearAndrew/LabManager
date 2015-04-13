@@ -50,7 +50,10 @@ var comp = React.createClass({
 		
     return (
       <table className="table table-hover">
+				
+				<tbody>
           {arr}
+				</tbody>
       </table>
     );
 

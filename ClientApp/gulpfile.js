@@ -53,6 +53,11 @@ gulp.task('bundle-js', function() {
 
 });
 
+gulp.task('sass', function () {
+    gulp.src('./app/assets/sass/*.sass')
+        .pipe(sass({indentedSyntax: true}))
+        .pipe(gulp.dest('./app/assets/css'));
+})
 /**
  * 縮短 app.css
  */
@@ -98,11 +103,6 @@ gulp.task( 'refresh', function(){
     }, 500)
 })
 
-gulp.task('sass', function () {
-    gulp.src('.app/assets/sass/*.sass')
-        .pipe(sass())
-        .pipe(gulp.dest('.app/assets/css'));
-})
 
 
 //========================================================================
