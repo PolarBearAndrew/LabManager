@@ -50,7 +50,14 @@ var comp = React.createClass({
 		
     return (
       <table className="table table-hover">
-				
+				<thead>
+						<td>ID</td>
+						<td>Name</td>
+						<td>"Check in time"</td>
+						<td>Check out time</td>
+						<td>"Checked (in)"</td>
+						<td>"Checked (out)"</td>
+				</thead>
 				<tbody>
           {arr}
 				</tbody>
