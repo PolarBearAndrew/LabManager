@@ -1,7 +1,7 @@
 /**
  *
  */
-var actions = require('../actions/AppActionCreator');
+var actions = require('../../actions/AppActionCreator');
 var cx = React.addons.classSet;
 //
 var comp = React.createClass({
@@ -43,7 +43,8 @@ var comp = React.createClass({
 		
     return (
       <tr>
-				<td>{logRow.id}</td>
+				<td>{logRow.room}</td>
+				<td>{logRow.sid}</td>
 				<td>{logRow.name}</td>
 				<td>{logRow.inTime}</td>
 				<td>{logRow.outTime}</td>

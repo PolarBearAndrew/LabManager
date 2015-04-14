@@ -8,9 +8,8 @@
 // import
 
 // var React = require('react');
-var Header = React.createFactory( require('./Header.jsx') );
 var Footer = React.createFactory( require('./Footer.jsx') );
-var ListContainer = React.createFactory( require('./ListContainer.jsx') );
+var ListContainer = React.createFactory( require('./List/ListContainer.jsx') );
 
 //========================================================================
 //
@@ -90,7 +89,6 @@ var MainApp = React.createClass({
 					 <div className="just-wrapper">
 								<ListContainer />
                 <Footer />
-								
             </div>
         )
     },

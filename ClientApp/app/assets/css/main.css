@@ -2,6 +2,30 @@ body {
   background-color: #b4b4b4;
   padding: 0px; }
 
+.ListContainer {
+  margin-top: 40px;
+  margin-left: 100px;
+  margin-right: 100px; }
+  .ListContainer .header h1 {
+    float: left; }
+  .ListContainer .header h4 {
+    width: 200px;
+    padding: 0px;
+    margin-top: 35px;
+    margin-bottom: 30px;
+    float: right; }
+    .ListContainer .header h4 select {
+      width: 80px; }
+    .ListContainer .header h4 span {
+      margin-top: 8px;
+      margin-right: 6px;
+      float: left; }
+
+table {
+  text-align: center; }
+  table thead {
+    font-weight: bolder; }
+
 .footer {
   position: fixed;
   top: calc(100% - 40px);

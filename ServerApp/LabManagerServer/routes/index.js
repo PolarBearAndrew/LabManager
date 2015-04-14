@@ -58,13 +58,13 @@ db.once('open', function () { //once, 一旦進入'open'狀況,就執行
 		"outCheck": "柔"
 	});
 
-//		logEntity.save(function (err) {
-//			if (err) {
-//				console.log(err);
-//			} else {
-//				console.log('saved');
-//			}
-//		});
+	//		logEntity.save(function (err) {
+	//			if (err) {
+	//				console.log(err);
+	//			} else {
+	//				console.log('saved');
+	//			}
+	//		});
 
 	//讀取資料
 	//	LogModel.find({}, function (err, data) {
@@ -87,8 +87,15 @@ router.get('/', function (req, res, next) {
 router.get('/api/:ctrl', function (req, res, next) {
 	var ctrl = req.params.ctrl;
 
-	if (ctrl == 'all') {
+	//get all log or the only one room log
+	if (ctrl == 'all' || ctrl == '') {
 		LogModel.find({}, function (err, data) {
+			res.json(data);
+		});
+	} else {
+		LogModel.find({
+			"room": ctrl
+		}, function (err, data) {
 			res.json(data);
 		});
 	}

@@ -1,34 +1,27 @@
 /**
  *
  */
-
+var ReactPropTypes = React.PropTypes;
 var actions = require('../actions/AppActionCreator');
 
-var Header = React.createClass({
+var Footer = React.createClass({
+
+  propTypes: {
+  },
 
   /**
-   * 
+   * @return {object}
    */
   render: function() {
 
-
-    return (
-      
+  	return (
       <header className="header">
-        
-        <p className="logo">Todo for Dummies</p>
-        
-        <input className="search-box right" type="text" defaultValue="search here" />
-
+				
       </header>
     );
-  
   },
 
-  noop: function(){
-
-  }
 
 });
 
-module.exports = Header;
+module.exports = Footer;

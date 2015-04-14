@@ -8,13 +8,14 @@
 // import
 
 // var React = require('react');
-var InputBox = React.createFactory( require('./InputBox.jsx') );
+//var InputBox = React.createFactory( require('./InputBox.jsx') );
 var List = React.createFactory( require('./List.jsx') );
+var Selector = React.createFactory( require('./Selector.jsx') );
 
-var LogStore = require('../stores/LogStore');
-var AppConstants = require('../constants/AppConstants');
+var LogStore = require('../../stores/LogStore');
+var AppConstants = require('../../constants/AppConstants');
 
-var actions = require('../actions/AppActionCreator');
+var actions = require('../../actions/AppActionCreator');
 
 
 //========================================================================
@@ -114,12 +115,18 @@ var ListContainer = React.createClass({
 				
         // console.log( '\tMainApp > render' );
         return (
-                <div className="main">
-                    <List 
-											truth={this.state}
-											onClick={actions.selectTodo}
-											onRemove={actions.removeTodo}
-										/>
+                <div className="ListContainer">
+									<div className="header">
+										<h1>Lab Manager</h1>
+										<h4><span>{"Room ID "}</span> 
+												<Selector />
+										</h4>
+									</div>
+									<List 
+										truth={this.state}
+										onClick={actions.selectTodo}
+										onRemove={actions.removeTodo}
+									/>
                 </div>
         )
     },
