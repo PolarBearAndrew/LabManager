@@ -21,8 +21,7 @@ var comp = React.createClass({
     }),
 		
 		// callbacks
-    onClick: React.PropTypes.func,
-    onRemove: React.PropTypes.func,
+    //selectRoomID: React.PropTypes.func,
 	},
   /**
    *
@@ -31,19 +30,18 @@ var comp = React.createClass({
 
     // 取出所有要繪製的資料
     var arrlog = this.props.truth.arrLog;
+		var selectedRoomID = this.props.truth.selectedRoomID;
+		
+		console.log('selectedRoomID',selectedRoomID);
 		
 		// 跑 loop 一筆筆建成 ListItem 元件
-		var arr = arrlog.map(function (row) {
-
-			var log = row;
-		
-
+		var arr = arrlog.map(function (log) {
+			
 			// 注意每個 item 要有一個獨一無二的 key 值
 			return <ListItem
 				logRow = {log}
 				key = {log.id}
-				onClick = {this.props.onClick.bind(this, log)}
-				onRemove = {this.props.onRemove.bind(this, log)}
+				selectedRoomID = {selectedRoomID}
 				/>
 
 		}, this);

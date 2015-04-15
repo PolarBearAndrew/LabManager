@@ -111,27 +111,23 @@ var ListContainer = React.createClass({
     // render
 
     render: function() {
-
-				
-        // console.log( '\tMainApp > render' );
         return (
-                <div className="ListContainer">
-									<div className="header">
-										<h1>Lab Manager</h1>
-										<h4><span>{"Room ID "}</span> 
-												<Selector />
-										</h4>
-									</div>
-									<List 
-										truth={this.state}
-										onClick={actions.selectTodo}
-										onRemove={actions.removeTodo}
-									/>
-                </div>
+							<div className="ListContainer">
+								<div className="header">
+									<h1>Lab Manager</h1>
+									<h4><span>{"Room ID "}</span> 
+											<Selector 
+												selectRoomID = {actions.selectRoomID}
+											/>
+									</h4>
+								</div>
+								<List 
+									truth={this.state}
+								/>
+							</div>
         )
     },
-
-
+			
 
     //========================================================================
     //
@@ -162,8 +158,9 @@ var ListContainer = React.createClass({
 
         // 是從 TodoStore 取資料(as the single source of truth)
         return {
-            arrLog: LogStore.getLog()
-//            ,selectedItem: TodoStore.getSelectedItem()
+            arrLog: LogStore.getLog(),
+						selectedRoomID: LogStore.selectedRoomID()
+//           ,selectedItem: TodoStore.getSelectedItem()
          };
     }
 

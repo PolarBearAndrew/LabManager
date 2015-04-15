@@ -49,22 +49,22 @@ db.once('open', function () { //once, 一旦進入'open'狀況,就執行
 
 	var logEntity = new LogModel({
 		"sid": "101111212",
-		"name": "陳柏安",
-		"room": "806",
-		"posi": "討論1",
+		"name": "洪于雅",
+		"room": "802",
+		"posi": "討論3",
 		"inTime": "2015/3/14-08:00",
 		"outTime": "2015/3/14-16:00",
 		"inCheck": "PH",
 		"outCheck": "柔"
 	});
 
-	//		logEntity.save(function (err) {
-	//			if (err) {
-	//				console.log(err);
-	//			} else {
-	//				console.log('saved');
-	//			}
-	//		});
+	//logEntity.save(function (err) {
+	//	if (err) {
+	//		console.log(err);
+	//	} else {
+	//		console.log('saved');
+	//	}
+	//});
 
 	//讀取資料
 	//	LogModel.find({}, function (err, data) {

@@ -25,8 +25,8 @@ var Store = {};
 // 所有 todo 資料
 var arrLog = [];
 
-// 目前選取的 todo 項目
-var selectedItem = null;
+// 目前選取的 room ID
+var selectedRoomID = 'all';
 
 /**
  * 建立 Store class，並且繼承 EventEMitter 以擁有廣播功能
@@ -44,8 +44,8 @@ objectAssign( Store, EventEmitter.prototype, {
     /**
      *
      */
-    getSelectedItem: function(){
-        return selectedItem;
+    selectedRoomID: function(){
+        return selectedRoomID;
     },
 
     //
@@ -124,14 +124,13 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             console.log( 'Store 選取: ', action.item );
 
             // 選取同樣的 item 就不用處理下去了
-            if( selectedItem != action.item ){
-                selectedItem = action.item;
+            if( selectedRoomID != action.item ){
+                selectedRoomID = action.item;
                 Store.emit( AppConstants.CHANGE_EVENT );
             }
 
 
             break;
-
 
 
         default:

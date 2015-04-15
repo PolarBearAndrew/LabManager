@@ -9,13 +9,25 @@ var comp = React.createClass({
   /**
    * 
    */
+	propTypes: {
+		// callbacks
+    selectRoomID: React.PropTypes.func,
+	},
+	
+	/**
+   * 
+   */
+	
 	
   render: function() {
 	
 		var logRow = this.props.logRow;
+		//console.log('in select.jsx', this.props.selectRoomID);
+		//this.props.selectRoomID
 		
     return (
-				<select className="form-control">
+				<select id="selectID" className="form-control"
+					onChange = {this.handleChange} >
 					<option>all</option>
 					<option>801</option>
 					<option>802</option>
@@ -25,6 +37,13 @@ var comp = React.createClass({
 				</select>
 		);
   },
+	
+	handleChange: function(){
+		//console.log('handleChange func', this.props.selectRoomID);
+			//console.log('value', $('#selectID').val());
+		var id = $('#selectID').val();
+		this.props.selectRoomID(id);
+	},
 
   /**
    * 

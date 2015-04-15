@@ -93,8 +93,10 @@ var AppActionCreators = {
     /**
      *
      */
-    selectTodo: function( item ) {
+    selectRoomID: function( item ) {
 
+				console.log('select action', item);
+			
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_SELECT,
             item: item
