@@ -1,8 +1,8 @@
 /**
  *
  */
-var actions = require('../../actions/AppActionCreator');
-var cx = React.addons.classSet;
+//var actions = require('../../actions/AppActionCreator');
+//var cx = React.addons.classSet;
 //
 var comp = React.createClass({
 
@@ -34,10 +34,6 @@ var comp = React.createClass({
    */
   render: function() {
     
-    var classes = cx({
-        'list-item': true,
-        'selected': this.props.selected
-    });
 
 		
 		
@@ -50,6 +46,7 @@ var comp = React.createClass({
 					<td>{logRow.room}</td>
 					<td>{logRow.sid}</td>
 					<td>{logRow.name}</td>
+					<td>{logRow.posi}</td>
 					<td>{logRow.inTime}</td>
 					<td>{logRow.outTime}</td>
 					<td>{logRow.inCheck}</td>
@@ -57,9 +54,10 @@ var comp = React.createClass({
 				</tr>
 			);
 		}else{
-			return (
-				<tr></tr>
-			);
+			return null;
+//			return (
+//				<tr></tr>
+//			);
 		}
 //      <div className={classes} >
 //          <span>{todoItem.name}</span>

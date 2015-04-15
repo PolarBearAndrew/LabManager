@@ -1,7 +1,7 @@
 /**
  *
  */
-var actions = require('../../actions/AppActionCreator');
+//var actions = require('../../actions/AppActionCreator');
 var cx = React.addons.classSet;
 //
 var comp = React.createClass({
@@ -10,6 +10,8 @@ var comp = React.createClass({
    * 
    */
 	propTypes: {
+		//Ctrl
+		ctrl: React.PropTypes.string,
 		// callbacks
     selectRoomID: React.PropTypes.func,
 	},
@@ -20,29 +22,30 @@ var comp = React.createClass({
 	
 	
   render: function() {
-	
-		var logRow = this.props.logRow;
-		//console.log('in select.jsx', this.props.selectRoomID);
-		//this.props.selectRoomID
+		
+		var options = this.props.options;
+		
+		var arr = options.map(function (log) {
+			
+			// 注意每個 item 要有一個獨一無二的 key 值
+			return <option>{log}</option>
+
+		}, this);
+
 		
     return (
 				<select id="selectID" className="form-control"
 					onChange = {this.handleChange} >
-					<option>all</option>
-					<option>801</option>
-					<option>802</option>
-					<option>804</option>
-					<option>806</option>
-					<option>813</option>
+					{arr}
 				</select>
 		);
   },
 	
 	handleChange: function(){
-		//console.log('handleChange func', this.props.selectRoomID);
-			//console.log('value', $('#selectID').val());
-		var id = $('#selectID').val();
-		this.props.selectRoomID(id);
+		if(this.props.selectRoomID){
+			var id = $('#selectID').val();
+			this.props.selectRoomID(id);
+		}
 	},
 
   /**

@@ -4,6 +4,8 @@
 
 
 var ListItem = React.createFactory(require('./ListItem.jsx'));
+var ListInput = React.createFactory(require('./ListInput.jsx'));
+var ListTitle = React.createFactory(require('./ListTitle.jsx'));
 
 //
 var comp = React.createClass({
@@ -32,8 +34,6 @@ var comp = React.createClass({
     var arrlog = this.props.truth.arrLog;
 		var selectedRoomID = this.props.truth.selectedRoomID;
 		
-		console.log('selectedRoomID',selectedRoomID);
-		
 		// 跑 loop 一筆筆建成 ListItem 元件
 		var arr = arrlog.map(function (log) {
 			
@@ -46,20 +46,26 @@ var comp = React.createClass({
 
 		}, this);
 		
+		var inputTitle = ['Lab', 'Your ID', 'Your Name', 'Posi', 'Check in', '', 'Operate', ''];
+		var theadTitle = ['Lab', 'ID', 'Name', 'Posi', 'Check in', 'Check out', 'Checked(in)', 'Checked(out)'];
+		
+		//console.log('arr', arr.map);
+		
     return (
       <table className="table table-hover">
-				<thead>
-						<td>Lab</td>
-						<td>ID</td>
-						<td>Name</td>
-						<td>{"Check in time"}</td>
-						<td>Check out time</td>
-						<td>{"Checked (in)"}</td>
-						<td>{"Checked (out)"}</td>
-				</thead>
+				<ListTitle 
+					titles={inputTitle} 
+					listTitle={false} />
+				<ListInput />
+				<ListTitle 
+					titles={theadTitle} 
+					listTitle={true} />
 				<tbody>
           {arr}
 				</tbody>
+				<tfoot>
+					<td className="tableEnd" colSpan="8">--- [End] ---</td>
+				</tfoot>
       </table>
     );
 

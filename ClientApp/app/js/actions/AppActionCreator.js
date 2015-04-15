@@ -93,13 +93,13 @@ var AppActionCreators = {
     /**
      *
      */
-    selectRoomID: function( item ) {
+    selectRoomID: function( roomID ) {
 
-				console.log('select action', item);
+				//console.log('select action', roomID);
 			
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_SELECT,
-            item: item
+            roomID: roomID
         });
 
     },

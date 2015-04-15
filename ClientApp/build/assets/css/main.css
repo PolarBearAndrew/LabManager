@@ -2,9 +2,12 @@ body{background-color:#b4b4b4;padding:0}
 .ListContainer{margin-top:40px;margin-left:100px;margin-right:100px}
 .ListContainer .header h1{float:left}
 .ListContainer .header h4{width:200px;padding:0;margin-top:35px;margin-bottom:30px;float:right}
-.ListContainer .header h4 select{width:80px}
+.ListContainer .header h4 select{width:80px;cursor:pointer}
 .ListContainer .header h4 span{margin-top:8px;margin-right:6px;float:left}
-table{text-align:center}
-table thead{font-weight:bolder}
+table{text-align:center;cursor:pointer}
+table td:first-child,table td:nth-child(4){width:90px}
+table thead{font-size:1.5em;font-weight:bolder}
+table .tableEnd{color:#00f}
+table .splitTable{display:block;padding-top:70px;height:100px}
 .footer{position:fixed;top:calc(100% - 40px);height:40px;width:100%;background-color:#247e1d;text-align:center;padding-top:10px}
 .footer .author{font-weight:bolder;color:#fff}

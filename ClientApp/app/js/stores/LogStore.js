@@ -121,11 +121,11 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          */
         case AppConstants.TODO_SELECT:
 
-            console.log( 'Store 選取: ', action.item );
+            console.log( 'Store 選取: ', action.roomID );
 
             // 選取同樣的 item 就不用處理下去了
-            if( selectedRoomID != action.item ){
-                selectedRoomID = action.item;
+            if( selectedRoomID != action.roomID ){
+                selectedRoomID = action.roomID;
                 Store.emit( AppConstants.CHANGE_EVENT );
             }
 

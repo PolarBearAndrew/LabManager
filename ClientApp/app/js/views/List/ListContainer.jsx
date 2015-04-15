@@ -10,6 +10,7 @@
 // var React = require('react');
 //var InputBox = React.createFactory( require('./InputBox.jsx') );
 var List = React.createFactory( require('./List.jsx') );
+var ListHeader = React.createFactory( require('./ListHeader.jsx') );
 var Selector = React.createFactory( require('./Selector.jsx') );
 
 var LogStore = require('../../stores/LogStore');
@@ -113,14 +114,9 @@ var ListContainer = React.createClass({
     render: function() {
         return (
 							<div className="ListContainer">
-								<div className="header">
-									<h1>Lab Manager</h1>
-									<h4><span>{"Room ID "}</span> 
-											<Selector 
-												selectRoomID = {actions.selectRoomID}
-											/>
-									</h4>
-								</div>
+								<ListHeader
+										selectRoomID = {actions.selectRoomID}
+									/>
 								<List 
 									truth={this.state}
 								/>
