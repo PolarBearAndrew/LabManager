@@ -12,8 +12,8 @@ var ListHeader = React.createClass({
     // 這裏列出每個 prop 的型別，但只會在 dev time 檢查
    propTypes: {
 		// callbacks
-    selectRoomID: React.PropTypes.func,
-	},
+			selectRoomID: React.PropTypes.func,
+		},
 
     //========================================================================
     //
@@ -28,6 +28,7 @@ var ListHeader = React.createClass({
 							<h1>Lab Manager</h1>
 							<h4><span>{"Room ID "}</span> 
 									<Selector 
+										myID="selectID"
 										selectRoomID = {this.props.selectRoomID}
 										options = {options}
 									/>

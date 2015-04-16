@@ -34,13 +34,42 @@ var comp = React.createClass({
    */
   render: function() {
     
-
-		
-		
 		var selectedRoomID = this.props.selectedRoomID;
 		var logRow = this.props.logRow;
+
+		//td check in
+		var checkIn = function(ck){
+			if(ck == 'waiting' || ck == '' ){
+				return <i className="fa fa-spinner fa-pulse"></i>;
+			}
+			return  <i className="fa fa-check">{ck}</i> ;
+		}(logRow.inCheck);
 		
-		if(logRow.room.toString() == selectedRoomID.toString() || selectedRoomID == 'all'){
+		
+		//td check out
+		var checkOut = function(ck, ckin){
+			if(ckin == 'waiting' || ckin == '' ){
+				return (
+						<a className="btn btn-warning btn-xs" href="#" disabled="false">
+  						<i className="fa fa-sign-out"></i> 
+							{' Check-out'}
+						</a>);
+			}else if(ck == 'notYet' || ck == '' ){
+				return (
+						<a className="btn btn-warning btn-xs" href="#">
+  						<i className="fa fa-sign-out"></i> 
+							{' Check-out'}
+						</a>);
+			}else if(ck == 'waiting'){
+				return <i className="fa fa-spinner fa-pulse"></i>;
+			}
+			return <i className="fa fa-check">{ck}</i> ;
+		}(logRow.outCheck, logRow.inCheck);
+		
+		//console.log('checkOut',checkOut);
+		//console.log('logRow',logRow.outCheck );
+		
+		if(logRow.room == selectedRoomID || selectedRoomID == 'all'){
     	return (
 				<tr>
 					<td>{logRow.room}</td>
@@ -49,8 +78,8 @@ var comp = React.createClass({
 					<td>{logRow.posi}</td>
 					<td>{logRow.inTime}</td>
 					<td>{logRow.outTime}</td>
-					<td>{logRow.inCheck}</td>
-					<td>{logRow.outCheck}</td>
+					<td>{checkIn}</td>
+					<td>{checkOut}</td>
 				</tr>
 			);
 		}else{

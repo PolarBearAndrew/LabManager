@@ -112,12 +112,14 @@ var ListContainer = React.createClass({
     // render
 
     render: function() {
+			
         return (
 							<div className="ListContainer">
 								<ListHeader
 										selectRoomID = {actions.selectRoomID}
 									/>
 								<List 
+									join={actions.askForJoin}
 									truth={this.state}
 								/>
 							</div>

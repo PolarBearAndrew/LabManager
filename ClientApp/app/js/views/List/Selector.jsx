@@ -32,9 +32,8 @@ var comp = React.createClass({
 
 		}, this);
 
-		
     return (
-				<select id="selectID" className="form-control"
+				<select id={this.props.myID} className="form-control"
 					onChange = {this.handleChange} >
 					{arr}
 				</select>

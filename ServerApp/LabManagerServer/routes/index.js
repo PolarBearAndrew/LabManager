@@ -101,4 +101,29 @@ router.get('/api/:ctrl', function (req, res, next) {
 	}
 });
 
+router.post('/api/join', function (req, res, next) {
+	//console.log('req.body-->', req.body.sid);
+	var logEntity = new LogModel({
+		"sid": req.body.sid,
+		"name": req.body.name,
+		"room": req.body.room,
+		"posi": req.body.posi,
+		"inTime": req.body.inTime,
+		"outTime": "",
+		"inCheck": req.body.inCheck,
+		"outCheck": ""
+	});
+
+	logEntity.save(function (err) {
+		if (err) {
+			res.json(err);
+		console.log(err);
+		} else {
+			res.json({})
+			console.log('saved');
+		}
+	});
+});
+
+
 module.exports = router;

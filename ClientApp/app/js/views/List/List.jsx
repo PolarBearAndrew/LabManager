@@ -51,12 +51,14 @@ var comp = React.createClass({
 		
 		//console.log('arr', arr.map);
 		
+		
     return (
       <table className="table table-hover">
 				<ListTitle 
 					titles={inputTitle} 
 					listTitle={false} />
-				<ListInput />
+				<ListInput 
+					join={this.props.join}/>
 				<ListTitle 
 					titles={theadTitle} 
 					listTitle={true} />

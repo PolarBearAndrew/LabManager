@@ -45,7 +45,7 @@ var AppActionCreators = {
     /**
      * create
      */
-    createTodo: function( item ) {
+    askForJoin: function( newlog ) {
 
         // 1. 廣播給 store 知道去 optimistic 更新 view
         AppDispatcher.handleViewAction({
@@ -54,11 +54,13 @@ var AppActionCreators = {
             actionType: AppConstants.TODO_CREATE,
 
             // 這裏是真正要傳出去的值
-            item: item
+            item: newlog
         });
+			
+				//console.log('askForJoin', newlog);
 
 
-        $.ajax('http://localhost:3000/api/todos/',
+        $.ajax('http://localhost:8080/api/join',
         {
 
             type:"POST",
@@ -69,7 +71,7 @@ var AppActionCreators = {
 
             // 然後將 item 轉成 json string 再送出
             // 這樣可確保 Number 與 Boolean 值到 server 後能正確保留型別
-            data: JSON.stringify(item),
+            data: JSON.stringify(newlog),
 
             //
             success: function(data, status, jqxhr){
@@ -77,8 +79,8 @@ var AppActionCreators = {
                 // console.log( '新增資料結果: ', data, ' >item = ', item );
 
                 // 將 server 生成的 id 更新到早先建立的物件，之後資料才會一致
-                item.id = data.id;
-                item.created = data.created;
+                //item.id = data.id;
+                //item.created = data.created;
             },
 
             //
