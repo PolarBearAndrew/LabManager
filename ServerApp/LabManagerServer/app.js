@@ -14,6 +14,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(function (req, res, next) {
+	console.log('set header');
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	next();
+});
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
@@ -57,9 +63,11 @@ app.use(function(err, req, res, next) {
     });
 });
 
+
+
 var port = 8080;
 app.listen(port, function(){
-	console.log('Server is listening in port ' + port);
+	console.log('Server is listening in port %d', port);
 });
 
 

@@ -27,7 +27,9 @@ table {
   text-align: center;
   cursor: pointer; }
   table td:first-child, table td:nth-child(4) {
-    width: 90px; }
+    width: 100px; }
+  table td:nth-child(3) {
+    width: 150px; }
   table thead {
     font-size: 1.5em;
     font-weight: bolder; }
@@ -44,7 +46,6 @@ table {
   height: 40px;
   width: 100%;
   background-color: #247e1d;
-  text-align: center;
   padding-top: 10px; }
   .footer .author {
     font-weight: bolder;

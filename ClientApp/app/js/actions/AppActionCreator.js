@@ -5,6 +5,9 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var Promise = require('es6-promise').Promise;
 
+//var IPaddress = 'localhost:8080';
+var IPaddress = '120.96.78.88:8080';
+
 // 就是個單純的 hash table
 // 因此下面所有指令皆可視為 Action static method
 var AppActionCreators = {
@@ -16,7 +19,7 @@ var AppActionCreators = {
      */
     load: function(){
 
-        $.ajax('http://localhost:8080/api/log/',
+        $.ajax('http://' + IPaddress + '/api/log/',
         {
             type:"GET",
             //
@@ -60,7 +63,7 @@ var AppActionCreators = {
 				//console.log('askForJoin', newlog);
 
 
-        $.ajax('http://localhost:8080/api/join',
+        $.ajax('http://' + IPaddress + '/api/join',
         {
 
             type:"POST",
@@ -116,7 +119,7 @@ var AppActionCreators = {
             item: item
         });
 
-        $.ajax('http://localhost:3000/api/todos/' + item.id,
+        $.ajax('http://' + IPaddress + '/api/todos/' + item.id,
         {
 
             type:"DELETE",
@@ -145,7 +148,7 @@ var AppActionCreators = {
             item: log
         });
 
-        $.ajax('http://localhost:8080/api/ckeckOut/' + log._id,
+        $.ajax('http://' + IPaddress + '/api/ckeckOut/' + log._id,
         {
 
             type:"PUT",
