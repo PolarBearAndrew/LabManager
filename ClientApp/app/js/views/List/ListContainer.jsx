@@ -121,6 +121,7 @@ var ListContainer = React.createClass({
 								<List 
 									join={actions.askForJoin}
 									truth={this.state}
+									checkOut={actions.checkOut}
 								/>
 							</div>
         )

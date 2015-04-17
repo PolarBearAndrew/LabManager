@@ -109,6 +109,13 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          *
          */
         case AppConstants.TODO_UPDATE:
+				
+						arrLog = arrLog.filter( function(item){
+							if(item._id == action.item._id){
+								item = action.item;
+							}
+              return item ;
+            })
 
             console.log( 'Store 更新: ', arrLog );
 

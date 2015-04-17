@@ -33,7 +33,9 @@ var comp = React.createClass({
    * 
    */
   render: function() {
-    
+		
+		//console.log(this.props.checkOut);
+		
 		var selectedRoomID = this.props.selectedRoomID;
 		var logRow = this.props.logRow;
 
@@ -56,7 +58,7 @@ var comp = React.createClass({
 						</a>);
 			}else if(ck == 'notYet' || ck == '' ){
 				return (
-						<a className="btn btn-warning btn-xs" href="#">
+						<a className="btn btn-warning btn-xs" href="#" onClick={this.handleCheckOut}>
   						<i className="fa fa-sign-out"></i> 
 							{' Check-out'}
 						</a>);
@@ -64,7 +66,7 @@ var comp = React.createClass({
 				return <i className="fa fa-spinner fa-pulse"></i>;
 			}
 			return <i className="fa fa-check">{ck}</i> ;
-		}(logRow.outCheck, logRow.inCheck);
+		}.bind(this)(logRow.outCheck, logRow.inCheck);
 		
 		//console.log('checkOut',checkOut);
 		//console.log('logRow',logRow.outCheck );
@@ -84,23 +86,18 @@ var comp = React.createClass({
 			);
 		}else{
 			return null;
-//			return (
-//				<tr></tr>
-//			);
 		}
-//      <div className={classes} >
-//          <span>{todoItem.name}</span>
-//          
-//          <span className="glyphicon glyphicon-remove right hide" 
-//                onClick={this.props.onRemove} ></span>
-//
-//      </div>
-  
   },
-
+		
   /**
    * 
    */
+	handleCheckOut: function(){
+		//console.log('click check out', this.props.logRow._id);
+		this.props.logRow.outCheck = 'waiting';
+		this.props.checkOut(this.props.logRow);
+	},
+
   noop: function(){
 
   }

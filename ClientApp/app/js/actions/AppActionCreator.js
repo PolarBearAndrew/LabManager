@@ -16,7 +16,7 @@ var AppActionCreators = {
      */
     load: function(){
 
-        $.ajax('http://localhost:8080/api/all',
+        $.ajax('http://localhost:8080/api/log/',
         {
             type:"GET",
             //
@@ -138,19 +138,19 @@ var AppActionCreators = {
     /**
      *
      */
-    updateTodo: function( item ) {
+    checkOut: function( log ) {
 
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_UPDATE,
-            item: item
+            item: log
         });
 
-        $.ajax('http://localhost:3000/api/todos/',
+        $.ajax('http://localhost:8080/api/ckeckOut/' + log._id,
         {
 
             type:"PUT",
 
-            data: item,
+            data: log,
 
             //
             success: function(data, status, jqxhr){
@@ -158,7 +158,7 @@ var AppActionCreators = {
                 // console.log( '編輯資料結果: ', data );
 
                 // 將 server 生成的 uid 更新到早先建立的物件，之後資料才會一致
-                item.id = data.id;
+                //item.id = data.id;
             },
 
             //

@@ -84,22 +84,24 @@ router.get('/', function (req, res, next) {
 /*
  * api
  */
-router.get('/api/:ctrl', function (req, res, next) {
-	var ctrl = req.params.ctrl;
+router.get('/api/log/', function (req, res, next) {
 
 	//get all log or the only one room log
-	if (ctrl == 'all' || ctrl == '') {
-		LogModel.find({}, function (err, data) {
-			res.json(data);
-		});
-	} else {
-		LogModel.find({
-			"room": ctrl
-		}, function (err, data) {
-			res.json(data);
-		});
-	}
+	LogModel.find({}, function (err, data) {
+		res.json(data);
+	});
 });
+
+router.get('/api/log/:ctrl', function (req, res, next) {
+	var ctrl = req.params.ctrl;
+
+	LogModel.find({
+		"room": ctrl
+	}, function (err, data) {
+		res.json(data);
+	});
+});
+
 
 router.post('/api/join', function (req, res, next) {
 	//console.log('req.body-->', req.body.sid);
@@ -117,11 +119,22 @@ router.post('/api/join', function (req, res, next) {
 	logEntity.save(function (err) {
 		if (err) {
 			res.json(err);
-		console.log(err);
+			console.log(err);
 		} else {
 			res.json({})
 			console.log('saved');
 		}
+	});
+});
+
+router.put('/api/ckeckOut/:id', function (req, res, next) {
+
+	//console.log('req.params.id= ', req.params.id);
+	//var _id = req.params._id;
+	var query = { _id: req.params.id };
+	
+	LogModel.update(query, { outCheck: 'waiting' }, function(){
+		console.log('update success (outCheck)');
 	});
 });
 

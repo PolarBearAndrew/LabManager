@@ -23,7 +23,7 @@ var comp = React.createClass({
     }),
 		
 		// callbacks
-    //selectRoomID: React.PropTypes.func,
+    checkOut: React.PropTypes.func,
 	},
   /**
    *
@@ -41,6 +41,7 @@ var comp = React.createClass({
 			return <ListItem
 				logRow = {log}
 				key = {log.id}
+				checkOut = {this.props.checkOut}
 				selectedRoomID = {selectedRoomID}
 				/>
 
