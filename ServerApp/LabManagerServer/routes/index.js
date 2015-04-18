@@ -75,15 +75,14 @@ db.once('open', function () { //once, 一旦進入'open'狀況,就執行
 
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-	res.render('index', {
-		title: 'Express'
-	});
+router.get('/LabManager.oit', function (req, res, next) {
+	res.render('index');
 });
 
 /*
  * api
  */
+/* GET all logs */
 router.get('/api/log/', function (req, res, next) {
 
 	//get all log or the only one room log
@@ -92,6 +91,7 @@ router.get('/api/log/', function (req, res, next) {
 	});
 });
 
+/* GET the logs with room ID */
 router.get('/api/log/:ctrl', function (req, res, next) {
 	var ctrl = req.params.ctrl;
 
@@ -102,7 +102,7 @@ router.get('/api/log/:ctrl', function (req, res, next) {
 	});
 });
 
-
+/* POST add a new row of log. */
 router.post('/api/join', function (req, res, next) {
 	//console.log('req.body-->', req.body.sid);
 	var logEntity = new LogModel({
@@ -122,19 +122,39 @@ router.post('/api/join', function (req, res, next) {
 			console.log(err);
 		} else {
 			res.json({})
-			console.log('saved');
+			console.log('saved, and ask for inCheck');
 		}
 	});
 });
 
+/* PUT reply for checkin. */
+router.put('/api/ckeckIn/assent/:id', function (req, res, next) {
+
+	var query = { _id: req.params.id };
+	
+	LogModel.update(query, { inCheck: req.params.inCheck }, function(){
+		console.log('update success (inCheck assent)');
+	});
+});
+
+
+/* PUT ask for checkout. */
 router.put('/api/ckeckOut/:id', function (req, res, next) {
 
-	//console.log('req.params.id= ', req.params.id);
-	//var _id = req.params._id;
 	var query = { _id: req.params.id };
 	
 	LogModel.update(query, { outCheck: 'waiting' }, function(){
 		console.log('update success (outCheck)');
+	});
+});
+
+/* PUT reply for checkout. */
+router.put('/api/ckeckOut/assent/:id', function (req, res, next) {
+
+	var query = { _id: req.params.id };
+	
+	LogModel.update(query, { outCheck: req.params.outCheck }, function(){
+		console.log('update success (outCheck assent)');
 	});
 });
 
