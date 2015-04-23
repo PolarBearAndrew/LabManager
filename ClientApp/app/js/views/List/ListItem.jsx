@@ -41,8 +41,6 @@ var comp = React.createClass({
 		var logRow = this.props.logRow;
 		var manager = this.props.manager;
 		
-		//console.log('checkOutAssent 99', this.props.checkOutAssent);
-		
 		//td check in
 		var checkIn = function(ck){
 			if(ck == 'waiting' || ck == '' ){
@@ -77,7 +75,7 @@ var comp = React.createClass({
 			if(ckin == 'waiting' || ckin == '' ){
 				//if you not checkin yet, than don't need to checkout
 				return (
-						<a className="btn btn-warning btn-xs" href="#" disabled="false">
+						<a className="btn btn-warning btn-xs disabled" href="#">
   						<i className="fa fa-sign-out"></i> 
 							{' Check-out'}
 						</a>);
@@ -149,15 +147,28 @@ var comp = React.createClass({
 
 		
 	handleCheckOutAssent: function(){
-		console.log('ok to check out click');
+		//console.log('ok to check out click');
+		var t = new Date($('#inputInTime').val());
+		var outTime = t.getFullYear() + '/' + this.padLeft(t.getUTCMonth(), 2)+ '/' + this.padLeft(t.getUTCDate(),2) + '-' + this.padLeft(t.getUTCHours(),2) + ':' + this.padLeft(t.getUTCMinutes(),2) ;
+		
+		this.props.logRow.outTime = outTime;
 		this.props.logRow.outCheck = this.props.manager.name;
 		this.props.checkOutAssent(this.props.logRow);
 	},
 		
 	handleCheckInAssent: function(){
-		console.log('ok to check in click');
+		//console.log('ok to check in click');
 		this.props.logRow.inCheck = this.props.manager.name;
 		this.props.checkInAssent(this.props.logRow);
+	},
+		
+	padLeft: function(str,len){
+		if(('' + str).length >= len){
+				return str;
+			}
+			else{
+				return this.padLeft( '0' + str, len);
+			}
 	},
 //	handleCheckInIgnore: function(){
 //		console.log('ignore to check in click');

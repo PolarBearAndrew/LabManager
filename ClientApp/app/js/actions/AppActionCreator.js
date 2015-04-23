@@ -90,11 +90,11 @@ var AppActionCreators = {
             //
             success: function(data, status, jqxhr){
 
-                // console.log( '新增資料結果: ', data, ' >item = ', item );
+							
+                //console.log( '新增資料結果: ', data.id );
 
                 // 將 server 生成的 id 更新到早先建立的物件，之後資料才會一致
-                //item.id = data.id;
-                //item.created = data.created;
+                newlog._id = data.id;
             },
 
             //
@@ -139,7 +139,7 @@ var AppActionCreators = {
      *
      */
     askForLeave: function( log ) {
-
+			
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_UPDATE,
             item: log
@@ -171,13 +171,15 @@ var AppActionCreators = {
     },
 
 		checkIn: function( log ) {
+			
+			console.log(log._id);
 
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_UPDATE,
             item: log
         });
 
-        $.ajax('http://' + IPaddress + '/api/ckeckOut/assent/' + log._id,
+        $.ajax('http://' + IPaddress + '/api/ckeckIn/assent/' + log._id,
         {
 
             type:"PUT",
@@ -187,6 +189,7 @@ var AppActionCreators = {
             //
             success: function(data, status, jqxhr){
 
+							console.log('ajax-/api/ckeckOut/assent/- SUCCESS');
                 // console.log( '編輯資料結果: ', data );
 
                 // 將 server 生成的 uid 更新到早先建立的物件，之後資料才會一致

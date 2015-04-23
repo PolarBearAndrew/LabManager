@@ -35,7 +35,7 @@ var comp = React.createClass({
 		var selectedRoomID = this.props.truth.selectedRoomID;
 		var manager = this.props.truth.manager;
 		
-		//console.log('isManager', isManager);
+		//console.log(this.props.checkInAssent);
 		
 		// 跑 loop 一筆筆建成 ListItem 元件
 		var arr = arrlog.map(function (log) {

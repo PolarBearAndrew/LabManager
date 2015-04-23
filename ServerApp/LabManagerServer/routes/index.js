@@ -128,9 +128,10 @@ router.post('/api/join', function (req, res, next) {
 			res.json(err);
 			console.log(err);
 		} else {
-			res.json({})
+			res.json({id: logEntity._id})
 			console.log('saved, and ask for inCheck');
 		}
+		res.end();
 	});
 });
 
@@ -139,8 +140,9 @@ router.put('/api/ckeckIn/assent/:id', function (req, res, next) {
 
 	var query = { _id: req.params.id };
 	
-	LogModel.update(query, { inCheck: req.params.inCheck }, function(){
+	LogModel.update(query, { inCheck: req.body.inCheck }, function(){
 		console.log('update success (inCheck assent)');
+		res.end();
 	});
 });
 
@@ -152,6 +154,7 @@ router.put('/api/ckeckOut/:id', function (req, res, next) {
 	
 	LogModel.update(query, { outCheck: 'waiting' }, function(){
 		console.log('update success (outCheck)');
+		res.end();
 	});
 });
 
@@ -160,8 +163,9 @@ router.put('/api/ckeckOut/assent/:id', function (req, res, next) {
 
 	var query = { _id: req.params.id };
 	
-	LogModel.update(query, { outCheck: req.params.outCheck }, function(){
+	LogModel.update(query, { outCheck: req.body.outCheck, outTime: req.body.outTime }, function(){
 		console.log('update success (outCheck assent)');
+		res.end();
 	});
 });
 
