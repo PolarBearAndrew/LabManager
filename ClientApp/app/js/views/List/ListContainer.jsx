@@ -121,7 +121,9 @@ var ListContainer = React.createClass({
 								<List 
 									join={actions.askForJoin}
 									truth={this.state}
-									checkOut={actions.checkOut}
+									checkOut={actions.askForLeave}
+									checkOutAssent={actions.checkOut}
+									checkInAssent={actions.checkIn}
 								/>
 							</div>
         )
@@ -158,7 +160,8 @@ var ListContainer = React.createClass({
         // 是從 TodoStore 取資料(as the single source of truth)
         return {
             arrLog: LogStore.getLog(),
-						selectedRoomID: LogStore.selectedRoomID()
+						selectedRoomID: LogStore.getSelectedRoomID(),
+						manager: LogStore.getIsManager(),
 //           ,selectedItem: TodoStore.getSelectedItem()
          };
     }

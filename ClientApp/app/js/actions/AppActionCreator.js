@@ -44,9 +44,20 @@ var AppActionCreators = {
 
         })
     },
+	
+		selectRoomID: function( roomID ) {
 
-    /**
-     * create
+				//console.log('select action', roomID);
+			
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.TODO_SELECT,
+            roomID: roomID
+        });
+
+    },
+
+    /* 
+		 *
      */
     askForJoin: function( newlog ) {
 
@@ -98,50 +109,36 @@ var AppActionCreators = {
     /**
      *
      */
-    selectRoomID: function( roomID ) {
-
-				//console.log('select action', roomID);
-			
-        AppDispatcher.handleViewAction({
-            actionType: AppConstants.TODO_SELECT,
-            roomID: roomID
-        });
-
-    },
-
-    /**
-     *
-     */
-    removeTodo: function( item ) {
-
-        AppDispatcher.handleViewAction({
-            actionType: AppConstants.TODO_REMOVE,
-            item: item
-        });
-
-        $.ajax('http://' + IPaddress + '/api/todos/' + item.id,
-        {
-
-            type:"DELETE",
-
-            //
-            success: function(data, status, jqxhr){
-                console.log( '刪除資料結果: ', data );
-            },
-
-            //
-            error: function( xhr, status, errText ){
-                console.log( 'xhr 錯誤: ', xhr.responseText );
-            }
-
-        })
-
-    },
+    
+//    removeTodo: function( item ) {
+//
+//        AppDispatcher.handleViewAction({
+//            actionType: AppConstants.TODO_REMOVE,
+//            item: item
+//        });
+//
+//        $.ajax('http://' + IPaddress + '/api/todos/' + item.id,
+//        {
+//
+//            type:"DELETE",
+//
+//            //
+//            success: function(data, status, jqxhr){
+//                console.log( '刪除資料結果: ', data );
+//            },
+//
+//            //
+//            error: function( xhr, status, errText ){
+//                console.log( 'xhr 錯誤: ', xhr.responseText );
+//            }
+//
+//        })
+//    },
 
     /**
      *
      */
-    checkOut: function( log ) {
+    askForLeave: function( log ) {
 
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_UPDATE,
@@ -173,6 +170,70 @@ var AppActionCreators = {
 
     },
 
+		checkIn: function( log ) {
+
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.TODO_UPDATE,
+            item: log
+        });
+
+        $.ajax('http://' + IPaddress + '/api/ckeckOut/assent/' + log._id,
+        {
+
+            type:"PUT",
+
+            data: log,
+
+            //
+            success: function(data, status, jqxhr){
+
+                // console.log( '編輯資料結果: ', data );
+
+                // 將 server 生成的 uid 更新到早先建立的物件，之後資料才會一致
+                //item.id = data.id;
+            },
+
+            //
+            error: function( xhr, status, errText ){
+                console.log( 'xhr 錯誤: ', xhr.responseText );
+            }
+
+        })
+
+    },
+	
+		checkOut: function( log ) {
+
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.TODO_UPDATE,
+            item: log
+        });
+
+        $.ajax('http://' + IPaddress + '/api/ckeckOut/assent/' + log._id,
+        {
+
+            type:"PUT",
+
+            data: log,
+
+            //
+            success: function(data, status, jqxhr){
+
+                // console.log( '編輯資料結果: ', data );
+
+                // 將 server 生成的 uid 更新到早先建立的物件，之後資料才會一致
+                //item.id = data.id;
+            },
+
+            //
+            error: function( xhr, status, errText ){
+                console.log( 'xhr 錯誤: ', xhr.responseText );
+            }
+
+        })
+
+    },
+	
     // dummy
     noop: function(){}
 };

@@ -28,6 +28,12 @@ var arrLog = [];
 // 目前選取的 room ID
 var selectedRoomID = 'all';
 
+// 是否為manager
+var manager = {
+	isManager :true,
+	name : 'PH'
+}
+
 /**
  * 建立 Store class，並且繼承 EventEMitter 以擁有廣播功能
  */
@@ -44,10 +50,14 @@ objectAssign( Store, EventEmitter.prototype, {
     /**
      *
      */
-    selectedRoomID: function(){
+    getSelectedRoomID: function(){
         return selectedRoomID;
     },
-
+	
+		getIsManager: function(){
+				return manager;
+		},
+	
     //
     noop: function(){}
 });

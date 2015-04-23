@@ -20,7 +20,8 @@ var comp = React.createClass({
 		todoItem: React.PropTypes.shape({
       id: React.PropTypes.string,
       name: React.PropTypes.string,
-			selectedRoomID:  React.PropTypes.string
+			selectedRoomID:  React.PropTypes.string,
+			isManager:  React.PropTypes.string
 			
     }),
 		
@@ -34,38 +35,86 @@ var comp = React.createClass({
    */
   render: function() {
 		
-		//console.log(this.props.checkOut);
+		//console.log('this.props.checkInAssent', this.props.checkInAssent);
 		
 		var selectedRoomID = this.props.selectedRoomID;
 		var logRow = this.props.logRow;
-
+		var manager = this.props.manager;
+		
+		//console.log('checkOutAssent 99', this.props.checkOutAssent);
+		
 		//td check in
 		var checkIn = function(ck){
 			if(ck == 'waiting' || ck == '' ){
-				return <i className="fa fa-spinner fa-pulse"></i>;
+				//waiting for checkin submit
+				
+				if(manager.isManager){
+					return (
+						<div>
+							<a className="btn btn-success btn-xs" href="#" onClick={this.handleCheckInAssent}>
+								<i className="fa fa-check"></i> 
+								{' Yes'}
+							</a>
+							{'  '}
+							<a className="btn btn-danger btn-xs" href="#">
+								<i className="fa fa-user-times"></i> 
+								{' No'}
+							</a>
+						</div>);
+				}else{
+					return <i className="fa fa-spinner fa-pulse"></i>;
+				}
+				
+			}else{
+				//show who checked for you
+				return  <i className="fa fa-check">{ck}</i> ;
 			}
-			return  <i className="fa fa-check">{ck}</i> ;
-		}(logRow.inCheck);
+		}.bind(this)(logRow.inCheck);
 		
 		
 		//td check out
 		var checkOut = function(ck, ckin){
 			if(ckin == 'waiting' || ckin == '' ){
+				//if you not checkin yet, than don't need to checkout
 				return (
 						<a className="btn btn-warning btn-xs" href="#" disabled="false">
   						<i className="fa fa-sign-out"></i> 
 							{' Check-out'}
 						</a>);
+					
 			}else if(ck == 'notYet' || ck == '' ){
+				//can ask for check out
 				return (
 						<a className="btn btn-warning btn-xs" href="#" onClick={this.handleCheckOut}>
   						<i className="fa fa-sign-out"></i> 
 							{' Check-out'}
 						</a>);
+					
 			}else if(ck == 'waiting'){
-				return <i className="fa fa-spinner fa-pulse"></i>;
+				//waiting for checkout submit
+				if(manager.isManager){
+					return (
+						<div>
+							<a className="btn btn-success btn-xs" href="#" onClick={this.handleCheckOutAssent}>
+								<i className="fa fa-check"></i> 
+								{' Yes'}
+							</a>
+							{'  '}
+							<a className="btn btn-danger btn-xs" href="#">
+								<i className="fa fa-user-times"></i> 
+								{' No'}
+							</a>
+						</div>);
+						
+				}else{
+					return <i className="fa fa-spinner fa-pulse"></i>;	
+				}
+					
+			}else{
+				//who let you check out
+				return <i className="fa fa-check">{ck}</i> ;
 			}
-			return <i className="fa fa-check">{ck}</i> ;
+					
 		}.bind(this)(logRow.outCheck, logRow.inCheck);
 		
 		//console.log('checkOut',checkOut);
@@ -97,6 +146,30 @@ var comp = React.createClass({
 		this.props.logRow.outCheck = 'waiting';
 		this.props.checkOut(this.props.logRow);
 	},
+
+		
+	handleCheckOutAssent: function(){
+		console.log('ok to check out click');
+		this.props.logRow.outCheck = this.props.manager.name;
+		this.props.checkOutAssent(this.props.logRow);
+	},
+		
+	handleCheckInAssent: function(){
+		console.log('ok to check in click');
+		this.props.logRow.inCheck = this.props.manager.name;
+		this.props.checkInAssent(this.props.logRow);
+	},
+//	handleCheckInIgnore: function(){
+//		console.log('ignore to check in click');
+//		//this.props.logRow.inCheck = this.props.manager.name;
+//		//this.props.checkInAssent(this.props.logRow);
+//	},
+//		
+//	handleCheckOutIgnore: function(){
+//		console.log('ignore to check out click');
+//		this.props.logRow.outCheck = 'notYet';
+//		this.props.checkOutAssent(this.props.logRow);
+//	},
 
   noop: function(){
 

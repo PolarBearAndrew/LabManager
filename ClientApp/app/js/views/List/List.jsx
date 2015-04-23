@@ -33,6 +33,9 @@ var comp = React.createClass({
     // 取出所有要繪製的資料
     var arrlog = this.props.truth.arrLog;
 		var selectedRoomID = this.props.truth.selectedRoomID;
+		var manager = this.props.truth.manager;
+		
+		//console.log('isManager', isManager);
 		
 		// 跑 loop 一筆筆建成 ListItem 元件
 		var arr = arrlog.map(function (log) {
@@ -41,8 +44,11 @@ var comp = React.createClass({
 			return <ListItem
 				logRow = {log}
 				key = {log.id}
+				manager = {manager}
 				checkOut = {this.props.checkOut}
 				selectedRoomID = {selectedRoomID}
+				checkOutAssent= {this.props.checkOutAssent}
+				checkInAssent= {this.props.checkInAssent}
 				/>
 
 		}, this);

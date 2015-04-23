@@ -79,6 +79,13 @@ router.get('/LabManager.oit', function (req, res, next) {
 	res.render('index');
 });
 
+//router.get('/LabManager.oit', function (req, res, next) {
+//	res.render('index', {
+//		userIdentity : "manager",
+//		managerName : "PH"
+//	});
+//});
+
 /*
  * api
  */
