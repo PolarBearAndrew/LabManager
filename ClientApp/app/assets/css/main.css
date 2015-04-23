@@ -1,12 +1,13 @@
 body {
-  background-color: #b4b4b4;
+  background-color: #bcbcbc;
   padding: 0px;
   padding-bottom: 100px; }
 
 .ListContainer {
+  max-width: 1100px;
   margin-top: 40px;
-  margin-left: 100px;
-  margin-right: 100px; }
+  margin-left: auto;
+  margin-right: auto; }
   .ListContainer .header h1 {
     float: left; }
   .ListContainer .header h4 {
@@ -41,6 +42,7 @@ table {
     height: 100px; }
 
 .footer {
+  text-align: center;
   position: fixed;
   top: calc(100% - 40px);
   height: 40px;

@@ -1,5 +1,5 @@
-body{background-color:#b4b4b4;padding:0 0 100px}
-.ListContainer{margin-top:40px;margin-left:100px;margin-right:100px}
+body{background-color:#bcbcbc;padding:0 0 100px}
+.ListContainer{max-width:1100px;margin-top:40px;margin-left:auto;margin-right:auto}
 .ListContainer .header h1{float:left}
 .ListContainer .header h4{width:200px;padding:0;margin-top:35px;margin-bottom:30px;float:right}
 .ListContainer .header h4 select{width:80px;cursor:pointer}
@@ -10,5 +10,5 @@ table td:nth-child(3){width:150px}
 table thead{font-size:1.5em;font-weight:bolder}
 table .tableEnd{color:#00f}
 table .splitTable{display:block;padding-top:70px;height:100px}
-.footer{position:fixed;top:calc(100% - 40px);height:40px;width:100%;background-color:#247e1d;padding-top:10px}
+.footer{text-align:center;position:fixed;top:calc(100% - 40px);height:40px;width:100%;background-color:#247e1d;padding-top:10px}
 .footer .author{font-weight:bolder;color:#fff}

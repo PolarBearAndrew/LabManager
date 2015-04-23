@@ -61,13 +61,13 @@ var ListInput = React.createClass({
 								value={this.state.time}>
 						</input></td>
 					<td>
+					</td>
+					<td>
 						<a className="btn btn-success" href="#"
 							onClick={this.handleAsk}>
   						<i className="fa fa-user-plus -o fa-lg"></i> 
 							{' Join'}
 						</a>
-					</td>
-					<td>
 					</td>
 			</thead>
     );

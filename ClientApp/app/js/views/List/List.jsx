@@ -47,7 +47,7 @@ var comp = React.createClass({
 
 		}, this);
 		
-		var inputTitle = ['Lab', 'Your ID', 'Your Name', 'Posi', 'Check in', '', 'Operate', ''];
+		var inputTitle = ['Lab', 'Your ID', 'Your Name', 'Posi', 'Check in', '', '', 'Operate'];
 		var theadTitle = ['Lab', 'ID', 'Name', 'Posi', 'Check in', 'Check out', 'Checked(in)', 'Checked(out)'];
 		
 		//console.log('arr', arr.map);
