@@ -31,6 +31,7 @@ var selectedRoomID = 'all';
 // 是否為manager
 var manager = {
 	isManager :true,
+//	isManager :false,
 	name : 'PH'
 }
 

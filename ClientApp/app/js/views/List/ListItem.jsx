@@ -48,15 +48,15 @@ var comp = React.createClass({
 				
 				if(manager.isManager){
 					return (
-						<div>
+						<div className="ctrls">
 							<a className="btn btn-success btn-xs" href="#" onClick={this.handleCheckInAssent}>
 								<i className="fa fa-check"></i> 
-								{' Yes'}
+								{' Assent'}
 							</a>
 							{'  '}
-							<a className="btn btn-danger btn-xs" href="#">
-								<i className="fa fa-user-times"></i> 
-								{' No'}
+							<a className="btn btn-danger btn-xs" href="#" onClick={this.handleCheckInIgnore}>
+								<i className="fa fa-trash-o"></i> 
+								{' Ignore'}
 							</a>
 						</div>);
 				}else{
@@ -160,6 +160,10 @@ var comp = React.createClass({
 		//console.log('ok to check in click');
 		this.props.logRow.inCheck = this.props.manager.name;
 		this.props.checkInAssent(this.props.logRow);
+	},
+		
+	handleCheckInIgnore: function(){
+		this.props.checkInIgnore(this.props.logRow);
 	},
 		
 	padLeft: function(str,len){

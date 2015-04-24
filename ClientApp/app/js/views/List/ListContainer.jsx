@@ -116,6 +116,7 @@ var ListContainer = React.createClass({
         return (
 							<div className="ListContainer">
 								<ListHeader
+										ID = {this.state.selectedRoomID}
 										selectRoomID = {actions.selectRoomID}
 									/>
 								<List 
@@ -123,7 +124,9 @@ var ListContainer = React.createClass({
 									truth={this.state}
 									checkOut={actions.askForLeave}
 									checkOutAssent={actions.checkOut}
+					
 									checkInAssent={actions.checkIn}
+									checkInIgnore={actions.checkInIgnore}
 								/>
 							</div>
         )

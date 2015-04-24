@@ -18,14 +18,27 @@ var ListHeader = React.createClass({
     //========================================================================
     //
     // render
+	
 
     render: function() {
 			
 				var options = ['all', '801', '802', '803', '806', '813'];
 			
+				var showID = '';
+			
+				if(this.props.ID == 'all'){
+					showID = '';
+				}else{
+					showID = ' - ' + this.props.ID;
+				}
+			
         return (
 						<div className="header">
-							<h1>Lab Manager</h1>
+							<h1>
+									<i className="fa fa-users"></i>
+									{'  Lab Manager  '}
+									{ showID }
+							</h1>
 							<h4><span>{"Room ID "}</span> 
 									<Selector 
 										myID="selectID"

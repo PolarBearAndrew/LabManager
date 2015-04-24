@@ -24,6 +24,7 @@ var comp = React.createClass({
 		
 		// callbacks
     checkOut: React.PropTypes.func,
+    checkInIgnore: React.PropTypes.func,
 	},
   /**
    *
@@ -49,6 +50,7 @@ var comp = React.createClass({
 				selectedRoomID = {selectedRoomID}
 				checkOutAssent= {this.props.checkOutAssent}
 				checkInAssent= {this.props.checkInAssent}
+				checkInIgnore= {this.props.checkInIgnore}
 				/>
 
 		}, this);

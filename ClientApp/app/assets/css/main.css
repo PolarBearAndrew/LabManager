@@ -40,6 +40,8 @@ table {
     display: block;
     padding-top: 70px;
     height: 100px; }
+  table .ctrls {
+    width: 140px; }
 
 .footer {
   text-align: center;

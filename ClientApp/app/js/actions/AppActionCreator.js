@@ -89,12 +89,11 @@ var AppActionCreators = {
 
             //
             success: function(data, status, jqxhr){
-
-							
                 //console.log( '新增資料結果: ', data.id );
-
                 // 將 server 生成的 id 更新到早先建立的物件，之後資料才會一致
                 newlog._id = data.id;
+							
+								$('input[type="text"]').val('');
             },
 
             //
@@ -105,35 +104,6 @@ var AppActionCreators = {
         })
 
     },
-
-    /**
-     *
-     */
-    
-//    removeTodo: function( item ) {
-//
-//        AppDispatcher.handleViewAction({
-//            actionType: AppConstants.TODO_REMOVE,
-//            item: item
-//        });
-//
-//        $.ajax('http://' + IPaddress + '/api/todos/' + item.id,
-//        {
-//
-//            type:"DELETE",
-//
-//            //
-//            success: function(data, status, jqxhr){
-//                console.log( '刪除資料結果: ', data );
-//            },
-//
-//            //
-//            error: function( xhr, status, errText ){
-//                console.log( 'xhr 錯誤: ', xhr.responseText );
-//            }
-//
-//        })
-//    },
 
     /**
      *
@@ -226,6 +196,36 @@ var AppActionCreators = {
 
                 // 將 server 生成的 uid 更新到早先建立的物件，之後資料才會一致
                 //item.id = data.id;
+            },
+
+            //
+            error: function( xhr, status, errText ){
+                console.log( 'xhr 錯誤: ', xhr.responseText );
+            }
+
+        })
+
+    },
+	
+		checkInIgnore: function( log ) {
+			
+			console.log(log._id);
+
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.TODO_REMOVE,
+            item: log
+        });
+
+        $.ajax('http://' + IPaddress + '/api/ckeckIn/ignore/' + log._id,
+        {
+
+            type:"DELETE",
+
+            data: log,
+
+            //
+            success: function(data, status, jqxhr){
+
             },
 
             //

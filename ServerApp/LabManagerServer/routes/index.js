@@ -74,6 +74,10 @@ db.once('open', function () { //once, 一旦進入'open'狀況,就執行
 });
 
 
+
+
+
+
 /* GET home page. */
 router.get('/LabManager.oit', function (req, res, next) {
 	res.render('index');
@@ -141,7 +145,19 @@ router.put('/api/ckeckIn/assent/:id', function (req, res, next) {
 	var query = { _id: req.params.id };
 	
 	LogModel.update(query, { inCheck: req.body.inCheck }, function(){
-		console.log('update success (inCheck assent)');
+		console.log('[EVENT] assent checkIn : ' + req.body.sid + ',' + req.body.name);
+		res.end();
+	});
+});
+
+
+/* DELETE reply while checkin */
+router.delete('/api/ckeckIn/ignore/:id', function (req, res, next) {
+
+	var query = { _id: req.params.id };
+	
+	LogModel.remove(query, function(){
+		console.log('[EVENT] ignore checkIn : ' + req.body.sid + ',' + req.body.name);
 		res.end();
 	});
 });
@@ -153,7 +169,7 @@ router.put('/api/ckeckOut/:id', function (req, res, next) {
 	var query = { _id: req.params.id };
 	
 	LogModel.update(query, { outCheck: 'waiting' }, function(){
-		console.log('update success (outCheck)');
+		console.log('[EVENT] ask checkOut : ' + req.body.sid + ',' + req.body.name);
 		res.end();
 	});
 });
@@ -164,7 +180,7 @@ router.put('/api/ckeckOut/assent/:id', function (req, res, next) {
 	var query = { _id: req.params.id };
 	
 	LogModel.update(query, { outCheck: req.body.outCheck, outTime: req.body.outTime }, function(){
-		console.log('update success (outCheck assent)');
+		console.log('[EVENT] assent checkOut : ' + req.body.sid + ',' + req.body.name);
 		res.end();
 	});
 });
