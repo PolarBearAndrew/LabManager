@@ -11,35 +11,43 @@ router.get('/LabManager.oit', function (req, res, next) {
 
 
 /*
- * api
+ * api [GET] all logs
  */
-/* GET all logs */
 router.get('/api/log/', function (req, res, next) {
 
-	//get all log or the only one room log
 	models.LogModel.find({}, function (err, data) {
 		res.json(data);
 	});
 });
 
-/* GET the logs with room ID */
+
+/*
+ * api [GET] log with room id
+ */
 router.get('/api/log/:ctrl', function (req, res, next) {
-	var ctrl = req.params.ctrl;
+	
+	var roomID = req.params.ctrl;
 	
 	models.LogModel.find({
-		"room": ctrl
+		"room": roomID
 	}, function (err, data) {
+		
 		if(err){
 			console.log('err', err);
+			res.json( {'err': err} );
+		}else{
+			res.json(data);
 		}
-		res.json(data);
 	});
 });
 
-/* POST add a new row of log. */
+
+/*
+ * api [POST] add a new log
+ */
 router.post('/api/join', function (req, res, next) {
-	//console.log('req.body-->', req.body.sid);
 	
+	// log entity
 	var logEntity = new models.LogModel({
 		"sid": req.body.sid,
 		"name": req.body.name,
@@ -51,21 +59,26 @@ router.post('/api/join', function (req, res, next) {
 		"outCheck": ""
 	});
 	
-	console.log('entity', logEntity);
-
+	//save the entity
 	logEntity.save(function (err) {
+		
 		if (err) {
-			res.json(err);
 			console.log(err);
+			res.json(err);
+			
 		} else {
-			res.json({id: logEntity._id})
-			console.log('saved, and ask for inCheck');
+			console.log('[EVENT] add a new log, and ask for checkin');
+			res.json( {id: logEntity._id} );
 		}
-		res.end();
+		
+		//res.end(); 
 	});
 });
 
-/* PUT reply for checkin. */
+
+/*
+ * api [PUT] assent checkin
+ */
 router.put('/api/ckeckIn/assent/:id', function (req, res, next) {
 
 	var query = { _id: req.params.id };
@@ -77,7 +90,9 @@ router.put('/api/ckeckIn/assent/:id', function (req, res, next) {
 });
 
 
-/* DELETE reply while checkin */
+/*
+ * api [DELETE] ignore checkin, delete the log
+ */
 router.delete('/api/ckeckIn/ignore/:id', function (req, res, next) {
 
 	var query = { _id: req.params.id };
@@ -89,7 +104,9 @@ router.delete('/api/ckeckIn/ignore/:id', function (req, res, next) {
 });
 
 
-/* PUT ask for checkout. */
+/*
+ * api [PUT] ask for checkout
+ */
 router.put('/api/ckeckOut/:id', function (req, res, next) {
 
 	var query = { _id: req.params.id };
@@ -100,7 +117,10 @@ router.put('/api/ckeckOut/:id', function (req, res, next) {
 	});
 });
 
-/* PUT reply for checkout. */
+
+/*
+ * api [PUT] assent the checkout
+ */
 router.put('/api/ckeckOut/assent/:id', function (req, res, next) {
 
 	var query = { _id: req.params.id };
