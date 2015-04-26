@@ -1,94 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose').connect('mongodb://localhost:27017/LabManager');
-var db = mongoose.connection;
 
-var LogModel;
-
-
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () { //once, 一旦進入'open'狀況,就執行
-	console.log("-->Database Connected.");
-
-	//Mongoose對MongoDB的操作涉及三個層面：Schema, Model與Entity。
-	//Schema是資料文件的骨架，本身不影響資料庫，用來產生Model。
-	//Model是用Schema產生的模型。
-	//Entity是用Model創建的實作。
-
-	var LogShema = new mongoose.Schema({
-		"sid": {
-			type: String
-		},
-		"name": {
-			type: String
-		},
-		"room": {
-			type: String
-		},
-		"posi": {
-			type: String
-		},
-		"inTime": {
-			type: String
-		},
-		"outTime": {
-			type: String
-		},
-		"inCheck": {
-			type: String
-		},
-		"outCheck": {
-			type: String
-		}
-	});
-	LogShema.methods.speak = function () {
-		console.log('LogShema --> ' + this.name);
-	};
-
-	LogModel = db.model('loglists', LogShema); //UserSchema來產生一個名(index)為”namelist”的Model並指定給變數UserModel。
-
-	var logEntity = new LogModel({
-		"sid": "101111212",
-		"name": "洪于雅",
-		"room": "802",
-		"posi": "討論3",
-		"inTime": "2015/3/14-08:00",
-		"outTime": "2015/3/14-16:00",
-		"inCheck": "PH",
-		"outCheck": "柔"
-	});
-
-	//logEntity.save(function (err) {
-	//	if (err) {
-	//		console.log(err);
-	//	} else {
-	//		console.log('saved');
-	//	}
-	//});
-
-	//讀取資料
-	//	LogModel.find({}, function (err, data) {
-	//		console.log('data', data);
-	//	});
-
-});
-
-
-
-
-
+var models = require('../models');
 
 /* GET home page. */
 router.get('/LabManager.oit', function (req, res, next) {
+	console.log('models', models.LogModel);
 	res.render('index');
 });
 
-//router.get('/LabManager.oit', function (req, res, next) {
-//	res.render('index', {
-//		userIdentity : "manager",
-//		managerName : "PH"
-//	});
-//});
 
 /*
  * api
@@ -97,7 +17,7 @@ router.get('/LabManager.oit', function (req, res, next) {
 router.get('/api/log/', function (req, res, next) {
 
 	//get all log or the only one room log
-	LogModel.find({}, function (err, data) {
+	models.LogModel.find({}, function (err, data) {
 		res.json(data);
 	});
 });
@@ -105,10 +25,13 @@ router.get('/api/log/', function (req, res, next) {
 /* GET the logs with room ID */
 router.get('/api/log/:ctrl', function (req, res, next) {
 	var ctrl = req.params.ctrl;
-
-	LogModel.find({
+	
+	models.LogModel.find({
 		"room": ctrl
 	}, function (err, data) {
+		if(err){
+			console.log('err', err);
+		}
 		res.json(data);
 	});
 });
@@ -116,7 +39,8 @@ router.get('/api/log/:ctrl', function (req, res, next) {
 /* POST add a new row of log. */
 router.post('/api/join', function (req, res, next) {
 	//console.log('req.body-->', req.body.sid);
-	var logEntity = new LogModel({
+	
+	var logEntity = new models.LogModel({
 		"sid": req.body.sid,
 		"name": req.body.name,
 		"room": req.body.room,
@@ -126,6 +50,8 @@ router.post('/api/join', function (req, res, next) {
 		"inCheck": req.body.inCheck,
 		"outCheck": ""
 	});
+	
+	console.log('entity', logEntity);
 
 	logEntity.save(function (err) {
 		if (err) {
@@ -144,7 +70,7 @@ router.put('/api/ckeckIn/assent/:id', function (req, res, next) {
 
 	var query = { _id: req.params.id };
 	
-	LogModel.update(query, { inCheck: req.body.inCheck }, function(){
+	models.LogModel.update(query, { inCheck: req.body.inCheck }, function(){
 		console.log('[EVENT] assent checkIn : ' + req.body.sid + ',' + req.body.name);
 		res.end();
 	});
@@ -156,7 +82,7 @@ router.delete('/api/ckeckIn/ignore/:id', function (req, res, next) {
 
 	var query = { _id: req.params.id };
 	
-	LogModel.remove(query, function(){
+	models.LogModel.remove(query, function(){
 		console.log('[EVENT] ignore checkIn : ' + req.body.sid + ',' + req.body.name);
 		res.end();
 	});
@@ -168,7 +94,7 @@ router.put('/api/ckeckOut/:id', function (req, res, next) {
 
 	var query = { _id: req.params.id };
 	
-	LogModel.update(query, { outCheck: 'waiting' }, function(){
+	models.LogModel.update(query, { outCheck: 'waiting' }, function(){
 		console.log('[EVENT] ask checkOut : ' + req.body.sid + ',' + req.body.name);
 		res.end();
 	});
@@ -179,7 +105,7 @@ router.put('/api/ckeckOut/assent/:id', function (req, res, next) {
 
 	var query = { _id: req.params.id };
 	
-	LogModel.update(query, { outCheck: req.body.outCheck, outTime: req.body.outTime }, function(){
+	models.LogModel.update(query, { outCheck: req.body.outCheck, outTime: req.body.outTime }, function(){
 		console.log('[EVENT] assent checkOut : ' + req.body.sid + ',' + req.body.name);
 		res.end();
 	});
