@@ -7,13 +7,12 @@ var notify = require('gulp-notify');
 var sass = require('gulp-sass');
 var fs = require('fs');
 
-// 環境變數
-var env = 'prod'; // dev||prod
+var env = 'prod'; // dev || prod
 
 var live = livereload();
-livereload.listen();
+		livereload.listen();
 
-// 路徑變數
+
 var paths = {
     main: './app/js/boot.js',
     css: './app/assets/css/*.css',
@@ -22,11 +21,9 @@ var paths = {
 };
 
 /**
- *
+ * tasks
  */
 gulp.task('bundle-js', function() {
-
-    // console.log( '\nbundle-js 跑' );
 
     return browserify({
         entries:[ paths.main ]
