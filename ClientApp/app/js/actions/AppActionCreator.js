@@ -13,9 +13,7 @@ var IPaddress = 'localhost:8080';
 var AppActionCreators = {
 
     /**
-     * ok
-     *
-     * app 啟動後，第一次載入資料
+     * app init, first load
      */
     load: function(){
 
@@ -43,6 +41,85 @@ var AppActionCreators = {
             }
 
         })
+				
+    },
+	
+		logIn: function(){
+
+        $.ajax('http://' + IPaddress + '/session/manager',
+        {
+            type:"POST",
+            //
+            success: function(data, status, jqxhr){
+							//do nothing
+							console.log('[POST] set session');
+							AppDispatcher.handleViewAction({
+										actionType: AppConstants.JUST_REFRESH,
+										item: data
+							});
+            },
+
+            //
+            error: function( xhr, status, errText ){
+                console.log( 'xhr錯誤: ', xhr.responseText );
+            }
+
+        })
+				
+    },
+	
+		logOut: function(){
+
+        $.ajax('http://' + IPaddress + '/session/manager/signout',
+        {
+            type:"DELETE",
+            //
+            success: function(data, status, jqxhr){
+							
+							console.log('[DELETE] sign out');
+							
+							AppDispatcher.handleViewAction({
+										actionType: AppConstants.JUST_REFRESH,
+										item: data
+							});
+            },
+
+            //
+            error: function( xhr, status, errText ){
+                console.log( 'xhr錯誤: ', xhr.responseText );
+            }
+
+        })
+				
+    },
+	
+		CheckIsManger: function(){
+
+        $.ajax('http://' + IPaddress + '/session/manager',
+        {
+            type:"GET",
+            //
+            success: function(data, status, jqxhr){
+							//do nothing
+							if(!data.isManager){
+								data.isManager = false;
+							}else{
+								AppDispatcher.handleViewAction({
+										actionType: AppConstants.JUST_REFRESH,
+										item: data
+								});
+							}
+							
+							console.log('[GET] get session -->', data.isManager);
+            },
+
+            //
+            error: function( xhr, status, errText ){
+                console.log( 'xhr錯誤: ', xhr.responseText );
+            }
+
+        })
+				
     },
 	
 		selectRoomID: function( roomID ) {

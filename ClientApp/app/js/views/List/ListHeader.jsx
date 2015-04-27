@@ -13,6 +13,7 @@ var ListHeader = React.createClass({
    propTypes: {
 		// callbacks
 			selectRoomID: React.PropTypes.func,
+			logout: React.PropTypes.func,
 		},
 
     //========================================================================
@@ -26,11 +27,49 @@ var ListHeader = React.createClass({
 			
 				var showID = '';
 			
+			  // room ID
 				if(this.props.ID == 'all'){
 					showID = '';
 				}else{
 					showID = ' - ' + this.props.ID;
 				}
+			
+				//isMamger string
+				var whoAmI = function(mg){
+					
+					var show = {};
+					
+					if(mg.isManager){
+						show.str = '...  I am a manager, my name is ';
+						show.name = mg.name;
+						
+						
+						return (
+							<h5 className="lead">
+										{ show.str } 
+										<span className="text-primary"> { show.name } </span>
+										<a href="#" onClick={this.props.logout }><i className="fa fa-sign-out"></i></a>
+							</h5>
+						);
+						
+						
+					}else{
+						show.str = '... Your are a manager ? ';
+						show.name = 'logIn';
+						
+						return (
+							<h5 className="lead">
+										{ show.str } 
+										<a href="#" onClick={this.props.login }>
+											<span className="text-primary"> { show.name } </span>
+											<i className="fa fa-sign-in"></i>
+										</a>
+							</h5>
+						);
+					}
+					
+				}.bind(this)(this.props.manager);
+			
 			
         return (
 						<div className="header">
@@ -46,6 +85,7 @@ var ListHeader = React.createClass({
 										options = {options}
 									/>
 							</h4>
+							{ whoAmI }
 						</div>
         )
     },

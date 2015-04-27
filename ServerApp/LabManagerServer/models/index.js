@@ -13,6 +13,15 @@ var LogShema = new mongoose.Schema({
 	"outCheck":  { type: String }
 });
 
+
+var UserShema = new mongoose.Schema({
+	"userId": { type: String },
+	"name":  { type: String },
+	"pwd":  { type: String },
+	"lastLogInTime":  { type: Date }
+});
+
 module.exports = {
 	LogModel : db.model('loglists', LogShema),
+	UserModel : db.model('Users', UserShema),
 };

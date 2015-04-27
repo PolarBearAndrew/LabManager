@@ -30,9 +30,8 @@ var selectedRoomID = 'all';
 
 // 是否為manager
 var manager = {
-	isManager :true,
-//	isManager :false,
-	name : 'PH'
+	isManager : false,
+	name : 'guest'
 }
 
 /**
@@ -48,15 +47,16 @@ objectAssign( Store, EventEmitter.prototype, {
         return arrLog;
     },
 
-    /**
-     *
-     */
     getSelectedRoomID: function(){
         return selectedRoomID;
     },
 	
 		getIsManager: function(){
 				return manager;
+		},
+	
+		setManager: function(info){
+				manager = info;
 		},
 	
     //
@@ -147,6 +147,19 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
                 Store.emit( AppConstants.CHANGE_EVENT );
             }
 
+
+            break;
+				
+				/**
+         *
+         */
+        case AppConstants.JUST_REFRESH:
+
+            console.log( 'Store Just Refresh');
+				
+						manager = action.item;
+
+            Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
 
