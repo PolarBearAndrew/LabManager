@@ -34,6 +34,9 @@ var manager = {
 	name : 'guest'
 }
 
+//login input box
+var loginBox = false; 
+
 /**
  * 建立 Store class，並且繼承 EventEMitter 以擁有廣播功能
  */
@@ -51,6 +54,14 @@ objectAssign( Store, EventEmitter.prototype, {
         return selectedRoomID;
     },
 	
+		getLoginBoxShowCtrl: function(){
+				return loginBox;
+		},
+	
+//		switchLoginBoxShowCtrl: function(){
+//				loginBox = !loginBox;
+//		},
+//	
 		getIsManager: function(){
 				return manager;
 		},
@@ -162,7 +173,21 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
+				
+				/**
+         *
+         */
+        case AppConstants.SWITCH_LOGINBOX:
 
+            console.log( 'Store switch login box');
+            console.log( 'this.loginBox', loginBox);
+				
+						loginBox = !loginBox;
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+				
 
         default:
             //

@@ -6,6 +6,9 @@ body{background-color:#bcbcbc;padding:0 0 100px}
 .ListContainer .header h4 select{width:80px;cursor:pointer}
 .ListContainer .header h4 span{margin-top:8px;margin-right:6px;float:left}
 .ListContainer .header h5{font-weight:200;padding:0 0 0 40px;margin:0;clear:both}
+.ListContainer #over{position:absolute;top:0;left:0;height:100%;width:100%;opacity:.8;z-index:2;background-color:#333}
+.ListContainer #login{position:absolute;z-index:3;opacity:1;top:calc(50% - 100px);left:calc(50% - 125px);width:250px;background-color:#bcbcbc;border:3px solid #6f6f6f;border-radius:12px;padding:8px}
+.ListContainer #login button{float:right}
 table{margin-top:40px;text-align:center;cursor:pointer}
 table td:first-child,table td:nth-child(4){width:100px}
 table td:nth-child(3){width:150px}
@@ -13,5 +16,5 @@ table thead{font-size:1.5em;font-weight:bolder}
 table .tableEnd{color:#00f}
 table .splitTable{display:block;padding-top:70px;height:100px}
 table .ctrls{width:140px}
-.footer{text-align:center;position:fixed;top:calc(100% - 40px);height:40px;width:100%;background-color:#247e1d;padding-top:10px}
+.footer{text-align:center;z-index:3;position:fixed;top:calc(100% - 40px);height:40px;width:100%;background-color:#247e1d;padding-top:10px}
 .footer .author{font-weight:bolder;color:#fff}

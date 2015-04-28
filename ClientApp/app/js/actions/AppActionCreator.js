@@ -45,18 +45,26 @@ var AppActionCreators = {
     },
 	
 		logIn: function(){
+			
 
-        $.ajax('http://' + IPaddress + '/session/manager',
+        //$.ajax('http://' + IPaddress + '/session/manager',
+        $.ajax('http://' + IPaddress + '/users/api/check',
         {
             type:"POST",
+						data: { userId : 'dep_01', pwd : 'PH' },
             //
             success: function(data, status, jqxhr){
 							//do nothing
-							console.log('[POST] set session');
-							AppDispatcher.handleViewAction({
-										actionType: AppConstants.JUST_REFRESH,
-										item: data
-							});
+							//console.log('[POST] set session');
+							
+							if(data.isManager){
+								AppDispatcher.handleViewAction({
+											actionType: AppConstants.JUST_REFRESH,
+											item: data
+								});
+								
+								AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
+							}
             },
 
             //
@@ -313,6 +321,10 @@ var AppActionCreators = {
         })
 
     },
+	
+		switchLogInBox: function(){
+			AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
+		},
 	
     // dummy
     noop: function(){}

@@ -2,7 +2,6 @@
  *
  */
 
-
 var ListItem = React.createFactory(require('./ListItem.jsx'));
 var ListInput = React.createFactory(require('./ListInput.jsx'));
 var ListTitle = React.createFactory(require('./ListTitle.jsx'));

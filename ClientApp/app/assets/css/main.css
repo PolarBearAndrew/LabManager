@@ -30,6 +30,28 @@ body {
       padding-left: 40px;
       margin: 0px;
       clear: both; }
+  .ListContainer #over {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+    z-index: 2;
+    background-color: #333; }
+  .ListContainer #login {
+    position: absolute;
+    z-index: 3;
+    opacity: 1;
+    top: calc( 50% - 100px);
+    left: calc( 50% - 125px);
+    width: 250px;
+    background-color: #bcbcbc;
+    border: 3px solid #6f6f6f;
+    border-radius: 12px;
+    padding: 8px; }
+    .ListContainer #login button {
+      float: right; }
 
 table {
   margin-top: 40px;
@@ -53,6 +75,7 @@ table {
 
 .footer {
   text-align: center;
+  z-index: 3;
   position: fixed;
   top: calc(100% - 40px);
   height: 40px;

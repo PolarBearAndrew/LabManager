@@ -21,7 +21,9 @@ module.exports = keyMirror({
   	TODO_REMOVE: null,
   	TODO_UPDATE: null,
   	TODO_SELECT: null,
+	
 		JUST_REFRESH: null,
+		SWITCH_LOGINBOX: null,
 
   	noop: null
 });

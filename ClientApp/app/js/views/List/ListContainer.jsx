@@ -12,6 +12,7 @@
 var List = React.createFactory( require('./List.jsx') );
 var ListHeader = React.createFactory( require('./ListHeader.jsx') );
 var Selector = React.createFactory( require('./Selector.jsx') );
+var LogInForm = React.createFactory( require('./LogInForm.jsx') );
 
 var LogStore = require('../../stores/LogStore');
 var AppConstants = require('../../constants/AppConstants');
@@ -113,14 +114,26 @@ var ListContainer = React.createClass({
 
     render: function() {
 			
+				var form = function(ctrl) {
+					if(ctrl){
+						return ( <LogInForm 
+											out={actions.switchLogInBox}
+											loginPost = { actions.logIn }
+										/> );
+					}else{
+						return null;
+					}
+				}(this.state.loginBoxCtrl);
+			
         return (
 							<div className="ListContainer">
+								{ form }
 								<ListHeader
 										ID = {this.state.selectedRoomID}
 										selectRoomID = {actions.selectRoomID}
 										manager = {this.state.manager}
 										logout = { actions.logOut }
-										login = { actions.logIn }
+										login = { actions.switchLogInBox }
 									/>
 								<List 
 									join={actions.askForJoin}
@@ -168,6 +181,7 @@ var ListContainer = React.createClass({
             arrLog: LogStore.getLog(),
 						selectedRoomID: LogStore.getSelectedRoomID(),
 						manager: LogStore.getIsManager(),
+						loginBoxCtrl: LogStore.getLoginBoxShowCtrl(),
 //           ,selectedItem: TodoStore.getSelectedItem()
          };
     }
