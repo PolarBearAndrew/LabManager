@@ -115,10 +115,11 @@ var ListContainer = React.createClass({
     render: function() {
 			
 				var form = function(ctrl) {
-					if(ctrl){
+					if(ctrl.isShow){
 						return ( <LogInForm 
 											out={actions.switchLogInBox}
 											loginPost = { actions.logIn }
+											fail= { ctrl.isFail }
 										/> );
 					}else{
 						return null;

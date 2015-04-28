@@ -50,6 +50,8 @@ body {
     border: 3px solid #6f6f6f;
     border-radius: 12px;
     padding: 8px; }
+    .ListContainer #login .loginFail {
+      margin-left: 12px; }
     .ListContainer #login button {
       float: right; }
 

@@ -35,7 +35,10 @@ var manager = {
 }
 
 //login input box
-var loginBox = false; 
+var loginBox = {
+	isShow : false,
+	isFail : false
+}; 
 
 /**
  * 建立 Store class，並且繼承 EventEMitter 以擁有廣播功能
@@ -179,10 +182,23 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          */
         case AppConstants.SWITCH_LOGINBOX:
 
-            console.log( 'Store switch login box');
-            console.log( 'this.loginBox', loginBox);
+            //console.log( 'Store switch login box');
 				
-						loginBox = !loginBox;
+						loginBox.isShow = !loginBox.isShow;
+						loginBox.isFail = false;
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+				
+				/**
+         *
+         */
+        case AppConstants.LOGIN_FAIL:
+
+            //console.log( 'login fail');
+				
+						loginBox.isFail = true;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 

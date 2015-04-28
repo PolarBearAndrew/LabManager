@@ -44,14 +44,14 @@ var AppActionCreators = {
 				
     },
 	
-		logIn: function(){
+		logIn: function( postData ){
 			
 
         //$.ajax('http://' + IPaddress + '/session/manager',
         $.ajax('http://' + IPaddress + '/users/api/check',
         {
             type:"POST",
-						data: { userId : 'dep_01', pwd : 'PH' },
+						data: { userId : postData.userId, pwd : postData.pwd },
             //
             success: function(data, status, jqxhr){
 							//do nothing
@@ -64,6 +64,11 @@ var AppActionCreators = {
 								});
 								
 								AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
+								
+								
+								
+							}else{
+								AppDispatcher.handleViewAction({ actionType: AppConstants.LOGIN_FAIL });
 							}
             },
 
@@ -72,7 +77,7 @@ var AppActionCreators = {
                 console.log( 'xhr錯誤: ', xhr.responseText );
             }
 
-        })
+        }).bind(postData)
 				
     },
 	
