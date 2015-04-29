@@ -59,6 +59,7 @@ var comp = React.createClass({
 		
 		
     return (
+			<form>
       <table className="table table-hover">
 				<ListTitle 
 					titles={inputTitle} 
@@ -80,6 +81,7 @@ var comp = React.createClass({
 					<td className="tableEnd" colSpan="8">--- [End] ---</td>
 				</tfoot>
       </table>
+			</form>
     );
 
   },

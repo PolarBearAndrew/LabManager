@@ -24,7 +24,7 @@ var ListHeader = React.createClass({
     render: function() {
 			
 				//var options = ['all', '801', '802', '803', '806', '813'];
-				var roomInfo = this.props.roomInfo;
+				var roomInfo = [{ name : 'all'}].concat(this.props.roomInfo);
 			
 				var showID = '';
 			

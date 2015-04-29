@@ -67,11 +67,11 @@ var ListInput = React.createClass({
 					<td>
 					</td>
 					<td>
-						<a className="btn btn-primary" href="#"
+						<button className="btn btn-primary" type="submit" href="#"
 							onClick={this.handleAsk}>
   						<i className="fa fa-user-plus -o fa-lg"></i> 
 							{' Join'}
-						</a>
+						</button>
 					</td>
 			</thead>
     );
