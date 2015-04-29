@@ -47,7 +47,7 @@ var ListHeader = React.createClass({
 						return (
 							<h5 className="lead">
 										{ show.str } 
-										<span className="text-primary"> { show.name } </span>
+										<span className="text-success isName"> { show.name } </span>
 										<a href="#" onClick={this.props.logout }><i className="fa fa-sign-out"></i></a>
 							</h5>
 						);

@@ -62,12 +62,10 @@ var AppActionCreators = {
 											actionType: AppConstants.JUST_REFRESH,
 											item: data
 								});
-								
 								AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
 								
-								
-								
 							}else{
+								
 								AppDispatcher.handleViewAction({ actionType: AppConstants.LOGIN_FAIL });
 							}
             },
@@ -77,7 +75,7 @@ var AppActionCreators = {
                 console.log( 'xhr錯誤: ', xhr.responseText );
             }
 
-        }).bind(postData)
+        })
 				
     },
 	
