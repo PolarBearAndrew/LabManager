@@ -25,6 +25,7 @@ module.exports = keyMirror({
 		JUST_REFRESH: null,
 		SWITCH_LOGINBOX: null,
 		LOGIN_FAIL: null,
+		CHANGE_INPUTID: null,
 
   	noop: null
 });

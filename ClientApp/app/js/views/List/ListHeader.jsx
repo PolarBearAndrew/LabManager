@@ -23,7 +23,8 @@ var ListHeader = React.createClass({
 
     render: function() {
 			
-				var options = ['all', '801', '802', '803', '806', '813'];
+				//var options = ['all', '801', '802', '803', '806', '813'];
+				var roomInfo = this.props.roomInfo;
 			
 				var showID = '';
 			
@@ -82,13 +83,22 @@ var ListHeader = React.createClass({
 									<Selector 
 										myID="selectID"
 										selectRoomID = {this.props.selectRoomID}
-										options = {options}
+										changeTodo = { this.handleChange }
+										options = { roomInfo }
 									/>
 							</h4>
 							{ whoAmI }
 						</div>
         )
     },
+	
+	
+		handleChange: function(){
+			if(this.props.selectRoomID){
+				var id = $('#selectID').val();
+				this.props.selectRoomID(id);
+			}
+		},
 });
 
 module.exports = ListHeader;

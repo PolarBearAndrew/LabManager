@@ -41,16 +41,20 @@ var ListInput = React.createClass({
    *
    */
   render: function() {
+		
+		var inputID = this.props.inputID;
+		var roomInfo =  this.props.roomInfo;
+		var posiOptions = [];
 
-		var roomOptions = ['801', '802', '803', '806', '813'];
-		var posiOptions = ['討論1', '討論2', '討論3', '電腦1', '電腦2'];
-		//<td colSpan="2"><input type="datetime-local" className="form-control" name="name" value="2014-01-02T11:42" ></input></td>
-		
-		
+		for(var i = 0; i < roomInfo.length; i++ ){
+			if( roomInfo[i].name == inputID ){
+				posiOptions = roomInfo[i].posi;
+			}
+		}
 		
     return (
 			<thead>
-					<td><Selector myID="inputID" className="input" options = {roomOptions} /></td>
+					<td><Selector myID="inputID" className="input" options = { roomInfo } changeTodo ={ this.handleIDchange } /></td>
 					<td><input id="inputSid" type="text" className="form-control" name="sid"></input></td>
 					<td><input id="inputName" type="text" className="form-control" name="name"></input></td>
 					<td><Selector myID="inputPosi" className="input" options = {posiOptions} /></td>
@@ -106,7 +110,11 @@ var ListInput = React.createClass({
 		this.props.join(postInfo);
 	},
 	
-  noop: function(){  }
+	handleIDchange: function(){
+		this.props.changeInputID( $('#inputID').val() );
+	},
+	
+  noop: function(){ }
 
 });
 

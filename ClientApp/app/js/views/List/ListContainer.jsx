@@ -135,12 +135,16 @@ var ListContainer = React.createClass({
 										manager = {this.state.manager}
 										logout = { actions.logOut }
 										login = { actions.switchLogInBox }
+										roomInfo = { this.state.roomInfo }
 									/>
 								<List 
 									join={actions.askForJoin}
 									truth={this.state}
 									checkOut={actions.askForLeave}
 									checkOutAssent={actions.checkOut}
+									roomInfo = { this.state.roomInfo }
+									inputID = { this.state.selectedInputID }
+									changeInputID = { actions.changeInputID }
 					
 									checkInAssent={actions.checkIn}
 									checkInIgnore={actions.checkInIgnore}
@@ -181,9 +185,10 @@ var ListContainer = React.createClass({
         return {
             arrLog: LogStore.getLog(),
 						selectedRoomID: LogStore.getSelectedRoomID(),
+						selectedInputID: LogStore.getSelectedRoomIDinput(),
 						manager: LogStore.getIsManager(),
 						loginBoxCtrl: LogStore.getLoginBoxShowCtrl(),
-//           ,selectedItem: TodoStore.getSelectedItem()
+						roomInfo: LogStore.getRoomInfo(),
          };
     }
 

@@ -10,6 +10,8 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var actions = require('../actions/AppActionCreator');
 
+var RoomInfo = require('./RoomInfo.js');
+
 var objectAssign = require('object-assign');
 var EventEmitter = require('events').EventEmitter; // 取得一個 pub/sub 廣播器
 
@@ -27,6 +29,7 @@ var arrLog = [];
 
 // 目前選取的 room ID
 var selectedRoomID = 'all';
+var selectedRoomIDinput = '801';
 
 // 是否為manager
 var manager = {
@@ -39,6 +42,9 @@ var loginBox = {
 	isShow : false,
 	isFail : false
 }; 
+
+//room info
+var roomInfo = RoomInfo;
 
 /**
  * 建立 Store class，並且繼承 EventEMitter 以擁有廣播功能
@@ -57,14 +63,18 @@ objectAssign( Store, EventEmitter.prototype, {
         return selectedRoomID;
     },
 	
+		getSelectedRoomIDinput: function(){
+				return selectedRoomIDinput;
+		},
+	
 		getLoginBoxShowCtrl: function(){
 				return loginBox;
 		},
+
+		getRoomInfo: function(){
+				return roomInfo;
+		},
 	
-//		switchLoginBoxShowCtrl: function(){
-//				loginBox = !loginBox;
-//		},
-//	
 		getIsManager: function(){
 				return manager;
 		},
@@ -199,6 +209,18 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             //console.log( 'login fail');
 				
 						loginBox.isFail = true;
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+				/**
+         *
+         */
+        case AppConstants.CHANGE_INPUTID:
+
+            console.log( 'change input id');
+				
+						selectedRoomIDinput = action.inputID;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 

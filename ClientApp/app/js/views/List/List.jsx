@@ -57,8 +57,6 @@ var comp = React.createClass({
 		var inputTitle = ['Lab', 'Your ID', 'Your Name', 'Posi', 'Check in', '', '', 'Operate'];
 		var theadTitle = ['Lab', 'ID', 'Name', 'Posi', 'Check in', 'Check out', 'Checked(in)', 'Checked(out)'];
 		
-		//console.log('arr', arr.map);
-		
 		
     return (
       <table className="table table-hover">
@@ -66,9 +64,14 @@ var comp = React.createClass({
 					titles={inputTitle} 
 					listTitle={false} />
 				<ListInput 
-					join={this.props.join}/>
+					join={this.props.join}
+					roomInfo = { this.props.roomInfo }
+					inputID = { this.props.inputID }
+					changeInputID = { this.props.changeInputID }
+			
+					/>
 				<ListTitle 
-					titles={theadTitle} 
+					titles={theadTitle}
 					listTitle={true} />
 				<tbody>
           {arr}

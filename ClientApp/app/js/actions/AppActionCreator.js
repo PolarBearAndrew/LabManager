@@ -329,6 +329,15 @@ var AppActionCreators = {
 			AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
 		},
 	
+		changeInputID: function( inputID ){
+			
+			
+			AppDispatcher.handleViewAction({ 
+				actionType: AppConstants.CHANGE_INPUTID,
+				inputID: inputID
+			});
+		},
+	
     // dummy
     noop: function(){}
 };
