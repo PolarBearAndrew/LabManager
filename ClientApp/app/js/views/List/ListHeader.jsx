@@ -35,7 +35,8 @@ var ListHeader = React.createClass({
 					showID = ' - ' + this.props.ID;
 				}
 			
-				//isMamger string
+				//isManager
+				//
 				var whoAmI = function(mg){
 					
 					var show = {};
@@ -71,7 +72,8 @@ var ListHeader = React.createClass({
 					
 				}.bind(this)(this.props.manager);
 			
-			
+				//header
+				//
         return (
 						<div className="header">
 							<h1>

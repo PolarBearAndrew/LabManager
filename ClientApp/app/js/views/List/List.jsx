@@ -37,6 +37,7 @@ var comp = React.createClass({
 		
 		//console.log(this.props.checkInAssent);
 		
+		
 		// 跑 loop 一筆筆建成 ListItem 元件
 		var arr = arrlog.map(function (log) {
 			

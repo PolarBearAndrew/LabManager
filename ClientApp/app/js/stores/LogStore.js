@@ -118,6 +118,8 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         case AppConstants.TODO_CREATE:
 
             arrLog.push( action.item );
+				
+						renewRoomInfo( action.item );
 
             console.log( 'Store 新增: ', arrLog );
 
@@ -133,6 +135,8 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             arrLog = arrLog.filter( function(item){
                 return item != action.item;
             })
+						
+						renewRoomInfo( action.item );
 
             console.log( 'Store 刪完: ', arrLog );
 
@@ -151,6 +155,8 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 							}
               return item ;
             })
+						
+						renewRoomInfo( action.item );
 
             console.log( 'Store 更新: ', arrLog );
 
@@ -161,25 +167,25 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         /**
          *
          */
-        case AppConstants.TODO_SELECT:
-
-            console.log( 'Store 選取: ', action.roomID );
-
-            // 選取同樣的 item 就不用處理下去了
-            if( selectedRoomID != action.roomID ){
-                selectedRoomID = action.roomID;
-                Store.emit( AppConstants.CHANGE_EVENT );
-            }
-
-
-            break;
+//        case AppConstants.TODO_SELECT:
+//
+//            //console.log( 'Store 選取: ', action.roomID );
+//
+//            // 選取同樣的 item 就不用處理下去了
+//            if( selectedRoomID != action.roomID ){
+//                selectedRoomID = action.roomID;
+//                Store.emit( AppConstants.CHANGE_EVENT );
+//            }
+//
+//
+//            break;
 				
 				/**
          *
          */
         case AppConstants.JUST_REFRESH:
 
-            console.log( 'Store Just Refresh');
+            //console.log( 'Store Just Refresh');
 				
 						manager = action.item;
 
@@ -218,7 +224,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          */
         case AppConstants.CHANGE_INPUTID:
 
-            console.log( 'change input id');
+           // console.log( 'change input id');
 				
 						selectedRoomIDinput = action.inputID;
 
@@ -228,10 +234,38 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 				
 
         default:
-            //
     }
+	
+	
+		//show room info
+    console.log('roomInfo', roomInfo);
 
 })
+
+
+//-----renew roomInfo func
+function renewRoomInfo(data){
+	
+	console.log('start : ', data);
+	
+	for(var i = 0; i < roomInfo.length; i++){
+		
+		if( roomInfo[i].name == data.room ){
+			
+			for(var j = 0; j < roomInfo[i].posi.length; j++){
+				
+				if( roomInfo[i].posi[j].name == data.posi ){
+					roomInfo[i].posi[j].occupancy = !roomInfo[i].posi[j].occupancy;
+					
+					console.log('roomInfo[i].posi[j].occupancy', roomInfo[i].posi[j].occupancy);
+					break;
+				}
+			}
+			
+			break;
+		}
+	}
+}
 
 //
 module.exports = Store;

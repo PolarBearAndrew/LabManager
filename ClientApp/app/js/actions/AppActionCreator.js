@@ -87,7 +87,7 @@ var AppActionCreators = {
             //
             success: function(data, status, jqxhr){
 							
-							console.log('[DELETE] sign out');
+							//console.log('[DELETE] sign out');
 							
 							AppDispatcher.handleViewAction({
 										actionType: AppConstants.JUST_REFRESH,
@@ -121,7 +121,7 @@ var AppActionCreators = {
 								});
 							}
 							
-							console.log('[GET] get session -->', data.isManager);
+							//console.log('[GET] get session -->', data.isManager);
             },
 
             //

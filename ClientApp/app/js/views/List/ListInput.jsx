@@ -48,7 +48,11 @@ var ListInput = React.createClass({
 
 		for(var i = 0; i < roomInfo.length; i++ ){
 			if( roomInfo[i].name == inputID ){
-				posiOptions = roomInfo[i].posi;
+				posiOptions = roomInfo[i].posi.filter(function(posi){
+					if( posi.occupancy == false ){
+						return posi;
+					}
+				});
 			}
 		}
 		
@@ -108,10 +112,13 @@ var ListInput = React.createClass({
 			inTime: inTime,
 		};
 		this.props.join(postInfo);
+		
+		//don't submit
+		return false;
 	},
 	
 	handleIDchange: function(){
-		this.props.changeInputID( $('#inputID').val() );
+		this.props.changeInputID( $('#inputID').val());
 	},
 	
   noop: function(){ }

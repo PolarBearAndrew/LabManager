@@ -168,7 +168,7 @@ var ListContainer = React.createClass({
      */
     _onChange: function(){
 
-        console.log( '_onChange 重繪: ', this.getTruth() );
+        //console.log( '_onChange 重繪: ', this.getTruth() );
 
         // 重要：從 root view 觸發所有 sub-view 重繪
         this.setState( this.getTruth() );

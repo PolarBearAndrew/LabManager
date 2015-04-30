@@ -17,7 +17,7 @@ var Footer = React.createClass({
   	return (
       <footer className="footer">
         <span className="author">
-            Andrew Chen for OIT / May,2015
+            Author | Andrew Chen  {'( May / 2015 )'}
 			
         </span>
       </footer>
