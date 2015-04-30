@@ -24,7 +24,7 @@ var EventEmitter = require('events').EventEmitter; // 取得一個 pub/sub 廣�
 // 由於將來會返還 TodoStore 出去，因此下面寫的會全變為 public methods
 var Store = {};
 
-// 所有 todo 資料
+// 所有 log 資料
 var arrLog = [];
 
 // 目前選取的 room ID

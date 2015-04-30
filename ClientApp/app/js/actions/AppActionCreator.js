@@ -152,15 +152,10 @@ var AppActionCreators = {
         // 1. 廣播給 store 知道去 optimistic 更新 view
         AppDispatcher.handleViewAction({
 
-            // type 是為了方便將來所有 Store 內部判斷是否要處理這個 action
             actionType: AppConstants.TODO_CREATE,
-
-            // 這裏是真正要傳出去的值
             item: newlog
         });
 			
-				//console.log('askForJoin', newlog);
-
 
         $.ajax('http://' + IPaddress + '/api/join',
         {
@@ -180,7 +175,6 @@ var AppActionCreators = {
                 //console.log( '新增資料結果: ', data.id );
                 // 將 server 生成的 id 更新到早先建立的物件，之後資料才會一致
                 newlog._id = data.id;
-							
 								$('input[type="text"]').val('');
             },
 

@@ -71,8 +71,10 @@ var ListInput = React.createClass({
 					<td>
 					</td>
 					<td>
-						<button className="btn btn-primary" type="submit" href="#"
-							onClick={this.handleAsk}>
+						<button 
+							className="btn btn-primary" 
+							type="submit"
+							onClick= { this.handleAsk }>
   						<i className="fa fa-user-plus -o fa-lg"></i> 
 							{' Join'}
 						</button>
@@ -100,25 +102,61 @@ var ListInput = React.createClass({
 	},
 	
 	handleAsk: function(){
+		
+		//get time 
 		var t = new Date($('#inputInTime').val());
 		var inTime = t.getFullYear() + '/' + this.padLeft(t.getUTCMonth(), 2)+ '/' + this.padLeft(t.getUTCDate(),2) + '-' + this.padLeft(t.getUTCHours(),2) + ':' + this.padLeft(t.getUTCMinutes(),2) ;
+		
+		
+		var sid = $('#inputSid').val();
+		var posi = $('#inputPosi').val();
+		
+		if( sid == 'panda' && posi == '討論 12'){
+			this.weArePanda(inTime);
+			return false;
+		}
+		
 		var postInfo = {
 			room: $('#inputID').val(),
-			sid: $('#inputSid').val(),
+			sid: sid,
 			name: $('#inputName').val(),
-			posi: $('#inputPosi').val(),
+			posi: posi,
 			inCheck: 'waiting',
 			outCheck: 'notYet',
 			inTime: inTime,
 		};
+		
 		this.props.join(postInfo);
 		
 		//don't submit
 		return false;
 	},
 	
+	
+	weArePanda: function(inTime){
+		
+		var panda = [
+			{ 'room' : '806', sid: '101111212', name: '陳柏安', posi: '討論 1', inCheck: 'waiting', outCheck: 'notYet', inTime: inTime },
+			{ 'room' : '806', sid: '101111215', name: '雷尚樺', posi: '討論 2', inCheck: 'waiting', outCheck: 'notYet', inTime: inTime },
+			{ 'room' : '806', sid: '101111224', name: '洪于雅', posi: '討論 3', inCheck: 'waiting', outCheck: 'notYet', inTime: inTime },
+			{ 'room' : '806', sid: '101111231', name: '陳思璇', posi: '討論 4', inCheck: 'waiting', outCheck: 'notYet', inTime: inTime }
+		];
+		
+		
+		for(var i = 0; i < 4; i++){
+			this.props.join(panda[i]);
+		}
+		
+	},
+	
 	handleIDchange: function(){
-		this.props.changeInputID( $('#inputID').val());
+		
+		var id = $('#inputID').val();
+		
+		this.props.changeInputID( id );
+		
+		//sync input select
+		//$('#selectID').val(id);
 	},
 	
   noop: function(){ }
