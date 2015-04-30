@@ -96,9 +96,18 @@ var ListHeader = React.createClass({
 	
 	
 		handleChange: function(){
+			
 			if(this.props.selectRoomID){
 				var id = $('#selectID').val();
 				this.props.selectRoomID(id);
+				
+				
+				//sync input select
+				if( id != 'all'){
+					$('#inputID').val(id);
+				}else{
+					$('#inputID').val('801');
+				}
 			}
 		},
 });

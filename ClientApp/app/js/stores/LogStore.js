@@ -106,7 +106,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             arrLog = action.items;
 
-            console.log( 'Store 收到資料: ', arrLog );
+            //console.log( 'Store 收到資料: ', arrLog );
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
@@ -121,7 +121,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 				
 						renewRoomInfo( action.item );
 
-            console.log( 'Store 新增: ', arrLog );
+            //console.log( 'Store 新增: ', arrLog );
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
@@ -138,7 +138,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 						
 						renewRoomInfo( action.item );
 
-            console.log( 'Store 刪完: ', arrLog );
+            //console.log( 'Store 刪完: ', arrLog );
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
@@ -158,29 +158,28 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 						
 						renewRoomInfo( action.item );
 
-            console.log( 'Store 更新: ', arrLog );
+            //console.log( 'Store 更新: ', arrLog );
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
-
-        /**
-         *
-         */
-//        case AppConstants.TODO_SELECT:
-//
-//            //console.log( 'Store 選取: ', action.roomID );
-//
-//            // 選取同樣的 item 就不用處理下去了
-//            if( selectedRoomID != action.roomID ){
-//                selectedRoomID = action.roomID;
-//                Store.emit( AppConstants.CHANGE_EVENT );
-//            }
-//
-//
-//            break;
 				
 				/**
+         *
+         */
+				case AppConstants.TODO_SELECT:
+
+            //console.log( 'Store 選取: ', action.roomID );
+
+            // 選取同樣的 item 就不用處理下去了
+            if( selectedRoomID != action.roomID ){
+                selectedRoomID = action.roomID;
+                Store.emit( AppConstants.CHANGE_EVENT );
+            }
+
+            break;
+
+        /**
          *
          */
         case AppConstants.JUST_REFRESH:
@@ -238,7 +237,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 	
 	
 		//show room info
-    console.log('roomInfo', roomInfo);
+    //console.log('roomInfo', roomInfo);
 
 })
 
