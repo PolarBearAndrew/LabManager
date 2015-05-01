@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var logs = require('./routes/logs');
+var session = require('./routes/session');
 
 var app = express();
 
@@ -41,6 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', routes);
+app.use('/api/log', logs);
+app.use('/session', session);
 app.use('/users', users);
 
 /*

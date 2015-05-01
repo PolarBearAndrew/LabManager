@@ -157,7 +157,7 @@ var AppActionCreators = {
         });
 			
 
-        $.ajax('http://' + IPaddress + '/api/join',
+        $.ajax('http://' + IPaddress + '/api/log/join',
         {
 
             type:"POST",
@@ -197,7 +197,7 @@ var AppActionCreators = {
             item: log
         });
 
-        $.ajax('http://' + IPaddress + '/api/ckeckOut/' + log._id,
+        $.ajax('http://' + IPaddress + '/api/log/ckeckOut/' + log._id,
         {
 
             type:"PUT",
@@ -231,7 +231,7 @@ var AppActionCreators = {
             item: log
         });
 
-        $.ajax('http://' + IPaddress + '/api/ckeckIn/assent/' + log._id,
+        $.ajax('http://' + IPaddress + '/api/log/ckeckIn/assent/' + log._id,
         {
 
             type:"PUT",
@@ -241,11 +241,7 @@ var AppActionCreators = {
             //
             success: function(data, status, jqxhr){
 
-							console.log('ajax-/api/ckeckOut/assent/- SUCCESS');
-                // console.log( '編輯資料結果: ', data );
-
-                // 將 server 生成的 uid 更新到早先建立的物件，之後資料才會一致
-                //item.id = data.id;
+							//console.log('ajax-/api/ckeckOut/assent/- SUCCESS');
             },
 
             //
@@ -264,7 +260,7 @@ var AppActionCreators = {
             item: log
         });
 
-        $.ajax('http://' + IPaddress + '/api/ckeckOut/assent/' + log._id,
+        $.ajax('http://' + IPaddress + '/api/log/ckeckOut/assent/' + log._id,
         {
 
             type:"PUT",
@@ -298,7 +294,7 @@ var AppActionCreators = {
             item: log
         });
 
-        $.ajax('http://' + IPaddress + '/api/ckeckIn/ignore/' + log._id,
+        $.ajax('http://' + IPaddress + '/api/log/ckeckIn/ignore/' + log._id,
         {
 
             type:"DELETE",
