@@ -126,7 +126,6 @@ var comp = React.createClass({
 		var tmpInTime = logRow.inTime;
 		var tmpOutTime = logRow.outTime;
 		
-		console.log(tmpInTime, today);
 		
 		if(logRow.room == selectedRoomID || selectedRoomID == 'all'){
     	return (

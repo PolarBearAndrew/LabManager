@@ -105,21 +105,14 @@ var ListInput = React.createClass({
 		
 		var t = new Date();
 		var time =  t.getFullYear() + '-' + this.padLeft(t.getUTCMonth() + 1, 2)+ '-' + this.padLeft(t.getUTCDate(),2) + 'T' + this.padLeft(t.getHours(),2) + ':' + this.padLeft(t.getUTCMinutes(),2);
+		// + ':' + this.padLeft(t.getUTCSeconds(),2)
 		
-		
-		
-		
-		console.log('time2',t.toLocaleDateString()); //抓日期
-		
-		console.log('time',t.toLocaleTimeString()); //抓時間
-		
-		console.log('time3',t.toLocaleString()); //抓日期
-		
-		
+		//console.log('time2',t.toLocaleDateString()); //抓日期
+		//console.log('time',t.toLocaleTimeString()); //抓時間
+		//console.log('time3',t.toLocaleString()); //抓日期
 		
 		//console.log('Date', new Date.now);
 		return time;
-		// + ':' + this.padLeft(t.getUTCSeconds(),2)
 	},
 	
 	
