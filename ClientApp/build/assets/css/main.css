@@ -12,8 +12,11 @@ body{background-color:#bcbcbc;padding:0 0 100px}
 .ListContainer #login .loginFail{margin-left:12px}
 .ListContainer #login button{float:right}
 table{margin-top:40px;text-align:center;cursor:pointer}
-table td:first-child,table td:nth-child(4){width:100px}
-table td:nth-child(3){width:150px}
+table td:first-child{min-width:80px}
+table td:nth-child(4){min-width:95px}
+table td:nth-child(2),table td:nth-child(3){min-width:140px}
+table td:nth-child(5),table td:nth-child(6){min-width:180px}
+table #inputInTime{width:230px}
 table thead{font-size:1.5em;font-weight:bolder}
 table .tableEnd{color:#00f}
 table .splitTable{display:block;padding-top:70px;height:100px}
