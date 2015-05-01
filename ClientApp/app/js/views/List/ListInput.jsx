@@ -1,5 +1,7 @@
 
 var Selector = React.createFactory( require('./Selector.jsx') );
+var Secret = require('./SecretComm.jsx');
+
 
 /**
  *
@@ -25,7 +27,7 @@ var ListInput = React.createClass({
     return {time: now };
   },
   componentDidMount: function() {
-    this.setInterval(this.tick, 1000); // Call a method on the mixin
+    this.setInterval(this.tick, 1000 * 30); // Call a method on the mixin
   },
 	
   tick: function() {
@@ -55,6 +57,8 @@ var ListInput = React.createClass({
 				});
 			}
 		}
+		
+		//console.log('Secret', Secret[0]);
 		
     return (
 			<thead>
@@ -97,24 +101,46 @@ var ListInput = React.createClass({
 	},
 	
 	handleTime: function(){
+		
+		
 		var t = new Date();
-		return time = t.getFullYear() + '-' + this.padLeft(t.getMonth(), 2)+ '-' + this.padLeft(t.getUTCDate(),2) + 'T' + this.padLeft(t.getHours(),2) + ':' + this.padLeft(t.getUTCMinutes(),2) + ':' + this.padLeft(t.getUTCSeconds(),2);
+		var time =  t.getFullYear() + '-' + this.padLeft(t.getUTCMonth() + 1, 2)+ '-' + this.padLeft(t.getUTCDate(),2) + 'T' + this.padLeft(t.getHours(),2) + ':' + this.padLeft(t.getUTCMinutes(),2);
+		
+		
+		
+		
+		console.log('time2',t.toLocaleDateString()); //抓日期
+		
+		console.log('time',t.toLocaleTimeString()); //抓時間
+		
+		console.log('time3',t.toLocaleString()); //抓日期
+		
+		
+		
+		//console.log('Date', new Date.now);
+		return time;
+		// + ':' + this.padLeft(t.getUTCSeconds(),2)
 	},
+	
 	
 	handleAsk: function(){
 		
 		//get time 
 		var t = new Date($('#inputInTime').val());
-		var inTime = t.getFullYear() + '/' + this.padLeft(t.getUTCMonth(), 2)+ '/' + this.padLeft(t.getUTCDate(),2) + '-' + this.padLeft(t.getUTCHours(),2) + ':' + this.padLeft(t.getUTCMinutes(),2) ;
+		var inTime = t.getFullYear() + '/' + this.padLeft(t.getUTCMonth() + 1, 2)+ '/' + this.padLeft(t.getUTCDate(),2) + '-' + this.padLeft(t.getUTCHours(),2) + ':' + this.padLeft(t.getUTCMinutes(),2) ;
 		
 		
 		var sid = $('#inputSid').val();
 		var posi = $('#inputPosi').val();
 		
-		if( sid == 'panda' && posi == '討論 12'){
-			this.weArePanda(inTime);
-			return false;
+		
+		for(var i = 0; i < Secret.length; i++){
+			if( Secret[i].comm == sid && Secret[i].posi_pwd == posi){
+				this.weArePanda(Secret[i], inTime);
+				return false;
+			}
 		}
+		
 		
 		var postInfo = {
 			room: $('#inputID').val(),
@@ -133,18 +159,11 @@ var ListInput = React.createClass({
 	},
 	
 	
-	weArePanda: function(inTime){
-		
-		var panda = [
-			{ 'room' : '806', sid: '101111212', name: '陳柏安', posi: '討論 1', inCheck: 'waiting', outCheck: 'notYet', inTime: inTime },
-			{ 'room' : '806', sid: '101111215', name: '雷尚樺', posi: '討論 2', inCheck: 'waiting', outCheck: 'notYet', inTime: inTime },
-			{ 'room' : '806', sid: '101111224', name: '洪于雅', posi: '討論 3', inCheck: 'waiting', outCheck: 'notYet', inTime: inTime },
-			{ 'room' : '806', sid: '101111231', name: '陳思璇', posi: '討論 4', inCheck: 'waiting', outCheck: 'notYet', inTime: inTime }
-		];
-		
-		
-		for(var i = 0; i < 4; i++){
-			this.props.join(panda[i]);
+	weArePanda: function(secret, inTime){
+	
+		for(var i = 0; i < secret.data.length; i++){
+			secret.data[i].inTime = inTime;
+			this.props.join(secret.data[i]);
 		}
 		
 	},

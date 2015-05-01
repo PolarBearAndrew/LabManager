@@ -1,16 +1,14 @@
 var router = require('express').Router();
 var models = require('../models');
 
-router.get('/test', function(req, res, next) {
-  res.json({ 'test' : 'succes' });
-});
+
 
 /*
  * api [POST] add a new user
  */
 router.post('/api/new', function (req, res, next) {
 	
-	// log entity
+	//log entity
 	var userEntity = new models.UserModel({
 		"userId": 'dep_01',
 		"name":  'PH',
@@ -27,7 +25,7 @@ router.post('/api/new', function (req, res, next) {
 			
 		} else {
 			console.log('[EVENT] add a new user');
-			res.json( {id: userEntity._id} );
+			res.json( {id: userEntity._id} ); //respone id
 		}
 		
 	});
@@ -43,7 +41,6 @@ router.post('/api/check', function (req, res, next) {
 			pwd = req.body.pwd;
 	
 	models.UserModel.findOne({ "userId" : id, "pwd" : pwd }, function (err, data) {
-		//如果使用findOne即可解決data回傳時是陣列的問題, 不過如何判斷比數?
 		
 		//respone exists
 		if(data){ 
@@ -59,7 +56,6 @@ router.post('/api/check', function (req, res, next) {
 
 		}
 	});
-	
 });
 
 
