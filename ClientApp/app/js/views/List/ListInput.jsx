@@ -112,7 +112,6 @@ var ListInput = React.createClass({
 		//console.log('time3',t.toLocaleString()); //抓日期
 		
 		return time;
-		
 	},
 	
 	
@@ -124,7 +123,6 @@ var ListInput = React.createClass({
 		
 		var sid = $('#inputSid').val();
 		var posi = $('#inputPosi').val();
-		
 		
 		for(var i = 0; i < Secret.length; i++){
 			if( Secret[i].comm == sid && Secret[i].posi_pwd == posi){
