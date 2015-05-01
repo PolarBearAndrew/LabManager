@@ -115,19 +115,15 @@ var comp = React.createClass({
 					
 		}.bind(this)(logRow.outCheck, logRow.inCheck);
 		
-		//console.log('checkOut',checkOut);
-		//console.log('logRow',logRow.outCheck );
-		
 		var t = new Date();
 		var today = t.toLocaleDateString();
 					
-//		var tmpInTime = logRow.inTime.replace( today, 'Today');
-//		var tmpOutTime = logRow.outTime.replace( today, 'Today');
 					
 		var tmpInTime = logRow.inTime.replace(today, '今天');
 		var tmpOutTime = logRow.outTime.replace(today, '今天');
 
 					
+		//too late	~!
 		var tooLate = '';
 					
 		if( tmpOutTime.indexOf('下午') != -1 ){
