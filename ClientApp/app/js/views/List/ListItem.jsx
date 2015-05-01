@@ -172,8 +172,9 @@ var comp = React.createClass({
 		
 	handleCheckOutAssent: function(){
 		//console.log('ok to check out click');
-		var t = new Date($('#inputInTime').val());
-		var outTime = t.getFullYear() + '/' + this.padLeft(t.getUTCMonth(), 2)+ '/' + this.padLeft(t.getUTCDate(),2) + '-' + this.padLeft(t.getUTCHours(),2) + ':' + this.padLeft(t.getUTCMinutes(),2) ;
+		var t = new Date();
+		var outTime = t.toLocaleString();
+		
 		
 		this.props.logRow.outTime = outTime;
 		this.props.logRow.outCheck = this.props.manager.name;

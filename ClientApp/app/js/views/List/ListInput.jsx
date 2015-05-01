@@ -119,13 +119,11 @@ var ListInput = React.createClass({
 	handleAsk: function(){
 		
 		//get time 
-		var t = new Date($('#inputInTime').val());
-		var inTime = t.getFullYear() + '/' + this.padLeft(t.getUTCMonth() + 1, 2)+ '/' + this.padLeft(t.getUTCDate(),2) + '-' + this.padLeft(t.getUTCHours(),2) + ':' + this.padLeft(t.getUTCMinutes(),2) ;
-		
+		var t = new Date();
+		var inTime = t.toLocaleString();
 		
 		var sid = $('#inputSid').val();
 		var posi = $('#inputPosi').val();
-		
 		
 		for(var i = 0; i < Secret.length; i++){
 			if( Secret[i].comm == sid && Secret[i].posi_pwd == posi){
