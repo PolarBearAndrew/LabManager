@@ -21,5 +21,6 @@ table thead{font-size:1.5em;font-weight:bolder}
 table .tableEnd{color:#00f}
 table .splitTable{display:block;padding-top:70px;height:100px}
 table .ctrls{width:140px}
+table .tooLate{color:red}
 .footer{text-align:center;z-index:3;position:fixed;top:calc(100% - 40px);height:40px;width:100%;background-color:#247e1d;padding-top:10px}
 .footer .author{font-weight:bolder;color:#fff}

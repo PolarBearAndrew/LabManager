@@ -34,6 +34,9 @@ var comp = React.createClass({
    * 
    */
   render: function() {
+
+		
+		
 		
 		//console.log('this.props.checkInAssent', this.props.checkInAssent);
 		
@@ -152,6 +155,9 @@ var comp = React.createClass({
 		this.props.checkOut(this.props.logRow);
 	},
 		
+	isToolage: function(time){
+			
+	},
 		
 	padLeft: function(str,len){
 		if(('' + str).length >= len){
