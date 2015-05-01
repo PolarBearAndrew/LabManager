@@ -55,11 +55,11 @@ var ListContainer = React.createClass({
     // 這是 component API, 在 mount 前會跑一次，取值做為 this.state 的預設值
     getInitialState: function() {
 			
-			var socket = io.connect('http://localhost:8080');
-			socket.on('newLog', function (data) {
-				console.log(data);
-				socket.emit('my other event', { my: 'data' });
-			});
+//			var socket = io.connect('http://localhost:8080');
+//			socket.on('newLog', function (data) {
+//				console.log(data);
+//				socket.emit('my other event', { my: 'data' });
+//			});
 			
 			return this.getTruth();
     },

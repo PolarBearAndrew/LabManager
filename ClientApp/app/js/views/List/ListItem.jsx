@@ -118,15 +118,12 @@ var comp = React.createClass({
 		//console.log('checkOut',checkOut);
 		//console.log('logRow',logRow.outCheck );
 		
-		var today = this.getToday();
-					
-//		var tmpInTime = logRow.inTime.replace( today, 'Today');
-//		var tmpOutTime = logRow.outTime.replace( today, 'Today');
-					
-		var tmpInTime = logRow.inTime;
-		var tmpOutTime = logRow.outTime;
+		var t = new Date();
+		var today = t.toLocaleDateString();
 		
-		console.log(tmpInTime, today);
+		var tmpInTime = logRow.inTime.replace(today, '今天 ');
+		var tmpOutTime = logRow.outTime.replace(today, '今天 ');
+					
 		
 		if(logRow.room == selectedRoomID || selectedRoomID == 'all'){
     	return (
@@ -155,11 +152,6 @@ var comp = React.createClass({
 		this.props.checkOut(this.props.logRow);
 	},
 		
-	getToday: function(){
-		var t = new Date();
-		return t.getFullYear() + '/' + this.padLeft(t.getUTCMonth(), 2)+ '/' + this.padLeft(t.getUTCDate(),2) + '-';
-		// + ':' + this.padLeft(t.getUTCSeconds(),2)
-	},
 		
 	padLeft: function(str,len){
 		if(('' + str).length >= len){
@@ -172,12 +164,15 @@ var comp = React.createClass({
 
 		
 	handleCheckOutAssent: function(){
-		//console.log('ok to check out click');
-		var t = new Date($('#inputInTime').val());
-		var outTime = t.getFullYear() + '/' + this.padLeft(t.getUTCMonth(), 2)+ '/' + this.padLeft(t.getUTCDate(),2) + '-' + this.padLeft(t.getUTCHours(),2) + ':' + this.padLeft(t.getUTCMinutes(),2) ;
+		
+		var t = new Date();
+		var outTime = t.toLocaleString();
+		
 		
 		this.props.logRow.outTime = outTime;
 		this.props.logRow.outCheck = this.props.manager.name;
+		
+		
 		this.props.checkOutAssent(this.props.logRow);
 	},
 		

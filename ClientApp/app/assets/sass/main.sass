@@ -65,10 +65,17 @@ table
 	margin-top: 40px
 	text-align: center
 	cursor: pointer
-	td:first-child, td:nth-child(4)
-		width: 100px
-	td:nth-child(3)
-		width: 150px
+	td:first-child
+		min-width: 80px
+	td:nth-child(4)
+		min-width: 95px
+	td:nth-child(2), td:nth-child(3)
+		min-width: 140px
+	td:nth-child(5), td:nth-child(6)
+		//width: 200px
+		min-width: 180px
+	#inputInTime
+		width: 230px
 	thead
 		font-size: 1.5em
 		font-weight: bolder
