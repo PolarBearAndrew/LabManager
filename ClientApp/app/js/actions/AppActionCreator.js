@@ -47,7 +47,7 @@ var AppActionCreators = {
 		logIn: function( postData ){
 			
 
-        //$.ajax('http://' + IPaddress + '/session/manager',
+        //$.ajax('http://' + IPaddress + '/users/session/manager',
         $.ajax('http://' + IPaddress + '/users/api/check',
         {
             type:"POST",
@@ -81,7 +81,7 @@ var AppActionCreators = {
 	
 		logOut: function(){
 
-        $.ajax('http://' + IPaddress + '/session/manager/signout',
+        $.ajax('http://' + IPaddress + '/users/session/manager/signout',
         {
             type:"DELETE",
             //
@@ -106,7 +106,7 @@ var AppActionCreators = {
 	
 		CheckIsManger: function(){
 
-        $.ajax('http://' + IPaddress + '/session/manager',
+        $.ajax('http://' + IPaddress + '/users/session/manager',
         {
             type:"GET",
             //
