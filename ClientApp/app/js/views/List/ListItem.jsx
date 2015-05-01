@@ -118,13 +118,27 @@ var comp = React.createClass({
 		//console.log('checkOut',checkOut);
 		//console.log('logRow',logRow.outCheck );
 		
-		var today = this.getToday();
+		var t = new Date();
+		var today = t.toLocaleDateString();
 					
 //		var tmpInTime = logRow.inTime.replace( today, 'Today');
 //		var tmpOutTime = logRow.outTime.replace( today, 'Today');
 					
-		var tmpInTime = logRow.inTime;
-		var tmpOutTime = logRow.outTime;
+		var tmpInTime = logRow.inTime.replace(today, '今天');
+		var tmpOutTime = logRow.outTime.replace(today, '今天');
+
+					
+		var tooLate = '';
+					
+		if( tmpOutTime.indexOf('下午') != -1 ){
+			
+			var i = tmpOutTime.indexOf(':');
+			var tmp  = tmpOutTime.substring( i - 1, i);
+			
+			if( tmp >= 5){
+				tooLate = 'tooLate';
+			}
+		}
 		
 		
 		if(logRow.room == selectedRoomID || selectedRoomID == 'all'){
@@ -135,7 +149,7 @@ var comp = React.createClass({
 					<td>{logRow.name}</td>
 					<td>{logRow.posi}</td>
 					<td>{tmpInTime}</td>
-					<td>{tmpOutTime}</td>
+					<td className={ tooLate }>{tmpOutTime}</td>
 					<td>{checkIn}</td>
 					<td>{checkOut}</td>
 				</tr>
