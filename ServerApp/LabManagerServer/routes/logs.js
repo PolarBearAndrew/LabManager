@@ -1,12 +1,5 @@
 var router = require('express').Router();
 var models = require('../models');
-var session = require('express-session');
-router.use(session({
-	secret: 'sessionToken',
-	cookie: {
-		maxAge: 60000
-	}
-}))
 
 
 /*
