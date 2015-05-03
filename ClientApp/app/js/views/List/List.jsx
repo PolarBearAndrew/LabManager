@@ -62,10 +62,10 @@ var comp = React.createClass({
 			<form>
 		      	<table className="table table-hover">
 					<ListTitle
-						titles={inputTitle}
-						listTitle={false} />
+						titles={ inputTitle }
+						listTitle={ false } />
 					<ListInput
-						join={this.props.join}
+						join={ this.props.join }
 						roomInfo = { this.props.roomInfo }
 						inputID = { this.props.inputID }
 						changeInputID = { this.props.changeInputID }

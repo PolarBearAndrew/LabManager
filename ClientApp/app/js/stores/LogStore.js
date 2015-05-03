@@ -41,7 +41,7 @@ var manager = {
 var loginBox = {
 	isShow : false,
 	isFail : false
-}; 
+};
 
 //room info
 var roomInfo = RoomInfo;
@@ -62,11 +62,11 @@ objectAssign( Store, EventEmitter.prototype, {
     getSelectedRoomID: function(){
         return selectedRoomID;
     },
-	
+
 		getSelectedRoomIDinput: function(){
 				return selectedRoomIDinput;
 		},
-	
+
 		getLoginBoxShowCtrl: function(){
 				return loginBox;
 		},
@@ -74,15 +74,15 @@ objectAssign( Store, EventEmitter.prototype, {
 		getRoomInfo: function(){
 				return roomInfo;
 		},
-	
+
 		getIsManager: function(){
 				return manager;
 		},
-	
+
 		setManager: function(info){
 				manager = info;
 		},
-	
+
     //
     noop: function(){}
 });
@@ -106,8 +106,8 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             arrLog = action.items;
 
-						//reverse
-						arrLog.reverse();
+			//reverse
+			arrLog.reverse();
 
             //console.log( 'Store 收到資料: ', arrLog );
 
@@ -121,8 +121,8 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         case AppConstants.TODO_CREATE:
 
             arrLog.unshift( action.item );
-				
-						renewRoomInfo( action.item );
+
+			renewRoomInfo( action.item );
 
             //console.log( 'Store 新增: ', arrLog );
 
@@ -138,8 +138,8 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             arrLog = arrLog.filter( function(item){
                 return item != action.item;
             })
-						
-						renewRoomInfo( action.item );
+
+			renewRoomInfo( action.item );
 
             //console.log( 'Store 刪完: ', arrLog );
 
@@ -151,14 +151,14 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          *
          */
         case AppConstants.TODO_UPDATE:
-				
+
 						arrLog = arrLog.filter( function(item){
 							if(item._id == action.item._id){
 								item = action.item;
 							}
               return item ;
             })
-						
+
 						renewRoomInfo( action.item );
 
             //console.log( 'Store 更新: ', arrLog );
@@ -166,7 +166,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
-				
+
 				/**
          *
          */
@@ -177,8 +177,8 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             // 選取同樣的 item 就不用處理下去了
             if( selectedRoomID != action.roomID ){
                 selectedRoomID = action.roomID;
-							
-							
+
+
 //							if(selectedRoomID != 'all'){
 //								selectedRoomIDinput = action.inputID;
 //							}
@@ -193,34 +193,34 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         case AppConstants.JUST_REFRESH:
 
             //console.log( 'Store Just Refresh');
-				
+
 						manager = action.item;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
-				
+
 				/**
          *
          */
         case AppConstants.SWITCH_LOGINBOX:
 
             //console.log( 'Store switch login box');
-				
+
 						loginBox.isShow = !loginBox.isShow;
 						loginBox.isFail = false;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
-				
+
 				/**
          *
          */
         case AppConstants.LOGIN_FAIL:
 
             //console.log( 'login fail');
-				
+
 						loginBox.isFail = true;
 
             Store.emit( AppConstants.CHANGE_EVENT );
@@ -232,18 +232,18 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         case AppConstants.CHANGE_INPUTID:
 
            // console.log( 'change input id');
-				
+
 						selectedRoomIDinput = action.inputID;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
-				
+
 
         default:
     }
-	
-	
+
+
 		//show room info
     //console.log('roomInfo', roomInfo);
 
@@ -252,23 +252,23 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
 //-----renew roomInfo func
 function renewRoomInfo(data){
-	
+
 	console.log('start : ', data);
-	
+
 	for(var i = 0; i < roomInfo.length; i++){
-		
+
 		if( roomInfo[i].name == data.room ){
-			
+
 			for(var j = 0; j < roomInfo[i].posi.length; j++){
-				
+
 				if( roomInfo[i].posi[j].name == data.posi ){
 					roomInfo[i].posi[j].occupancy = !roomInfo[i].posi[j].occupancy;
-					
+
 					console.log('roomInfo[i].posi[j].occupancy', roomInfo[i].posi[j].occupancy);
 					break;
 				}
 			}
-			
+
 			break;
 		}
 	}

@@ -18,7 +18,7 @@ var UserShema = new mongoose.Schema({
 	"userId": { type: String },
 	"name":  { type: String },
 	"pwd":  { type: String },
-	"lastLogInTime":  { type: Date }
+	"lastLogInTime":  { type: String }
 });
 
 module.exports = {

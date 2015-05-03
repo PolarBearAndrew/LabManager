@@ -41,11 +41,11 @@ var AppActionCreators = {
             }
 
         })
-				
+
     },
-	
+
 		logIn: function( postData ){
-			
+
 
         //$.ajax('http://' + IPaddress + '/users/session/manager',
         $.ajax('http://' + IPaddress + '/users/api/check',
@@ -56,16 +56,16 @@ var AppActionCreators = {
             success: function(data, status, jqxhr){
 							//do nothing
 							//console.log('[POST] set session');
-							
+
 							if(data.isManager){
 								AppDispatcher.handleViewAction({
 											actionType: AppConstants.JUST_REFRESH,
 											item: data
 								});
 								AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
-								
+
 							}else{
-								
+
 								AppDispatcher.handleViewAction({ actionType: AppConstants.LOGIN_FAIL });
 							}
             },
@@ -76,9 +76,9 @@ var AppActionCreators = {
             }
 
         })
-				
+
     },
-	
+
 		logOut: function(){
 
         $.ajax('http://' + IPaddress + '/users/session/manager/signout',
@@ -86,9 +86,9 @@ var AppActionCreators = {
             type:"DELETE",
             //
             success: function(data, status, jqxhr){
-							
+
 							//console.log('[DELETE] sign out');
-							
+
 							AppDispatcher.handleViewAction({
 										actionType: AppConstants.JUST_REFRESH,
 										item: data
@@ -101,9 +101,9 @@ var AppActionCreators = {
             }
 
         })
-				
+
     },
-	
+
 		CheckIsManger: function(){
 
         $.ajax('http://' + IPaddress + '/users/session/manager',
@@ -120,7 +120,7 @@ var AppActionCreators = {
 										item: data
 								});
 							}
-							
+
 							//console.log('[GET] get session -->', data.isManager);
             },
 
@@ -130,13 +130,13 @@ var AppActionCreators = {
             }
 
         })
-				
+
     },
-	
+
 		selectRoomID: function( roomID ) {
 
 				//console.log('select action', roomID);
-			
+
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_SELECT,
             roomID: roomID
@@ -144,9 +144,9 @@ var AppActionCreators = {
 
     },
 
-    /* 
+        /*
 		 *
-     */
+         */
     askForJoin: function( newlog ) {
 
         // 1. 廣播給 store 知道去 optimistic 更新 view
@@ -155,7 +155,7 @@ var AppActionCreators = {
             actionType: AppConstants.TODO_CREATE,
             item: newlog
         });
-			
+
 
         $.ajax('http://' + IPaddress + '/api/log/join',
         {
@@ -172,10 +172,10 @@ var AppActionCreators = {
 
             //
             success: function(data, status, jqxhr){
-                //console.log( '新增資料結果: ', data.id );
+
                 // 將 server 生成的 id 更新到早先建立的物件，之後資料才會一致
                 newlog._id = data.id;
-								$('input[type="text"]').val('');
+				$('input[type="text"]').val('');//claer all input
             },
 
             //
@@ -191,7 +191,7 @@ var AppActionCreators = {
      *
      */
     askForLeave: function( log ) {
-			
+
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_UPDATE,
             item: log
@@ -223,7 +223,7 @@ var AppActionCreators = {
     },
 
 		checkIn: function( log ) {
-			
+
 			console.log(log._id);
 
         AppDispatcher.handleViewAction({
@@ -252,7 +252,7 @@ var AppActionCreators = {
         })
 
     },
-	
+
 		checkOut: function( log ) {
 
         AppDispatcher.handleViewAction({
@@ -284,9 +284,9 @@ var AppActionCreators = {
         })
 
     },
-	
+
 		checkInIgnore: function( log ) {
-			
+
 			console.log(log._id);
 
         AppDispatcher.handleViewAction({
@@ -314,20 +314,20 @@ var AppActionCreators = {
         })
 
     },
-	
+
 		switchLogInBox: function(){
 			AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
 		},
-	
+
 		changeInputID: function( inputID ){
-			
-			
-			AppDispatcher.handleViewAction({ 
+
+
+			AppDispatcher.handleViewAction({
 				actionType: AppConstants.CHANGE_INPUTID,
 				inputID: inputID
 			});
 		},
-	
+
     // dummy
     noop: function(){}
 };
