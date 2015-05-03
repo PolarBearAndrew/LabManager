@@ -8,20 +8,19 @@ var ListTitle = React.createFactory(require('./ListTitle.jsx'));
 
 //
 var comp = React.createClass({
-	
-	propTypes: {
 
+	propTypes: {
 		log: React.PropTypes.shape({
-      id: React.PropTypes.string,
-      name: React.PropTypes.string,
-      room: React.PropTypes.string,
-			inTime: React.PropTypes.string,
-      outTime: React.PropTypes.string,
-      inCheck: React.PropTypes.string,
-      outCheck: React.PropTypes.string,
+	    id: React.PropTypes.string,
+	    name: React.PropTypes.string,
+	    room: React.PropTypes.string,
+		inTime: React.PropTypes.string,
+	    outTime: React.PropTypes.string,
+	    inCheck: React.PropTypes.string,
+	    outCheck: React.PropTypes.string,
     }),
-		
-		// callbacks
+
+	// callbacks
     checkOut: React.PropTypes.func,
     checkInIgnore: React.PropTypes.func,
 	},
@@ -34,13 +33,13 @@ var comp = React.createClass({
     var arrlog = this.props.truth.arrLog;
 		var selectedRoomID = this.props.truth.selectedRoomID;
 		var manager = this.props.truth.manager;
-		
+
 		//console.log(this.props.checkInAssent);
-		
-		
+
+
 		// 跑 loop 一筆筆建成 ListItem 元件
 		var arr = arrlog.map(function (log) {
-			
+
 			// 注意每個 item 要有一個獨一無二的 key 值
 			return <ListItem
 				logRow = {log}
@@ -54,34 +53,34 @@ var comp = React.createClass({
 				/>
 
 		}, this);
-		
+
 		var inputTitle = ['Lab', 'Your ID', 'Your Name', 'Posi', 'Check in', '', '', 'Operate'];
 		var theadTitle = ['Lab', 'ID', 'Name', 'Posi', 'Check in', 'Check out', 'Checked(in)', 'Checked(out)'];
-		
-		
+
+
     return (
 			<form>
-      <table className="table table-hover">
-				<ListTitle 
-					titles={inputTitle} 
-					listTitle={false} />
-				<ListInput 
-					join={this.props.join}
-					roomInfo = { this.props.roomInfo }
-					inputID = { this.props.inputID }
-					changeInputID = { this.props.changeInputID }
-			
-					/>
-				<ListTitle 
-					titles={theadTitle}
-					listTitle={true} />
-				<tbody>
-          {arr}
-				</tbody>
-				<tfoot>
-					<td className="tableEnd" colSpan="8">--- [End] ---</td>
-				</tfoot>
-      </table>
+		      	<table className="table table-hover">
+					<ListTitle
+						titles={inputTitle}
+						listTitle={false} />
+					<ListInput
+						join={this.props.join}
+						roomInfo = { this.props.roomInfo }
+						inputID = { this.props.inputID }
+						changeInputID = { this.props.changeInputID }
+
+						/>
+					<ListTitle
+						titles={theadTitle}
+						listTitle={true} />
+					<tbody>
+	        		  {arr}
+					</tbody>
+					<tfoot>
+						<td className="tableEnd" colSpan="8">--- [End] ---</td>
+					</tfoot>
+  				</table>
 			</form>
     );
 
