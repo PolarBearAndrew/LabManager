@@ -253,7 +253,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 //-----renew roomInfo func
 function renewRoomInfo(data){
 
-	console.log('start : ', data);
+	//console.log('start : ', data);
 
 	for(var i = 0; i < roomInfo.length; i++){
 
@@ -264,7 +264,7 @@ function renewRoomInfo(data){
 				if( roomInfo[i].posi[j].name == data.posi ){
 					roomInfo[i].posi[j].occupancy = !roomInfo[i].posi[j].occupancy;
 
-					console.log('roomInfo[i].posi[j].occupancy', roomInfo[i].posi[j].occupancy);
+					//console.log('roomInfo[i].posi[j].occupancy', roomInfo[i].posi[j].occupancy);
 					break;
 				}
 			}

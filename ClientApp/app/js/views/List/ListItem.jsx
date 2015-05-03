@@ -35,8 +35,6 @@ var comp = React.createClass({
   render: function() {
 
 
-		console.log('this.props.logRow', this.props.logRow);
-
 		var selectedRoomID = this.props.selectedRoomID;
 		var logRow = this.props.logRow;
 		var manager = this.props.manager;

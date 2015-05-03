@@ -58,11 +58,15 @@ var ListInput = React.createClass({
 			}
 		}
 
-		//console.log('Secret', Secret[0]);
 
     return (
 			<thead>
-					<td><Selector myID="inputID" className="input" options = { roomInfo } changeTodo ={ this.handleIDchange } /></td>
+					<td><Selector
+							myID="inputID"
+							className="input"
+							options = { roomInfo }
+							changeTodo ={ this.handleIDchange }
+						/></td>
 					<td><input id="inputSid" type="text" className="form-control" name="sid"></input></td>
 					<td><input id="inputName" type="text" className="form-control" name="name"></input></td>
 					<td><Selector myID="inputPosi" className="input" options = {posiOptions} /></td>
@@ -144,6 +148,7 @@ var ListInput = React.createClass({
 			inCheck: 'waiting',
 			outCheck: 'notYet',
 			inTime: inTime,
+			outTime: ''
 		};
 
 		this.props.join(postInfo);
