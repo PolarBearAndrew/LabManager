@@ -46,7 +46,6 @@ var AppActionCreators = {
 
 		logIn: function( postData ){
 
-
         //$.ajax('http://' + IPaddress + '/users/session/manager',
         $.ajax('http://' + IPaddress + '/users/api/check',
         {
@@ -54,20 +53,19 @@ var AppActionCreators = {
 						data: { userId : postData.userId, pwd : postData.pwd },
             //
             success: function(data, status, jqxhr){
-							//do nothing
-							//console.log('[POST] set session');
 
-							if(data.isManager){
-								AppDispatcher.handleViewAction({
-											actionType: AppConstants.JUST_REFRESH,
-											item: data
-								});
-								AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
+				//console.log('[POST] set session');
 
-							}else{
+				if(data.isManager){
+					AppDispatcher.handleViewAction({
+						actionType: AppConstants.JUST_REFRESH,
+						item: data
+					});
+					AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
 
-								AppDispatcher.handleViewAction({ actionType: AppConstants.LOGIN_FAIL });
-							}
+				}else{
+					AppDispatcher.handleViewAction({ actionType: AppConstants.LOGIN_FAIL });
+				}
             },
 
             //
@@ -87,12 +85,12 @@ var AppActionCreators = {
             //
             success: function(data, status, jqxhr){
 
-							//console.log('[DELETE] sign out');
+				//console.log('[DELETE] sign out');
 
-							AppDispatcher.handleViewAction({
-										actionType: AppConstants.JUST_REFRESH,
-										item: data
-							});
+				AppDispatcher.handleViewAction({
+					actionType: AppConstants.JUST_REFRESH,
+					item: data
+				});
             },
 
             //
@@ -112,16 +110,15 @@ var AppActionCreators = {
             //
             success: function(data, status, jqxhr){
 							//do nothing
-							if(!data.isManager){
-								data.isManager = false;
-							}else{
-								AppDispatcher.handleViewAction({
-										actionType: AppConstants.JUST_REFRESH,
-										item: data
-								});
-							}
-
-							//console.log('[GET] get session -->', data.isManager);
+				if(!data.isManager){
+					data.isManager = false;
+				}else{
+					AppDispatcher.handleViewAction({
+							actionType: AppConstants.JUST_REFRESH,
+							item: data
+					});
+				}
+				//console.log('[GET] get session -->', data.isManager);
             },
 
             //
@@ -135,7 +132,7 @@ var AppActionCreators = {
 
 		selectRoomID: function( roomID ) {
 
-				//console.log('select action', roomID);
+		//console.log('select action', roomID);
 
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_SELECT,
@@ -151,11 +148,9 @@ var AppActionCreators = {
 
         // 1. 廣播給 store 知道去 optimistic 更新 view
         AppDispatcher.handleViewAction({
-
             actionType: AppConstants.TODO_CREATE,
             item: newlog
         });
-
 
         $.ajax('http://' + IPaddress + '/api/log/join',
         {
@@ -173,8 +168,9 @@ var AppActionCreators = {
             //
             success: function(data, status, jqxhr){
 
-                // 將 server 生成的 id 更新到早先建立的物件，之後資料才會一致
-                newlog._id = data.id;
+                newlog._id = data._id;
+
+
 				$('input[type="text"]').val('');//claer all input
             },
 
@@ -223,8 +219,6 @@ var AppActionCreators = {
     },
 
 		checkIn: function( log ) {
-
-			console.log(log._id);
 
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_UPDATE,

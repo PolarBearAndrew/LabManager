@@ -63,25 +63,25 @@ objectAssign( Store, EventEmitter.prototype, {
         return selectedRoomID;
     },
 
-		getSelectedRoomIDinput: function(){
-				return selectedRoomIDinput;
-		},
+	getSelectedRoomIDinput: function(){
+			return selectedRoomIDinput;
+	},
 
-		getLoginBoxShowCtrl: function(){
-				return loginBox;
-		},
+	getLoginBoxShowCtrl: function(){
+			return loginBox;
+	},
 
-		getRoomInfo: function(){
-				return roomInfo;
-		},
+	getRoomInfo: function(){
+			return roomInfo;
+	},
 
-		getIsManager: function(){
-				return manager;
-		},
+	getIsManager: function(){
+			return manager;
+	},
 
-		setManager: function(info){
-				manager = info;
-		},
+	setManager: function(info){
+			manager = info;
+	},
 
     //
     noop: function(){}
@@ -105,6 +105,8 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         case AppConstants.TODO_LOAD:
 
             arrLog = action.items;
+
+            renewRoomInfo_multi( arrLog );
 
 			//reverse
 			arrLog.reverse();
@@ -152,14 +154,14 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          */
         case AppConstants.TODO_UPDATE:
 
-						arrLog = arrLog.filter( function(item){
-							if(item._id == action.item._id){
-								item = action.item;
-							}
+			arrLog = arrLog.filter( function(item){
+    			if(item._id == action.item._id){
+    				item = action.item;
+    			}
               return item ;
             })
 
-						renewRoomInfo( action.item );
+			renewRoomInfo( action.item );
 
             //console.log( 'Store 更新: ', arrLog );
 
@@ -167,10 +169,10 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             break;
 
-				/**
+		/**
          *
          */
-				case AppConstants.TODO_SELECT:
+		case AppConstants.TODO_SELECT:
 
             //console.log( 'Store 選取: ', action.roomID );
 
@@ -178,10 +180,11 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             if( selectedRoomID != action.roomID ){
                 selectedRoomID = action.roomID;
 
+        		// if(selectedRoomID != 'all'){
+        		// 	selectedRoomIDinput = action.inputID;
+        		// }
 
-//							if(selectedRoomID != 'all'){
-//								selectedRoomIDinput = action.inputID;
-//							}
+            //
                Store.emit( AppConstants.CHANGE_EVENT );
             }
 
@@ -194,7 +197,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             //console.log( 'Store Just Refresh');
 
-						manager = action.item;
+            manager = action.item;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
@@ -207,8 +210,8 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             //console.log( 'Store switch login box');
 
-						loginBox.isShow = !loginBox.isShow;
-						loginBox.isFail = false;
+			loginBox.isShow = !loginBox.isShow;
+			loginBox.isFail = false;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
@@ -221,7 +224,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             //console.log( 'login fail');
 
-						loginBox.isFail = true;
+			loginBox.isFail = true;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
@@ -233,7 +236,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
            // console.log( 'change input id');
 
-						selectedRoomIDinput = action.inputID;
+			selectedRoomIDinput = action.inputID;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
@@ -244,7 +247,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
     }
 
 
-		//show room info
+	//show room info
     //console.log('roomInfo', roomInfo);
 
 })
@@ -268,11 +271,36 @@ function renewRoomInfo(data){
 					break;
 				}
 			}
-
 			break;
 		}
 	}
 }
+
+function renewRoomInfo_multi(data){
+
+    //console.log('start : ', data);
+
+    for (var row = data.length - 1; row >= 0; row--) {
+
+        for(var i = 0; i < roomInfo.length; i++){
+
+            if( roomInfo[i].name == data[row].room ){
+
+                for(var j = 0; j < roomInfo[i].posi.length; j++){
+
+                    if( roomInfo[i].posi[j].name == data[row].posi ){
+                        roomInfo[i].posi[j].occupancy = !roomInfo[i].posi[j].occupancy;
+
+                        //console.log('roomInfo[i].posi[j].occupancy', i, j, roomInfo[i].posi[j].occupancy);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    };
+}
+
 
 //
 module.exports = Store;

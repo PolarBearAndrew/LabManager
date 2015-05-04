@@ -148,7 +148,7 @@ var ListInput = React.createClass({
 			inCheck: 'waiting',
 			outCheck: 'notYet',
 			inTime: inTime,
-			outTime: ''
+			outTime: ' '
 		};
 
 		this.props.join(postInfo);

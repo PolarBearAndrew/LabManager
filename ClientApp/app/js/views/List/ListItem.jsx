@@ -116,7 +116,6 @@ var comp = React.createClass({
 		var t = new Date();
 		var today = t.toLocaleDateString();
 
-
 		var tmpInTime = logRow.inTime.replace(today, '今天');
 		var tmpOutTime = logRow.outTime.replace(today, '今天');
 

@@ -20,14 +20,14 @@ var LogInForm = React.createClass({
     // render
 
     render: function() {
-			
+
 			var isFail = '';
 			if(this.props.fail){
 				isFail = 'login fail ...';
 			}
-			
-			return ( 
-			<div>	
+
+			return (
+			<div>
 				<form id="login">
 					<div className="form-group">
 
@@ -46,19 +46,18 @@ var LogInForm = React.createClass({
 					<button type="submit" onClick={ this.logInHandler }  className="btn btn-primary">Log In</button>
 					<p className="text-danger loginFail">{ isFail }</p>
 				</form>
-				
-				
+
+
 				<div id="over" onClick={this.props.out}></div>
 			</div>
 			)
     },
-	
+
 		logInHandler : function(){
-			console.log('login onClick');
-			
+
 			var data = { userId : $('#userId').val(), pwd : $('#pwd').val()};
 			this.props.loginPost(data);
-			
+
 			return false;
 		},
 });
