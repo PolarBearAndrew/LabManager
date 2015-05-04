@@ -11,13 +11,16 @@ var logs = require('./routes/logs');
 
 var app = express();
 
+var port = 8080;
 //socket.io
-var server = require('http').Server(app);
+var server = app.listen(port, function(){
+    console.log('Server is listening in port %d', port);
+});
+
 var io = require('socket.io')(server);
 
-//var io = require('socket.io')(app);
 
-/* 
+/*
  * view engine
  */
 app.set('views', path.join(__dirname, 'views'));
@@ -41,14 +44,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/', routes);
-app.use('/api/log', logs);
+app.use('/', routes );
+app.use('/api/log', logs(io) );
 app.use('/users', users);
-
-/*
- * session
- */
-/* session end */
 
 
 // catch 404 and forward to error handler
@@ -84,28 +82,20 @@ app.use(function(err, req, res, next) {
     });
 });
 
-/*
- * session api
- */
-//app.get('/session/manager', function(req, res, next) {
-////  req.session.isManager = true;
-//	//console.log('[TEST] req.session.isManager', req.session.isManager);
-//	res.json( {'isManager' : true, 'name' : 'Andrew' } );
-//})
+
+// var port = 8080;
+// server.listen(port, function(){
+// 	console.log('Server is listening in port %d', port);
+// });
 
 
-var port = 8080;
-server.listen(port, function(){
-	console.log('Server is listening in port %d', port);
-});
+// io.on('connection', function (socket) {
 
+// 	socket.on('notify', function (data) {
+// 		console.log('date', data);
 
-io.on('connection', function (socket) {
-  socket.emit('newLog', { hello: 'world' });
-	//socket.on('my other event', function (data) {
-	//	console.log(data);
-	//});
-});
-
+//         socket.emit('newLog', { hello: 'world' });
+// 	});
+// });
 
 module.exports = app;

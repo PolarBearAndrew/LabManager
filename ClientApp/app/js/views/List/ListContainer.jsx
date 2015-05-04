@@ -1,22 +1,23 @@
-/**
- * 這是 root view，也稱為 controller-view
+
+
+
+/*
+ * views
  */
-
-
-//========================================================================
-//
-// import
-
-// var React = require('react');
-//var InputBox = React.createFactory( require('./InputBox.jsx') );
 var List = React.createFactory( require('./List.jsx') );
-var ListHeader = React.createFactory( require('./ListHeader.jsx') );
 var Selector = React.createFactory( require('./Selector.jsx') );
 var LogInForm = React.createFactory( require('./LogInForm.jsx') );
+var ListHeader = React.createFactory( require('./ListHeader.jsx') );
 
+/*
+ * Store
+ */
 var LogStore = require('../../stores/LogStore');
 var AppConstants = require('../../constants/AppConstants');
 
+/*
+ * Action
+ */
 var actions = require('../../actions/AppActionCreator');
 
 
@@ -55,14 +56,16 @@ var ListContainer = React.createClass({
     // 這是 component API, 在 mount 前會跑一次，取值做為 this.state 的預設值
     getInitialState: function() {
 
-//			var socket = io.connect('http://localhost:8080');
-//			socket.on('newLog', function (data) {
-//				console.log(data);
-//				socket.emit('my other event', { my: 'data' });
-//			});
+		var socket = io.connect('http://localhost:8080');
 
-    		return this.getTruth();
-        },
+		socket.emit('notify', { name : 'Andrew' });
+
+        socket.on('newLog', function (data) {
+            console.log(data);
+		});
+
+		return this.getTruth();
+    },
 
     /**
      * 主程式進入點
