@@ -2,38 +2,38 @@
 var Selector = React.createFactory( require('./Selector.jsx') );
 var Secret = require('./SecretComm.jsx');
 
-
-/**
- *
- */
-
 var SetIntervalMixin = {
-  componentWillMount: function() {
-    this.intervals = [];
-  },
-  setInterval: function() {
-    this.intervals.push(setInterval.apply(null, arguments));
-  },
-  componentWillUnmount: function() {
-    this.intervals.map(clearInterval);
-  }
+
+	componentWillMount: function() {
+		this.intervals = [];
+	},
+
+	setInterval: function() {
+		this.intervals.push(setInterval.apply(null, arguments));
+	},
+
+	componentWillUnmount: function() {
+		this.intervals.map(clearInterval);
+	}
 };
 
 var ListInput = React.createClass({
 
 	mixins: [SetIntervalMixin], // Use the mixin
-  getInitialState: function() {
-		var now = this.handleTime();
-    return {time: now };
-  },
-  componentDidMount: function() {
-    this.setInterval(this.tick, 1000 * 30); // Call a method on the mixin
-  },
 
-  tick: function() {
+	getInitialState: function() {
 		var now = this.handleTime();
-    this.setState({time: now });
-  },
+		return { time: now };
+	},
+
+	componentDidMount: function() {
+		this.setInterval( this.tick, 1000 * 30); // Call a method on the mixin
+	},
+
+	tick: function() {
+		var now = this.handleTime();
+		this.setState({time: now });
+	},
 
 	propTypes: {
 		onClick: React.PropTypes.func
@@ -42,7 +42,7 @@ var ListInput = React.createClass({
   /**
    *
    */
-  render: function() {
+	render: function() {
 
 		var inputID = this.props.inputID;
 		var roomInfo =  this.props.roomInfo;
@@ -59,49 +59,45 @@ var ListInput = React.createClass({
 		}
 
 
-    return (
+    	return (
 			<thead>
-					<td><Selector
-							myID="inputID"
-							className="input"
-							options = { roomInfo }
-							changeTodo ={ this.handleIDchange }
-						/></td>
-					<td><input id="inputSid" type="text" className="form-control" name="sid"></input></td>
-					<td><input id="inputName" type="text" className="form-control" name="name"></input></td>
-					<td><Selector myID="inputPosi" className="input" options = {posiOptions} /></td>
-					<td colSpan="2">
-						<input	id="inputInTime"
-								type="datetime-local" 	className="form-control"
-								name="time" readOnly="true"
-								value={this.state.time}>
-						</input></td>
-					<td>
-					</td>
-					<td>
-						<button
-							className="btn btn-primary"
-							type="submit"
-							onClick= { this.handleAsk }>
-  						<i className="fa fa-user-plus -o fa-lg"></i>
-							{' Join'}
-						</button>
-					</td>
-			</thead>
-    );
-//						<a className="btn btn-warning" href="#">
-//  						<i className="fa fa-repeat -o fa-lg"></i>
-//							{' Reset'}
-//						</a>
+				<td>
+					<Selector
+						myID="inputID"
+						className="input"
+						options = { roomInfo }
+						changeTodo ={ this.handleIDchange } />
+				</td>
+				<td><input id="inputSid" type="text" className="form-control" name="sid"></input></td>
+				<td><input id="inputName" type="text" className="form-control" name="name"></input></td>
+				<td><Selector myID="inputPosi" className="input" options = {posiOptions} /></td>
+				<td colSpan="2">
+					<input	id="inputInTime"
+							type="datetime-local" 	className="form-control"
+							name="time" readOnly="true"
+							value={this.state.time}>
+					</input>
+				</td>
+				<td></td>
+				<td>
+					<button
+						className="btn btn-primary"
+						type="submit"
+						onClick= { this.handleAsk }>
+						<i className="fa fa-user-plus -o fa-lg"></i>
+						{' Join'}
+					</button>
+				</td>
+			</thead> );
   },
 
 	padLeft: function(str,len){
 		if(('' + str).length >= len){
-				return str;
-			}
-			else{
-				return this.padLeft( '0' + str, len);
-			}
+			return str;
+		}
+		else{
+			return this.padLeft( '0' + str, len);
+		}
 	},
 
 	handleTime: function(){

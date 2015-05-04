@@ -9,9 +9,6 @@ var Footer = React.createClass({
   propTypes: {
   },
 
-  /**
-   * @return {object}
-   */
   render: function() {
 
   	return (
