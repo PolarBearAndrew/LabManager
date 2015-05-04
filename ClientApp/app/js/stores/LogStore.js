@@ -245,11 +245,6 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
         default:
     }
-
-
-	//show room info
-    //console.log('roomInfo', roomInfo);
-
 })
 
 
