@@ -22,5 +22,8 @@ table .tableEnd{color:#00f}
 table .splitTable{display:block;padding-top:70px;height:100px}
 table .ctrls{width:140px}
 table .tooLate{color:red}
-.footer{text-align:center;z-index:3;position:fixed;top:calc(100% - 40px);height:40px;width:100%;background-color:#247e1d;padding-top:10px}
-.footer .author{font-weight:bolder;color:#fff}
+.footer{text-align:center;z-index:3;position:fixed;top:calc(100% - 40px);height:40px;width:100%;background-color:#247e1d;padding-top:10px;color:#fff}
+.footer .author{font-weight:bolder}
+.footer .author_link{float:right;margin-right:8px}
+.footer .author_link i{margin:-3px 6px 0 0;color:#fff}
+.footer .author_link i:hover{text-shadow:1px 1px 1px #000}

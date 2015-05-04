@@ -94,7 +94,17 @@ table {
   height: 40px;
   width: 100%;
   background-color: #247e1d;
-  padding-top: 10px; }
+  padding-top: 10px;
+  color: white; }
   .footer .author {
-    font-weight: bolder;
-    color: white; }
+    font-weight: bolder; }
+  .footer .author_link {
+    float: right;
+    margin-right: 8px; }
+    .footer .author_link i {
+      margin: 0px;
+      color: white;
+      margin-right: 6px;
+      margin-top: -3px; }
+    .footer .author_link i:hover {
+      text-shadow: 1px 1px 1px black; }
