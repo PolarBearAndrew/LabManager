@@ -54,21 +54,21 @@ var ListContainer = React.createClass({
 
     // 這是 component API, 在 mount 前會跑一次，取值做為 this.state 的預設值
     getInitialState: function() {
-			
+
 //			var socket = io.connect('http://localhost:8080');
 //			socket.on('newLog', function (data) {
 //				console.log(data);
 //				socket.emit('my other event', { my: 'data' });
 //			});
-			
-			return this.getTruth();
-    },
+
+    		return this.getTruth();
+        },
 
     /**
      * 主程式進入點
      */
     componentWillMount: function() {
-      LogStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
+        LogStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
     },
 
     // 重要：root view 建立後第一件事，就是偵聽 store 的 change 事件
@@ -120,46 +120,44 @@ var ListContainer = React.createClass({
     // render
 
     render: function() {
-			
+
 				var form = function(ctrl) {
 					if(ctrl.isShow){
-						return ( <LogInForm 
-											out={actions.switchLogInBox}
-											loginPost = { actions.logIn }
-											fail= { ctrl.isFail }
-										/> );
+						return ( <LogInForm
+									out={actions.switchLogInBox}
+									loginPost = { actions.logIn }
+									fail= { ctrl.isFail } /> );
 					}else{
 						return null;
 					}
-				}(this.state.loginBoxCtrl);
-			
+				}( this.state.loginBoxCtrl );
+
         return (
-							<div className="ListContainer">
-								{ form }
-								<ListHeader
-										ID = {this.state.selectedRoomID}
-										selectRoomID = {actions.selectRoomID}
-										manager = {this.state.manager}
-										logout = { actions.logOut }
-										login = { actions.switchLogInBox }
-										roomInfo = { this.state.roomInfo }
-									/>
-								<List 
-									join={actions.askForJoin}
-									truth={this.state}
-									checkOut={actions.askForLeave}
-									checkOutAssent={actions.checkOut}
-									roomInfo = { this.state.roomInfo }
-									inputID = { this.state.selectedInputID }
-									changeInputID = { actions.changeInputID }
-					
-									checkInAssent={actions.checkIn}
-									checkInIgnore={actions.checkInIgnore}
-								/>
-							</div>
+				<div className="ListContainer">
+					{ form }
+					<ListHeader
+                        ID = { this.state.selectedRoomID }
+                        login = { actions.switchLogInBox }
+                        logout = { actions.logOut }
+                        manager = { this.state.manager }
+						roomInfo = { this.state.roomInfo }
+                        selectRoomID = { actions.selectRoomID }
+                        />
+					<List
+                        join = { actions.askForJoin }
+                        truth = { this.state }
+						inputID = { this.state.selectedInputID }
+                        checkOut = {actions.askForLeave}
+                        roomInfo = { this.state.roomInfo }
+                        checkInAssent = { actions.checkIn }
+                        changeInputID = { actions.changeInputID }
+                        checkInIgnore = { actions.checkInIgnore }
+                        checkOutAssent = { actions.checkOut }
+					/>
+				</div>
         )
     },
-			
+
 
     //========================================================================
     //
@@ -199,7 +197,7 @@ var ListContainer = React.createClass({
          };
     }
 
-	
+
 
 });
 

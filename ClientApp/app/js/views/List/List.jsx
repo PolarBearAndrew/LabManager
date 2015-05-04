@@ -31,31 +31,31 @@ var comp = React.createClass({
 
     // 取出所有要繪製的資料
     var arrlog = this.props.truth.arrLog;
-		var selectedRoomID = this.props.truth.selectedRoomID;
-		var manager = this.props.truth.manager;
+	var selectedRoomID = this.props.truth.selectedRoomID;
+	var manager = this.props.truth.manager;
 
-		//console.log(this.props.checkInAssent);
+	//console.log(this.props.checkInAssent);
 
 
-		// 跑 loop 一筆筆建成 ListItem 元件
-		var arr = arrlog.map(function (log) {
+	// 跑 loop 一筆筆建成 ListItem 元件
+	var arr = arrlog.map(function (log) {
 
-			// 注意每個 item 要有一個獨一無二的 key 值
-			return <ListItem
-				logRow = {log}
-				key = {log.id}
-				manager = {manager}
-				checkOut = {this.props.checkOut}
-				selectedRoomID = {selectedRoomID}
-				checkOutAssent= {this.props.checkOutAssent}
-				checkInAssent= {this.props.checkInAssent}
-				checkInIgnore= {this.props.checkInIgnore}
-				/>
+		// 注意每個 item 要有一個獨一無二的 key 值
+		return <ListItem
+			key = { log.id }
+			logRow = { log }
+			manager = { manager }
+			checkOut = { this.props.checkOut }
+			selectedRoomID = { selectedRoomID }
+			checkInAssent= { this.props.checkInAssent }
+			checkInIgnore= { this.props.checkInIgnore }
+			checkOutAssent= { this.props.checkOutAssent }
+			/>
 
-		}, this);
+	}, this);
 
-		var inputTitle = ['Lab', 'Your ID', 'Your Name', 'Posi', 'Check in', '', '', 'Operate'];
-		var theadTitle = ['Lab', 'ID', 'Name', 'Posi', 'Check in', 'Check out', 'Checked(in)', 'Checked(out)'];
+	var inputTitle = ['Lab', 'Your ID', 'Your Name', 'Posi', 'Check in', '', '', 'Operate'];
+	var theadTitle = ['Lab', 'ID', 'Name', 'Posi', 'Check in', 'Check out', 'Checked(in)', 'Checked(out)'];
 
 
     return (
@@ -63,29 +63,28 @@ var comp = React.createClass({
 		      	<table className="table table-hover">
 					<ListTitle
 						titles={ inputTitle }
-						listTitle={ false } />
+						listTitle={ false }
+						/>
 					<ListInput
 						join={ this.props.join }
-						roomInfo = { this.props.roomInfo }
 						inputID = { this.props.inputID }
+						roomInfo = { this.props.roomInfo }
 						changeInputID = { this.props.changeInputID }
-
 						/>
 					<ListTitle
 						titles={theadTitle}
-						listTitle={true} />
+						listTitle={true}
+						/>
 					<tbody>
 	        		  {arr}
 					</tbody>
 					<tfoot>
-						<td className="tableEnd" colSpan="8">--- [End] ---</td>
+						<td className="tableEnd" colSpan="8" >--- [End] ---</td>
 					</tfoot>
   				</table>
 			</form>
     );
-
   },
-
   noop: function(){  }
 });
 
