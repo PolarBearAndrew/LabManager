@@ -6,15 +6,15 @@ function logRouter  (io){
 	var models = require('../models');
 
 
-	io.on('connection', function (socket) {
+	io.on('connection', function (mySocket) {
 
-		socket.on('notify', function (data) {
+		// mySocket.on('notify', function (data) {
 
-			console.log('date', data);
+		// 	console.log('date', data);
 
-			socket.emit('newLog', { 'date': data });
+		// 	mySocket.emit('newLog', { 'date': data });
 
-		});
+		// });
 
 
 
@@ -28,7 +28,11 @@ function logRouter  (io){
 				res.json(data);
 			});
 
-			//socket.emit('newLog', { 'date': 'lalala' });
+			//console.log('socket in router', mySocket.emit('newLog', { date: 'lalala' }));
+
+			//mySocket.emit('newLog', { date: 'lalala' });
+
+			// console.log('test after socket ');
 
 		});
 
