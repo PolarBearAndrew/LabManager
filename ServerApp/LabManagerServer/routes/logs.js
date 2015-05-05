@@ -8,16 +8,14 @@ function logRouter  (io){
 
 	io.on('connection', function (mySocket) {
 
-		// mySocket.on('notify', function (data) {
+		mySocket.on('notify', function (data) {
 
-		// 	console.log('date', data);
+			console.log('date', data);
 
-		// 	mySocket.emit('newLog', { 'date': data });
+			mySocket.emit('newLog', { data: data });
 
-		// });
-
-
-
+		});
+		//mySocket.emit('newLog', { data: 'abubu' });
 
 		/*
 		 * api [GET] all logs
@@ -30,7 +28,7 @@ function logRouter  (io){
 
 			//console.log('socket in router', mySocket.emit('newLog', { date: 'lalala' }));
 
-			//mySocket.emit('newLog', { date: 'lalala' });
+			//mySocket.emit('newLog', { data: 'lalala' });
 
 			// console.log('test after socket ');
 
@@ -67,8 +65,7 @@ function logRouter  (io){
 
 			//console.log('socket', socket);
 
-			//socket.emit('newLog', { data : '123' });
-			socket.emit('newLog', { hello: 'world' });
+			mySocket.emit('newLog', { data: 'new one ~!' });
 
 			// log entity
 			var logEntity = new models.LogModel({
