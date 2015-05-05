@@ -281,8 +281,6 @@ var AppActionCreators = {
 
 		checkInIgnore: function( log ) {
 
-			console.log(log._id);
-
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_REMOVE,
             item: log

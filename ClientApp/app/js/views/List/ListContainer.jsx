@@ -58,7 +58,7 @@ var ListContainer = React.createClass({
 
 		var socket = io.connect('http://localhost:8080');
 
-		socket.emit('notify', { name : 'Andrew' });
+		//socket.emit('notify', { name : 'Andrew' });
 
         socket.on('newLog', function (data) {
             console.log(data);
