@@ -176,16 +176,12 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             //console.log( 'Store 選取: ', action.roomID );
 
-            // 選取同樣的 item 就不用處理下去了
             if( selectedRoomID != action.roomID ){
+
+                //change id
                 selectedRoomID = action.roomID;
-
-        		// if(selectedRoomID != 'all'){
-        		// 	selectedRoomIDinput = action.inputID;
-        		// }
-
-            //
-               Store.emit( AppConstants.CHANGE_EVENT );
+                selectedRoomIDinput = action.roomID;
+                Store.emit( AppConstants.CHANGE_EVENT );
             }
 
             break;

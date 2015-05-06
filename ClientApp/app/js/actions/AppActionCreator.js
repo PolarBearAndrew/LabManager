@@ -5,8 +5,8 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var Promise = require('es6-promise').Promise;
 
-var IPaddress = 'localhost:8080';
-//var IPaddress = '192.168.2.24:8080';
+//var IPaddress = 'localhost:8080';
+var IPaddress = '120.96.78.166:8080';
 
 // 就是個單純的 hash table
 // 因此下面所有指令皆可視為 Action static method
@@ -44,7 +44,7 @@ var AppActionCreators = {
 
     },
 
-		logIn: function( postData ){
+	logIn: function( postData ){
 
         //$.ajax('http://' + IPaddress + '/users/session/manager',
         $.ajax('http://' + IPaddress + '/users/api/check',
@@ -77,7 +77,7 @@ var AppActionCreators = {
 
     },
 
-		logOut: function(){
+	logOut: function(){
 
         $.ajax('http://' + IPaddress + '/users/session/manager/signout',
         {
@@ -102,7 +102,7 @@ var AppActionCreators = {
 
     },
 
-		CheckIsManger: function(){
+	CheckIsManger: function(){
 
         $.ajax('http://' + IPaddress + '/users/session/manager',
         {
@@ -130,7 +130,7 @@ var AppActionCreators = {
 
     },
 
-		selectRoomID: function( roomID ) {
+	selectRoomID: function( roomID ) {
 
 		//console.log('select action', roomID);
 
@@ -169,7 +169,6 @@ var AppActionCreators = {
             success: function(data, status, jqxhr){
 
                 newlog._id = data._id;
-
 
 				$('input[type="text"]').val('');//claer all input
             },
@@ -218,7 +217,7 @@ var AppActionCreators = {
 
     },
 
-		checkIn: function( log ) {
+	checkIn: function( log ) {
 
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_UPDATE,
@@ -247,7 +246,7 @@ var AppActionCreators = {
 
     },
 
-		checkOut: function( log ) {
+	checkOut: function( log ) {
 
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_UPDATE,
@@ -279,7 +278,7 @@ var AppActionCreators = {
 
     },
 
-		checkInIgnore: function( log ) {
+	checkInIgnore: function( log ) {
 
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_REMOVE,
@@ -307,20 +306,18 @@ var AppActionCreators = {
 
     },
 
-		switchLogInBox: function(){
-			AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
-		},
+	switchLogInBox: function(){
+		AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
+	},
 
-		changeInputID: function( inputID ){
+	changeInputID: function( inputID ){
 
+		AppDispatcher.handleViewAction({
+			actionType: AppConstants.CHANGE_INPUTID,
+			inputID: inputID
+		});
+	},
 
-			AppDispatcher.handleViewAction({
-				actionType: AppConstants.CHANGE_INPUTID,
-				inputID: inputID
-			});
-		},
-
-    // dummy
     noop: function(){}
 };
 

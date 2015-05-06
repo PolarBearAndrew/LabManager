@@ -6,6 +6,13 @@ function logRouter  (io){
 	var models = require('../models');
 
 
+	router.use(function (req, res, next) {
+		//console.log('set header');
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header("Access-Control-Allow-Headers", "X-Requested-With");
+		next();
+	});
+
 	io.on('connection', function (mySocket) {
 
 		mySocket.on('notify', function (data) {
@@ -15,7 +22,6 @@ function logRouter  (io){
 			mySocket.emit('newLog', { data: data });
 
 		});
-		//mySocket.emit('newLog', { data: 'abubu' });
 
 		/*
 		 * api [GET] all logs

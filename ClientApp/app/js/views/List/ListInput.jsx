@@ -70,7 +70,7 @@ var ListInput = React.createClass({
 				</td>
 				<td><input id="inputSid" type="text" className="form-control" name="sid"></input></td>
 				<td><input id="inputName" type="text" className="form-control" name="name"></input></td>
-				<td><Selector myID="inputPosi" className="input" options = {posiOptions} /></td>
+				<td><Selector myID="inputPosi" className="input" options = { posiOptions } /></td>
 				<td colSpan="2">
 					<input	id="inputInTime"
 							type="datetime-local" 	className="form-control"
@@ -166,7 +166,6 @@ var ListInput = React.createClass({
 	handleIDchange: function(){
 
 		var id = $('#inputID').val();
-
 		this.props.changeInputID( id );
 
 		//sync input select

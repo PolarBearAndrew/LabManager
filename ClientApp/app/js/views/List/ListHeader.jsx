@@ -52,7 +52,7 @@ var ListHeader = React.createClass({
 					<h5 className="lead">
 						{ show.str }
 						<span className="text-success isName"> { show.name } </span>
-						<a href="#" onClick={this.props.logout }><i className="fa fa-sign-out"></i></a>
+						<a href="#" onClick={ this.props.logout }><i className="fa fa-sign-out"></i></a>
 					</h5>
 				);
 
@@ -64,7 +64,7 @@ var ListHeader = React.createClass({
 				return (
 					<h5 className="lead">
 						{ show.str }
-						<a href="#" onClick={this.props.login }>
+						<a href="#" onClick={ this.props.login }>
 							<span className="text-primary"> { show.name } </span>
 							<i className="fa fa-sign-in"></i>
 						</a>

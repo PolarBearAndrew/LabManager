@@ -56,7 +56,11 @@ var ListContainer = React.createClass({
     // 這是 component API, 在 mount 前會跑一次，取值做為 this.state 的預設值
     getInitialState: function() {
 
-        var socket = io.connect('http://localhost:8080');
+        //var IPaddress = 'localhost:8080';
+        var IPaddress = '120.96.78.166:8080';
+
+
+        var socket = io.connect('http://' + IPaddress);
 
         // socket.emit('notify', { name : 'Andrew' });
 
@@ -152,8 +156,9 @@ var ListContainer = React.createClass({
 						inputID = { this.state.selectedInputID }
                         checkOut = {actions.askForLeave}
                         roomInfo = { this.state.roomInfo }
-                        checkInAssent = { actions.checkIn }
                         changeInputID = { actions.changeInputID }
+
+                        checkInAssent = { actions.checkIn }
                         checkInIgnore = { actions.checkInIgnore }
                         checkOutAssent = { actions.checkOut }
 					/>

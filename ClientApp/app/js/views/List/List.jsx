@@ -72,11 +72,11 @@ var comp = React.createClass({
 						changeInputID = { this.props.changeInputID }
 						/>
 					<ListTitle
-						titles={theadTitle}
-						listTitle={true}
+						titles={ theadTitle }
+						listTitle={ true }
 						/>
 					<tbody>
-	        		  {arr}
+	        			{arr}
 					</tbody>
 					<tfoot>
 						<td className="tableEnd" colSpan="8" >--- [End] ---</td>
