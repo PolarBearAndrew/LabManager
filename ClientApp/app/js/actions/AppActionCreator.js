@@ -6,7 +6,7 @@ var AppConstants = require('../constants/AppConstants');
 var Promise = require('es6-promise').Promise;
 
 //var IPaddress = 'localhost:8080';
-var IPaddress = '120.96.78.166:8080';
+var IPaddress = '192.168.1.13:8080'; //home
 
 // 就是個單純的 hash table
 // 因此下面所有指令皆可視為 Action static method
@@ -147,10 +147,12 @@ var AppActionCreators = {
     askForJoin: function( newlog ) {
 
         // 1. 廣播給 store 知道去 optimistic 更新 view
-        AppDispatcher.handleViewAction({
-            actionType: AppConstants.TODO_CREATE,
-            item: newlog
-        });
+        //AppDispatcher.handleViewAction({
+        //    actionType: AppConstants.TODO_CREATE,
+        //    item: newlog
+        //});
+        //透過廣播新增
+        //
 
         $.ajax('http://' + IPaddress + '/api/log/join',
         {
@@ -318,11 +320,13 @@ var AppActionCreators = {
 		});
 	},
 
-    socketNew: function( newlog ){
+    socketNew: function( log ){
+
+        //console.log('new', log);
 
         AppDispatcher.handleViewAction({
-            actionType: AppConstants.SOCKET_CREATE,
-            item: newlog
+            actionType: AppConstants.TODO_CREATE,
+            item: log
         });
     },
 
@@ -345,7 +349,7 @@ var AppActionCreators = {
     socketRemove: function( log ){
 
         AppDispatcher.handleViewAction({
-            actionType: AppConstants.TODO_REMOVE,
+            actionType: AppConstants.SOCKET_REMOVE,
             item: log
         });
     },

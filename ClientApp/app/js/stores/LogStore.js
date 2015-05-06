@@ -158,7 +158,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
     			if(item._id == action.item._id){
     				item = action.item;
     			}
-              return item ;
+                return item ;
             })
 
 			renewRoomInfo( action.item );
@@ -240,67 +240,53 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             break;
 
-
-        /**
-         *
-         */
-        case AppConstants.SOCKET_CREATE:
-
-            arrLog = arrLog.filter( function(item){
-
-                if( item._id == action.item._id ){
-                    return;
-                }
-
-                return item;
-            })
-
-            arrLog.unshift( action.item );
-
-            renewRoomInfo( action.item );
-
-            //console.log( 'Store 新增: ', arrLog );
-
-            Store.emit( AppConstants.CHANGE_EVENT );
-
-            break;
-
         case AppConstants.SOCKET_UPDATE:
 
-            arrLog = arrLog.filter( function(item){
-                if(item._id == action.item._id){
-                    item = action.item;
+            for (var i = arrLog.length - 1; i >= 0; i--) {
+                if(arrLog[i]._id == action.item._id){
+                    arrLog[i] = action.item;
+                    break;
                 }
-              return item ;
-            })
+            };
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
 
-        case AppConstants.SOCKET_OUT:
+        case AppConstants.SOCKET_CHECKOUT:
 
-            arrLog = arrLog.filter( function(item){
-                if(item._id == action.item._id){
-                    item = action.item;
+            for (var i = arrLog.length - 1; i >= 0; i--) {
+                if(arrLog[i]._id == action.item._id){
+                    arrLog[i] = action.item;
+                    break;
                 }
-              return item ;
-            })
+            };
 
             renewRoomInfo( action.item );
 
-            //console.log( 'Store 新增: ', arrLog );
-
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
 
 
-        case AppConstants.SOCKET_DELETE:
+        case AppConstants.SOCKET_REMOVE:
 
-            arrLog = arrLog.filter( function(item){
-                return item != action.item;
-            })
+            var ctrl = false;
+
+            for (var i = arrLog.length - 1; i >= 0; i--) {
+
+
+
+                if(arrLog[i]._id == action.item._id || ctrl == true){
+                    arrLog[i] = arrLog[i + 1];
+                    ctrl = true;
+                    break;
+                }
+            };
+
+            if(ctrl){
+                arrLog.pop();
+            }
 
             renewRoomInfo( action.item );
 

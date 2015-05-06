@@ -76,7 +76,6 @@ function logRouter  (io){
 				"outCheck": ""
 			};
 
-			io.emit('newLog', { log: log });
 
 			// log entity
 			var logEntity = new models.LogModel( log );
@@ -90,8 +89,12 @@ function logRouter  (io){
 
 				} else {
 					console.log('[EVENT] add a new log, and ask for checkin');
+
+					log._id = logEntity._id;
+					io.emit('newLog', { log: log });
+
 					res.json({
-						id: logEntity._id
+						_id: logEntity._id
 					});
 				}
 
@@ -109,6 +112,7 @@ function logRouter  (io){
 			};
 
 			var log = {
+				"_id": req.body._id,
 				"sid": req.body.sid,
 				"name": req.body.name,
 				"room": req.body.room,
@@ -116,7 +120,7 @@ function logRouter  (io){
 				"inTime": req.body.inTime,
 				"outTime": ' ',
 				"inCheck": req.body.inCheck,
-				"outCheck": ""
+				"outCheck": ''
 			};
 
 			io.emit('update', { log: log });
@@ -141,6 +145,7 @@ function logRouter  (io){
 			};
 
 			var log = {
+				"_id": req.body._id,
 				"sid": req.body.sid,
 				"name": req.body.name,
 				"room": req.body.room,
@@ -171,6 +176,7 @@ function logRouter  (io){
 			};
 
 			var log = {
+				"_id": req.body._id,
 				"sid": req.body.sid,
 				"name": req.body.name,
 				"room": req.body.room,
@@ -203,6 +209,7 @@ function logRouter  (io){
 			};
 
 			var log = {
+				"_id": req.body._id,
 				"sid": req.body.sid,
 				"name": req.body.name,
 				"room": req.body.room,

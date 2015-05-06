@@ -31,7 +31,7 @@ module.exports = keyMirror({
 	SOCKET_CREATE: null,
 	SOCKET_UPDATE: null,
 	SOCKET_CHECKOUT: null,
-	SOCKET_DELETE: null,
+	SOCKET_REMOVE: null,
 
   	noop: null
 });
