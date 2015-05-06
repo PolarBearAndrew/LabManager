@@ -141,9 +141,9 @@ var AppActionCreators = {
 
     },
 
-        /*
-		 *
-         */
+    /*
+	 *
+     */
     askForJoin: function( newlog ) {
 
         // 1. 廣播給 store 知道去 optimistic 更新 view
@@ -317,6 +317,28 @@ var AppActionCreators = {
 			inputID: inputID
 		});
 	},
+
+    socketNew: function( newlog ){
+
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.SOCKET_CREATE_UPDATE,
+            item: newlog
+        });
+    },
+
+    socketUpdate: function( log ){
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.TODO_UPDATE,
+            item: log
+        });
+    },
+
+    socketDelete: function( log ){
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.TODO_REMOVE,
+            item: log
+        });
+    },
 
     noop: function(){}
 };

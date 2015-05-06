@@ -225,7 +225,9 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
-				/**
+
+
+        /**
          *
          */
         case AppConstants.CHANGE_INPUTID:
@@ -237,6 +239,32 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             Store.emit( AppConstants.CHANGE_EVENT );
 
             break;
+
+
+        /**
+         *
+         */
+        case AppConstants.SOCKET_CREATE_UPDATE:
+
+            arrLog = arrLog.filter( function(item){
+
+                if( item._id == action.item._id ){
+                    return;
+                }
+
+                return item;
+            })
+
+            arrLog.unshift( action.item );
+
+            renewRoomInfo( action.item );
+
+            //console.log( 'Store 新增: ', arrLog );
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+
 
 
         default:

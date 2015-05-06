@@ -21,11 +21,15 @@ module.exports = keyMirror({
   	TODO_REMOVE: null,
   	TODO_UPDATE: null,
   	TODO_SELECT: null,
-	
-		JUST_REFRESH: null,
-		SWITCH_LOGINBOX: null,
-		LOGIN_FAIL: null,
-		CHANGE_INPUTID: null,
+
+	JUST_REFRESH: null,
+	SWITCH_LOGINBOX: null,
+	LOGIN_FAIL: null,
+	CHANGE_INPUTID: null,
+
+	//socket
+	SOCKET_CREATE_UPDATE: null,
+	SOCKET_DELETE: null,
 
   	noop: null
 });

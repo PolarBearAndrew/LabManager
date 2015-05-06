@@ -15,11 +15,13 @@ function logRouter  (io){
 
 	io.on('connection', function (mySocket) {
 
+		mySocket.join('roomEveryone');
+
 		mySocket.on('notify', function (data) {
 
-			console.log('date', data);
+			//console.log('date', data);
 
-			mySocket.emit('newLog', { data: data });
+			//mySocket.emit('newLog', { data: data });
 
 		});
 
@@ -31,13 +33,7 @@ function logRouter  (io){
 			models.LogModel.find({}, function (err, data) {
 				res.json(data);
 			});
-
-			//console.log('socket in router', mySocket.emit('newLog', { date: 'lalala' }));
-
 			//mySocket.emit('newLog', { data: 'lalala' });
-
-			// console.log('test after socket ');
-
 		});
 
 
@@ -69,21 +65,26 @@ function logRouter  (io){
 		 */
 		router.post('/join', function (req, res, next) {
 
-			//console.log('socket', socket);
-
-			mySocket.emit('newLog', { data: 'new one ~!' });
-
-			// log entity
-			var logEntity = new models.LogModel({
+			var log = {
 				"sid": req.body.sid,
 				"name": req.body.name,
 				"room": req.body.room,
 				"posi": req.body.posi,
 				"inTime": req.body.inTime,
-				"outTime": "",
+				"outTime": '   ',
 				"inCheck": req.body.inCheck,
 				"outCheck": ""
-			});
+			};
+
+
+			//io.to('roomEveryone').emit('newLog', { data: log });
+
+			//mySocket.join('roomEveryone');
+			io.emit('newLog', { log: log });
+			//mySocket.leave('roomEveryone');
+
+			// log entity
+			var logEntity = new models.LogModel( log );
 
 			//save the entity
 			logEntity.save(function (err) {

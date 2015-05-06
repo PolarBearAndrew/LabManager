@@ -56,7 +56,17 @@ var ListContainer = React.createClass({
     // 這是 component API, 在 mount 前會跑一次，取值做為 this.state 的預設值
     getInitialState: function() {
 
-        //var IPaddress = 'localhost:8080';
+		return this.getTruth();
+    },
+
+    /**
+     * 主程式進入點
+     */
+    componentWillMount: function() {
+
+        LogStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
+
+       //var IPaddress = 'localhost:8080';
         var IPaddress = '120.96.78.166:8080';
 
 
@@ -65,17 +75,11 @@ var ListContainer = React.createClass({
         // socket.emit('notify', { name : 'Andrew' });
 
         socket.on('newLog', function (data) {
-            console.log(data);
+            //console.log('newLog', data);
+
+            actions.socketNew(data.log);
+
         });
-
-		return this.getTruth();
-    },
-
-    /**
-     * 主程式進入點
-     */
-    componentWillMount: function() {
-        LogStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
     },
 
     // 重要：root view 建立後第一件事，就是偵聽 store 的 change 事件
@@ -197,11 +201,11 @@ var ListContainer = React.createClass({
         // 是從 TodoStore 取資料(as the single source of truth)
         return {
             arrLog: LogStore.getLog(),
-						selectedRoomID: LogStore.getSelectedRoomID(),
-						selectedInputID: LogStore.getSelectedRoomIDinput(),
-						manager: LogStore.getIsManager(),
-						loginBoxCtrl: LogStore.getLoginBoxShowCtrl(),
-						roomInfo: LogStore.getRoomInfo(),
+			selectedRoomID: LogStore.getSelectedRoomID(),
+			selectedInputID: LogStore.getSelectedRoomIDinput(),
+			manager: LogStore.getIsManager(),
+			loginBoxCtrl: LogStore.getLoginBoxShowCtrl(),
+			roomInfo: LogStore.getRoomInfo(),
          };
     }
 
