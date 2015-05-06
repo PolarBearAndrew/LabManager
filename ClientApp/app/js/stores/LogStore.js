@@ -244,7 +244,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         /**
          *
          */
-        case AppConstants.SOCKET_CREATE_UPDATE:
+        case AppConstants.SOCKET_CREATE:
 
             arrLog = arrLog.filter( function(item){
 
@@ -256,6 +256,51 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             })
 
             arrLog.unshift( action.item );
+
+            renewRoomInfo( action.item );
+
+            //console.log( 'Store 新增: ', arrLog );
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+
+        case AppConstants.SOCKET_UPDATE:
+
+            arrLog = arrLog.filter( function(item){
+                if(item._id == action.item._id){
+                    item = action.item;
+                }
+              return item ;
+            })
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+
+        case AppConstants.SOCKET_OUT:
+
+            arrLog = arrLog.filter( function(item){
+                if(item._id == action.item._id){
+                    item = action.item;
+                }
+              return item ;
+            })
+
+            renewRoomInfo( action.item );
+
+            //console.log( 'Store 新增: ', arrLog );
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            break;
+
+
+        case AppConstants.SOCKET_DELETE:
+
+            arrLog = arrLog.filter( function(item){
+                return item != action.item;
+            })
 
             renewRoomInfo( action.item );
 

@@ -321,19 +321,29 @@ var AppActionCreators = {
     socketNew: function( newlog ){
 
         AppDispatcher.handleViewAction({
-            actionType: AppConstants.SOCKET_CREATE_UPDATE,
+            actionType: AppConstants.SOCKET_CREATE,
             item: newlog
         });
     },
 
     socketUpdate: function( log ){
+
         AppDispatcher.handleViewAction({
-            actionType: AppConstants.TODO_UPDATE,
+            actionType: AppConstants.SOCKET_UPDATE,
             item: log
         });
     },
 
-    socketDelete: function( log ){
+    socketCheckOut: function( log ){
+
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.SOCKET_CHECKOUT,
+            item: log
+        });
+    },
+
+    socketRemove: function( log ){
+
         AppDispatcher.handleViewAction({
             actionType: AppConstants.TODO_REMOVE,
             item: log

@@ -71,17 +71,12 @@ function logRouter  (io){
 				"room": req.body.room,
 				"posi": req.body.posi,
 				"inTime": req.body.inTime,
-				"outTime": '   ',
+				"outTime": ' ',
 				"inCheck": req.body.inCheck,
 				"outCheck": ""
 			};
 
-
-			//io.to('roomEveryone').emit('newLog', { data: log });
-
-			//mySocket.join('roomEveryone');
 			io.emit('newLog', { log: log });
-			//mySocket.leave('roomEveryone');
 
 			// log entity
 			var logEntity = new models.LogModel( log );
@@ -113,6 +108,20 @@ function logRouter  (io){
 				_id: req.params.id
 			};
 
+			var log = {
+				"sid": req.body.sid,
+				"name": req.body.name,
+				"room": req.body.room,
+				"posi": req.body.posi,
+				"inTime": req.body.inTime,
+				"outTime": ' ',
+				"inCheck": req.body.inCheck,
+				"outCheck": ""
+			};
+
+			io.emit('update', { log: log });
+
+
 			models.LogModel.update(query, {
 				inCheck: req.body.inCheck
 			}, function () {
@@ -131,6 +140,20 @@ function logRouter  (io){
 				_id: req.params.id
 			};
 
+			var log = {
+				"sid": req.body.sid,
+				"name": req.body.name,
+				"room": req.body.room,
+				"posi": req.body.posi,
+				"inTime": req.body.inTime,
+				"outTime": ' ',
+				"inCheck": req.body.inCheck,
+				"outCheck": ""
+			};
+
+			io.emit('remove', { log: log });
+
+
 			models.LogModel.remove(query, function () {
 				console.log('[EVENT] ignore checkIn : ' + req.body.sid + ',' + req.body.name);
 				res.end();
@@ -146,6 +169,20 @@ function logRouter  (io){
 			var query = {
 				_id: req.params.id
 			};
+
+			var log = {
+				"sid": req.body.sid,
+				"name": req.body.name,
+				"room": req.body.room,
+				"posi": req.body.posi,
+				"inTime": req.body.inTime,
+				"outTime": ' ',
+				"inCheck": req.body.inCheck,
+				"outCheck": req.body.outCheck
+			};
+
+			io.emit('update', { log: log });
+
 
 			models.LogModel.update(query, {
 				outCheck: 'waiting'
@@ -164,6 +201,20 @@ function logRouter  (io){
 			var query = {
 				_id: req.params.id
 			};
+
+			var log = {
+				"sid": req.body.sid,
+				"name": req.body.name,
+				"room": req.body.room,
+				"posi": req.body.posi,
+				"inTime": req.body.inTime,
+				"outTime": req.body.outTime,
+				"inCheck": req.body.inCheck,
+				"outCheck": req.body.outCheck
+			};
+
+			io.emit('checkout', { log: log });
+
 
 			models.LogModel.update(query, {
 				outCheck: req.body.outCheck,

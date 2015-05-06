@@ -28,7 +28,9 @@ module.exports = keyMirror({
 	CHANGE_INPUTID: null,
 
 	//socket
-	SOCKET_CREATE_UPDATE: null,
+	SOCKET_CREATE: null,
+	SOCKET_UPDATE: null,
+	SOCKET_CHECKOUT: null,
 	SOCKET_DELETE: null,
 
   	noop: null

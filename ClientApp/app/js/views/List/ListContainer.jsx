@@ -75,10 +75,25 @@ var ListContainer = React.createClass({
         // socket.emit('notify', { name : 'Andrew' });
 
         socket.on('newLog', function (data) {
-            //console.log('newLog', data);
 
             actions.socketNew(data.log);
+        });
 
+        socket.on('update', function (data) {
+
+            console.log('update');
+
+            actions.socketUpdate(data.log);
+        });
+
+        socket.on('checkout', function (data) {
+
+            actions.socketCheckOut(data.log);
+        });
+
+        socket.on('remove', function (data) {
+
+            actions.socketRemove(data.log);
         });
     },
 
