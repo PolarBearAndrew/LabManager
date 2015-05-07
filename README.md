@@ -1,8 +1,10 @@
 # LabManager
 
-For : OIT, Information Management Department,
+For : OIT, Information Management Department
 
 version : 0.0.1
+
+Date : 7/ May/ 2015
 
 ------------------------------
 
@@ -30,7 +32,6 @@ $ cd /ClientApp/
 $ npm start
 open in browser http://localhost:8080
 ```
-
 
 ##include
 
