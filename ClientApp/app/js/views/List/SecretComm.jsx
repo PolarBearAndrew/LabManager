@@ -1,6 +1,6 @@
 var Secret = [
 	{
-		comm : 'Panda',
+		comm : 'panda',
 		posi_pwd : '討論 12',
 		data : [
 			{ 'room' : '806', sid: '101111231', name: '陳思璇', posi: '討論 4', inCheck: 'waiting', outCheck: 'notYet', inTime: '', outTime: ' ' },
@@ -10,7 +10,7 @@ var Secret = [
 		]
 	},
 	{
-		comm : 'Srt',
+		comm : 'srt',
 		posi_pwd : '討論 12',
 		data : [
 			{ 'room' : '801', sid: '101111226', name: '尋敬恆', posi: '討論 4', inCheck: 'waiting', outCheck: 'notYet', inTime: '', outTime: ' ' },

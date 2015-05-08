@@ -6,7 +6,7 @@ var AppConstants = require('../constants/AppConstants');
 var Promise = require('es6-promise').Promise;
 
 //var IPaddress = 'localhost:8080';
-var IPaddress = '192.168.1.13:8080'; //home
+var IPaddress = '120.96.75.142:8080'; //home
 
 // 就是個單純的 hash table
 // 因此下面所有指令皆可視為 Action static method

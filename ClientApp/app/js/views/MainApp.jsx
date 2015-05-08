@@ -1,11 +1,12 @@
-
+/**
+ *
+ */
 var Footer = React.createFactory( require('./Footer.jsx') );
 var ListContainer = React.createFactory( require('./List/ListContainer.jsx') );
 
 
 var MainApp = React.createClass({
 
-    //========================================================================
     mixins: [],
 
     getDefaultProps: function() {
@@ -21,8 +22,8 @@ var MainApp = React.createClass({
         // console.log( '\tMainApp > render' );
 
         return (
-					 <div className="just-wrapper">
-								<ListContainer />
+			<div className="just-wrapper">
+				<ListContainer />
                 <Footer />
             </div>
         )

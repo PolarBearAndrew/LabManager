@@ -1,8 +1,5 @@
-
-
-
 /*
- * views
+ * Views
  */
 var List = React.createFactory( require('./List.jsx') );
 var Selector = React.createFactory( require('./Selector.jsx') );
@@ -16,7 +13,7 @@ var LogStore = require('../../stores/LogStore');
 var AppConstants = require('../../constants/AppConstants');
 
 /*
- * Action
+ * Actions
  */
 var actions = require('../../actions/AppActionCreator');
 
@@ -67,7 +64,7 @@ var ListContainer = React.createClass({
         LogStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
 
        //var IPaddress = 'localhost:8080';
-        var IPaddress = '192.168.1.13:8080';
+        var IPaddress = '120.96.75.142:8080';
 
 
         var socket = io.connect('http://' + IPaddress);

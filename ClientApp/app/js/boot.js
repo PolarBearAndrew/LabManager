@@ -16,8 +16,8 @@ var actions = require('./actions/AppActionCreator');
 
 $(function(){
 
-  // 拉回第一包資料給畫面用
-  actions.load();
+	// 拉回第一包資料給畫面用
+	actions.load();
 
 	// 啟動 root view 時要傳入假資料
 	React.render( MainApp(), document.getElementById('container') );
