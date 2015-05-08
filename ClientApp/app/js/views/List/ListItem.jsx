@@ -47,12 +47,12 @@ var comp = React.createClass({
 				if(manager.isManager){
 					return (
 						<div className="ctrls">
-							<a className="btn btn-success btn-xs" href="#" onClick={this.handleCheckInAssent}>
+							<a className="btn btn-success btn-xs" onClick={this.handleCheckInAssent}>
 								<i className="fa fa-check"></i>
 								{' Assent'}
 							</a>
 							{'  '}
-							<a className="btn btn-danger btn-xs" href="#" onClick={this.handleCheckInIgnore}>
+							<a className="btn btn-danger btn-xs" onClick={this.handleCheckInIgnore}>
 								<i className="fa fa-trash-o"></i>
 								{' Ignore'}
 							</a>
@@ -73,7 +73,7 @@ var comp = React.createClass({
 			if(ckin == 'waiting' || ckin == '' ){
 				//if you not checkin yet, than don't need to checkout
 				return (
-						<a className="btn btn-warning btn-xs disabled" href="#">
+						<a className="btn btn-warning btn-xs disabled">
   						<i className="fa fa-sign-out"></i>
 							{' Check-out'}
 						</a>);
@@ -81,7 +81,7 @@ var comp = React.createClass({
 			}else if(ck == 'notYet' || ck == '' ){
 				//can ask for check out
 				return (
-						<a className="btn btn-warning btn-xs" href="#" onClick={this.handleCheckOut}>
+						<a className="btn btn-warning btn-xs" onClick={this.handleCheckOut}>
   						<i className="fa fa-sign-out"></i>
 							{' Check-out'}
 						</a>);
@@ -91,12 +91,12 @@ var comp = React.createClass({
 				if(manager.isManager){
 					return (
 						<div>
-							<a className="btn btn-success btn-xs" href="#" onClick={this.handleCheckOutAssent}>
+							<a className="btn btn-success btn-xs" onClick={this.handleCheckOutAssent}>
 								<i className="fa fa-check"></i>
 								{' Yes'}
 							</a>
 							{'  '}
-							<a className="btn btn-danger btn-xs" href="#">
+							<a className="btn btn-danger btn-xs">
 								<i className="fa fa-user-times"></i>
 								{' No'}
 							</a>
