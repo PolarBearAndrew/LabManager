@@ -34,7 +34,7 @@ body {
       font-weight: bolder;
       text-shadow: 1px 1px 1px #dbdbdb; }
   .ListContainer #over {
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     height: 100%;
@@ -43,7 +43,7 @@ body {
     z-index: 2;
     background-color: #333; }
   .ListContainer #login {
-    position: absolute;
+    position: fixed;
     z-index: 3;
     opacity: 1;
     top: calc( 50% - 100px);
