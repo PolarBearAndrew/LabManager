@@ -64,7 +64,7 @@ var ListHeader = React.createClass({
 				return (
 					<h5 className="lead">
 						{ show.str }
-						<a href="#" onClick={ this.props.login }>
+						<a onClick={ this.props.login }>
 							<span className="text-primary"> { show.name } </span>
 							<i className="fa fa-sign-in"></i>
 						</a>
@@ -86,9 +86,12 @@ var ListHeader = React.createClass({
 				</h1>
 				<h4>
 					<span>{"Room ID "}</span>
+					<a className="btn btn-info refresh" onClick={ this.props.refresh }>
+						<i className="fa fa-refresh"></i>
+					</a>
 					<Selector
 						myID="selectID"
-						selectRoomID = {this.props.selectRoomID}
+						selectRoomID = {this.props.selectRoomID }
 						changeTodo = { this.handleChange }
 						options = { roomInfo } />
 				</h4>

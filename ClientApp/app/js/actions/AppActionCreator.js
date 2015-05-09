@@ -17,6 +17,8 @@ var AppActionCreators = {
      */
     load: function(){
 
+        //console.log('refresh');
+
         $.ajax('http://' + IPaddress + '/api/log/',
         {
             type:"GET",
@@ -279,6 +281,40 @@ var AppActionCreators = {
         })
 
     },
+
+    checkOutIgnore: function( log ) {
+
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.TODO_UPDATE,
+            item: log
+        });
+
+        $.ajax('http://' + IPaddress + '/api/log/ckeckOut/ignore/' + log._id,
+        {
+
+            type:"PUT",
+
+            data: log,
+
+            //
+            success: function(data, status, jqxhr){
+
+                // console.log( '編輯資料結果: ', data );
+
+                // 將 server 生成的 uid 更新到早先建立的物件，之後資料才會一致
+                //item.id = data.id;
+            },
+
+            //
+            error: function( xhr, status, errText ){
+                console.log( 'xhr 錯誤: ', xhr.responseText );
+            }
+
+        })
+
+    },
+
+
 
 	checkInIgnore: function( log ) {
 

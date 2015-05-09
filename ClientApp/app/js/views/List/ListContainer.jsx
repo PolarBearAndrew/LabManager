@@ -63,7 +63,7 @@ var ListContainer = React.createClass({
 
         LogStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
 
-       //var IPaddress = 'localhost:8080';
+        //var IPaddress = 'localhost:8080';
         var IPaddress = '120.96.75.142:8080';
 
 
@@ -160,6 +160,7 @@ var ListContainer = React.createClass({
                         ID = { this.state.selectedRoomID }
                         login = { actions.switchLogInBox }
                         logout = { actions.logOut }
+                        refresh = { actions.load }
                         manager = { this.state.manager }
 						roomInfo = { this.state.roomInfo }
                         selectRoomID = { actions.selectRoomID }
@@ -175,6 +176,7 @@ var ListContainer = React.createClass({
                         checkInAssent = { actions.checkIn }
                         checkInIgnore = { actions.checkInIgnore }
                         checkOutAssent = { actions.checkOut }
+                        checkOutIgnore = { actions.checkOutIgnore }
 					/>
 				</div>
         )

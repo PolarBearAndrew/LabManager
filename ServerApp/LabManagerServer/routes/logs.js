@@ -21,8 +21,6 @@ function logRouter  (io){
 
 			//console.log('date', data);
 
-			//mySocket.emit('newLog', { data: data });
-
 		});
 
 		/*
@@ -203,6 +201,40 @@ function logRouter  (io){
 		 * api [PUT] assent the checkout
 		 */
 		router.put('/ckeckOut/assent/:id', function (req, res, next) {
+
+			var query = {
+				_id: req.params.id
+			};
+
+			var log = {
+				"_id": req.body._id,
+				"sid": req.body.sid,
+				"name": req.body.name,
+				"room": req.body.room,
+				"posi": req.body.posi,
+				"inTime": req.body.inTime,
+				"outTime": req.body.outTime,
+				"inCheck": req.body.inCheck,
+				"outCheck": req.body.outCheck
+			};
+
+			io.emit('checkout', { log: log });
+
+
+			models.LogModel.update(query, {
+				outCheck: req.body.outCheck,
+				outTime: req.body.outTime
+			}, function () {
+				console.log('[EVENT] assent checkOut : ' + req.body.sid + ',' + req.body.name);
+				res.end();
+			});
+		});
+
+
+		/*
+		 * api [PUT] assent the checkout
+		 */
+		router.put('/ckeckOut/ignore/:id', function (req, res, next) {
 
 			var query = {
 				_id: req.params.id

@@ -96,7 +96,7 @@ var comp = React.createClass({
 								{' Yes'}
 							</a>
 							{'  '}
-							<a className="btn btn-danger btn-xs">
+							<a className="btn btn-danger btn-xs" onClick={this.handleCheckOutIgnore}>
 								<i className="fa fa-user-times"></i>
 								{' No'}
 							</a>
@@ -195,6 +195,13 @@ var comp = React.createClass({
 
 	handleCheckInIgnore: function(){
 		this.props.checkInIgnore(this.props.logRow);
+	},
+
+	handleCheckOutIgnore: function(){
+
+		this.props.logRow.outCheck = '';
+
+		this.props.checkOutIgnore(this.props.logRow);
 	},
 
 	padLeft: function(str,len){

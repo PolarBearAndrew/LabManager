@@ -30,6 +30,8 @@ body {
       padding-left: 40px;
       margin: 0px;
       clear: both; }
+    .ListContainer .header .refresh {
+      float: right; }
     .ListContainer .header .isName {
       font-weight: bolder;
       text-shadow: 1px 1px 1px #dbdbdb; }

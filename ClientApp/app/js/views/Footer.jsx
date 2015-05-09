@@ -19,9 +19,9 @@ var Footer = React.createClass({
                 </span>
 
                 <span className="author_link">
-                    <a href="https://github.com/PolarBearAndrew/LabManager" >
+                    <a href="https://github.com/PolarBearAndrew/LabManager" target="_blank">
                         <i className="fa fa-2x fa-github"></i> </a>
-                    <a href="https://www.facebook.com/profile.php?id=100001317746154" >
+                    <a href="https://www.facebook.com/profile.php?id=100001317746154" target="_blank">
                         <i className="fa fa-2x fa-facebook-official"></i> </a>
                 </span>
             </footer>

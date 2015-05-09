@@ -50,6 +50,7 @@ var comp = React.createClass({
 				checkInAssent= { this.props.checkInAssent }
 				checkInIgnore= { this.props.checkInIgnore }
 				checkOutAssent= { this.props.checkOutAssent }
+				checkOutIgnore = { this.props.checkOutIgnore }
 				/>
 
 		}, this);
