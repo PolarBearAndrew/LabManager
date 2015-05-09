@@ -6,10 +6,8 @@ var AppConstants = require('../constants/AppConstants');
 var Promise = require('es6-promise').Promise;
 
 //var IPaddress = 'localhost:8080';
-var IPaddress = '120.96.75.142:8080'; //home
+var IPaddress = '120.96.75.142:8080';  //at home
 
-// 就是個單純的 hash table
-// 因此下面所有指令皆可視為 Action static method
 var AppActionCreators = {
 
     /**
@@ -17,21 +15,15 @@ var AppActionCreators = {
      */
     load: function(){
 
-        //console.log('refresh');
-
         $.ajax('http://' + IPaddress + '/api/log/',
         {
             type:"GET",
             //
             success: function(data, status, jqxhr){
 
-                // console.log( 'xhr 取回資料: ', data );
                 AppDispatcher.handleViewAction({
 
-                    // type 是為了方便將來所有 Store 內部判斷是否要處理這個 action
                     actionType: AppConstants.TODO_LOAD,
-
-                    // 這裏是真正要傳出去的值
                     items: data
                 });
 
@@ -52,17 +44,20 @@ var AppActionCreators = {
         $.ajax('http://' + IPaddress + '/users/api/check',
         {
             type:"POST",
-						data: { userId : postData.userId, pwd : postData.pwd },
+
+            data: { userId : postData.userId, pwd : postData.pwd },
             //
             success: function(data, status, jqxhr){
 
 				//console.log('[POST] set session');
 
 				if(data.isManager){
+
 					AppDispatcher.handleViewAction({
 						actionType: AppConstants.JUST_REFRESH,
 						item: data
 					});
+
 					AppDispatcher.handleViewAction({ actionType: AppConstants.SWITCH_LOGINBOX });
 
 				}else{
@@ -111,7 +106,7 @@ var AppActionCreators = {
             type:"GET",
             //
             success: function(data, status, jqxhr){
-							//do nothing
+
 				if(!data.isManager){
 					data.isManager = false;
 				}else{
@@ -147,14 +142,6 @@ var AppActionCreators = {
 	 *
      */
     askForJoin: function( newlog ) {
-
-        // 1. 廣播給 store 知道去 optimistic 更新 view
-        //AppDispatcher.handleViewAction({
-        //    actionType: AppConstants.TODO_CREATE,
-        //    item: newlog
-        //});
-        //透過廣播新增
-        //
 
         $.ajax('http://' + IPaddress + '/api/log/join',
         {
@@ -267,10 +254,6 @@ var AppActionCreators = {
             //
             success: function(data, status, jqxhr){
 
-                // console.log( '編輯資料結果: ', data );
-
-                // 將 server 生成的 uid 更新到早先建立的物件，之後資料才會一致
-                //item.id = data.id;
             },
 
             //
@@ -299,10 +282,6 @@ var AppActionCreators = {
             //
             success: function(data, status, jqxhr){
 
-                // console.log( '編輯資料結果: ', data );
-
-                // 將 server 生成的 uid 更新到早先建立的物件，之後資料才會一致
-                //item.id = data.id;
             },
 
             //

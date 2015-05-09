@@ -1,5 +1,4 @@
 var router = require('express').Router();
-//var models = require('../models');
 
 /*
  * homepage
