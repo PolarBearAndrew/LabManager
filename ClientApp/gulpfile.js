@@ -46,7 +46,7 @@ gulp.task('bundle-js', function() {
 
     // 接著就回到 gulp 系統做剩下事
     // 這裏是直接存檔到硬碟
-    .pipe( gulp.dest('./build') )
+    .pipe( gulp.dest('./build/assets') )
 
 });
 

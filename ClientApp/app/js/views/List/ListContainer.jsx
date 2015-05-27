@@ -63,8 +63,8 @@ var ListContainer = React.createClass({
 
         LogStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
 
-        //var IPaddress = 'localhost:8080';
-        var IPaddress = '120.96.75.142:8080';
+        var IPaddress = 'localhost:8080';
+        //var IPaddress = '120.96.75.142:8080';
 
 
         var socket = io.connect('http://' + IPaddress);

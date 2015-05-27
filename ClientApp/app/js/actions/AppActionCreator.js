@@ -5,8 +5,8 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var Promise = require('es6-promise').Promise;
 
-//var IPaddress = 'localhost:8080';
-var IPaddress = '120.96.75.142:8080';  //at home
+var IPaddress = 'localhost:8080';
+//var IPaddress = '120.96.75.142:8080';  //at home
 
 var AppActionCreators = {
 
