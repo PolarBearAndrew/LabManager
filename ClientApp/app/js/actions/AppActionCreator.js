@@ -11,14 +11,14 @@ var IPaddress = 'localhost:8080';
 var AppActionCreators = {
 
     /**
-     * app init, first load
+     * app init, init load
      */
     load: function(){
 
         $.ajax('http://' + IPaddress + '/api/log/',
         {
             type:"GET",
-            //
+
             success: function(data, status, jqxhr){
 
                 AppDispatcher.handleViewAction({
@@ -29,9 +29,8 @@ var AppActionCreators = {
 
             },
 
-            //
-            error: function( xhr, status, errText ){
-                console.log( 'xhr錯誤: ', xhr.responseText );
+            error: function( err, status, errText ){
+                console.error( 'ERROR', err.responseText );
             }
 
         })
@@ -40,7 +39,6 @@ var AppActionCreators = {
 
 	logIn: function( postData ){
 
-        //$.ajax('http://' + IPaddress + '/users/session/manager',
         $.ajax('http://' + IPaddress + '/users/api/check',
         {
             type:"POST",
@@ -54,6 +52,7 @@ var AppActionCreators = {
 				if(data.isManager){
 
 					AppDispatcher.handleViewAction({
+
 						actionType: AppConstants.JUST_REFRESH,
 						item: data
 					});
@@ -65,9 +64,8 @@ var AppActionCreators = {
 				}
             },
 
-            //
-            error: function( xhr, status, errText ){
-                console.log( 'xhr錯誤: ', xhr.responseText );
+            error: function( err, status, errText ){
+                console.error( 'ERROR', err.responseText );
             }
 
         })
@@ -99,18 +97,19 @@ var AppActionCreators = {
 
     },
 
-	CheckIsManger: function(){
+	checkIsManger: function(){
 
         $.ajax('http://' + IPaddress + '/users/session/manager',
         {
             type:"GET",
-            //
+
             success: function(data, status, jqxhr){
 
 				if(!data.isManager){
 					data.isManager = false;
 				}else{
 					AppDispatcher.handleViewAction({
+
 							actionType: AppConstants.JUST_REFRESH,
 							item: data
 					});
