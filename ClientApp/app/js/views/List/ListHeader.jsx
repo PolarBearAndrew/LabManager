@@ -7,8 +7,6 @@ var Selector = React.createFactory( require('./Selector.jsx') );
 var ListHeader = React.createClass({
 
     //========================================================================
-
-
     // 這裏列出每個 prop 的型別，但只會在 dev time 檢查
    propTypes: {
 		// callbacks

@@ -97,34 +97,34 @@ var AppActionCreators = {
 
     },
 
-	checkIsManger: function(){
+	// checkIsManger: function(){
 
-        $.ajax('http://' + IPaddress + '/users/session/manager',
-        {
-            type:"GET",
+ //        $.ajax('http://' + IPaddress + '/users/session/manager',
+ //        {
+ //            type:"GET",
 
-            success: function(data, status, jqxhr){
+ //            success: function(data, status, jqxhr){
 
-				if(!data.isManager){
-					data.isManager = false;
-				}else{
-					AppDispatcher.handleViewAction({
+	// 			if(!data.isManager){
+	// 				data.isManager = false;
+	// 			}else{
+	// 				AppDispatcher.handleViewAction({
 
-							actionType: AppConstants.JUST_REFRESH,
-							item: data
-					});
-				}
-				//console.log('[GET] get session -->', data.isManager);
-            },
+	// 						actionType: AppConstants.JUST_REFRESH,
+	// 						item: data
+	// 				});
+	// 			}
+	// 			//console.log('[GET] get session -->', data.isManager);
+ //            },
 
-            //
-            error: function( xhr, status, errText ){
-                console.log( 'xhr錯誤: ', xhr.responseText );
-            }
+ //            //
+ //            error: function( xhr, status, errText ){
+ //                console.log( 'xhr錯誤: ', xhr.responseText );
+ //            }
 
-        })
+ //        })
 
-    },
+ //    },
 
 	selectRoomID: function( roomID ) {
 

@@ -212,12 +212,15 @@ var ListContainer = React.createClass({
 
         // 是從 TodoStore 取資料(as the single source of truth)
         return {
+
             arrLog: LogStore.getLog(),
+
 			selectedRoomID: LogStore.getSelectedRoomID(),
 			selectedInputID: LogStore.getSelectedRoomIDinput(),
+
 			manager: LogStore.getIsManager(),
+            roomInfo: LogStore.getRoomInfo(),
 			loginBoxCtrl: LogStore.getLoginBoxShowCtrl(),
-			roomInfo: LogStore.getRoomInfo(),
          };
     }
 
