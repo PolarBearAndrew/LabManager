@@ -1,8 +1,12 @@
 # LabManager
 
-實驗室管理系統 v0.0.1, 測試使用 React.js/Flux
+實驗室管理系統 v0.0.1
 
-Date : 7/ May/ 2015
+React.js / Flux Demo 
+
+遭遇 store 切割問題...
+
+2015 / 5 / 7
 
 ------------------------------
 
