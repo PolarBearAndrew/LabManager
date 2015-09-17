@@ -1,6 +1,5 @@
 ﻿
 var AppConstants = require('../constants/AppConstants');
-
 var Dispatcher = require('flux').Dispatcher;
 
 
@@ -28,14 +27,14 @@ $.extend( AppDispatcher, {
     },
 
     /**
-     * 
+     *
      */
     handleViewAction: function(action) {
         var payload = {
             source: AppConstants.SOURCE_VIEW_ACTION,
             action: action
         };
-        
+
         this.dispatch(payload);
     },
 

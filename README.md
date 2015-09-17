@@ -1,8 +1,6 @@
 # LabManager
 
-For : OIT, Information Management Department
-
-version : 0.0.1
+實驗室管理系統 v0.0.1, 測試使用 React.js/Flux
 
 Date : 7/ May/ 2015
 
@@ -10,8 +8,7 @@ Date : 7/ May/ 2015
 
 ## pre-install
 
- * node.js@0.10.26
- * npm
+ * node.js@0.10.26 (v4.0.0 亦可)
  * [mongojs](https://github.com/mafintosh/mongojs)
  * [express@4.11.1rc](http://github.com/strongloop/express/)
 
