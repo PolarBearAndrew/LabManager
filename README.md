@@ -2,7 +2,7 @@
 
 實驗室管理系統 v0.0.1
 
-React.js / Flux Demo 
+練習使用 React.js / Flux / socket.io / express-session
 
 遭遇 store 切割問題...
 
